@@ -1,0 +1,78 @@
+theme = "catppuccin_mocha"
+
+[editor]
+line-number = "absolute"
+mouse = true
+scrolloff = 3
+middle-click-paste = true
+scroll-lines = 3
+shell = ["bash", "-c"]
+gutters = ["diagnostics", "spacer", "line-numbers", "diff"]
+auto-completion = true
+auto-format = true
+idle-timeout = 400
+completion-trigger-len = 1
+completion-replace = true
+auto-info = true
+true-color = true
+rulers = [80, 88, 120]
+auto-pairs = true
+cursorline = true
+bufferline = "always"
+color-modes = true
+
+[editor.statusline]
+left = [
+  "mode", "spinner", "file-name", "file-type",
+  "file-encoding", "file-line-ending",
+  "file-modification-indicator"
+]
+center = []
+right = [
+  "diagnostics", "workspace-diagnostics",
+  "selections", "primary-selection-length", "position", "total-line-numbers",
+  "version-control"
+]
+separator = "|"
+
+
+[editor.lsp]
+display-messages = true
+display-inlay-hints = true
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[editor.file-picker]
+hidden = true
+parents = true
+ignore = true
+git-ignore = true
+git-global = true
+git-exclude = true
+max-depth = 7
+
+[editor.search]
+smart-case = true
+wrap-around = true
+
+[editor.whitespace.render]
+space = "none"
+tab = "all"
+newline = "all"
+nbsp = "all"
+
+[editor.whitespace.characters]
+space = "·"
+nbsp = "⍽"
+tab = "→"
+newline = "⏎"
+
+[editor.indent-guides]
+render = true
+character = "▏"
+
+[editor.soft-wrap]
+enable = true

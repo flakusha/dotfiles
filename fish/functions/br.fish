@@ -1,0 +1,1 @@
+/home/flak/.local/share/broot/launcher/fish/br.fish

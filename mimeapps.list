@@ -1,0 +1,38 @@
+[Default Applications]
+application/x-ms-dos-executable;application/x-wine-extension-msp;application/x-msi;application/x-msdos-program=PortProton.desktop
+application/x-yaml=thunar.desktop
+x-scheme-handler/http=firefox.desktop
+x-scheme-handler/https=firefox.desktop
+x-scheme-handler/chrome=firefox.desktop
+text/html=firefox.desktop
+application/x-extension-htm=firefox.desktop
+application/x-extension-html=firefox.desktop
+application/x-extension-shtml=firefox.desktop
+application/xhtml+xml=firefox.desktop
+application/x-extension-xhtml=firefox.desktop
+application/x-extension-xht=firefox.desktop
+x-scheme-handler/tg=userapp-Kotatogram Desktop-5REG31.desktop
+
+[Added Associations]
+application/x-yaml=thunar.desktop;
+text/plain=org.gnome.gedit.desktop;dev.lapce.lapce.desktop;
+audio/flac=baka-mplayer.desktop;
+video/x-matroska=org.kde.haruna.desktop;mpv.desktop;org.kde.dragonplayer.desktop;baka-mplayer.desktop;
+image/jpeg=org.gnome.gThumb.desktop;feh.desktop;org.gnome.eog.desktop;
+image/png=org.gnome.eog.desktop;krita_png.desktop;
+application/pdf=firefox.desktop;okularApplication_pdf.desktop;
+x-scheme-handler/http=firefox.desktop;
+x-scheme-handler/https=firefox.desktop;
+x-scheme-handler/chrome=firefox.desktop;
+text/html=firefox.desktop;
+application/x-extension-htm=firefox.desktop;
+application/x-extension-html=firefox.desktop;
+application/x-extension-shtml=firefox.desktop;
+application/xhtml+xml=firefox.desktop;
+application/x-extension-xhtml=firefox.desktop;
+application/x-extension-xht=firefox.desktop;
+x-scheme-handler/tg=userapp-Kotatogram Desktop-5REG31.desktop;
+application/zip=org.gnome.FileRoller.desktop;org.gnome.Nautilus.desktop;
+application/x-wine-extension-ini=xed.desktop;
+text/vnd.trolltech.linguist=org.gnome.Builder.desktop;
+application/schema+json=org.gnome.Builder.desktop;
