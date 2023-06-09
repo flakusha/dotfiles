@@ -254,8 +254,8 @@ set -x PATH $PATH $HOME/.local/bin
 set -x PATH $PATH /opt/rocm/bin
 set -x PATH $PATH /usr/bin/core_perl
 
-#alias helix=hx
-alias blender-official=$HOME/git-repos/blender-official/blender
+# alias helix=hx
+# alias blender-official=$HOME/git-repos/blender-official/blender
 alias exaa="exa -Flagh --icons --octal-permissions --git"
 set -gx VOLTA_HOME "$HOME/.volta"
 set -gx PATH "$VOLTA_HOME/bin" $PATH
