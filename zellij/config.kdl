@@ -181,7 +181,7 @@ plugins {
 //   - detach (Default)
 //   - quit
 //
-// on_force_close "quit"
+on_force_close "quit"
 
 //  Send a request for a simplified ui (without arrow fonts) to plugins
 //  Options:
@@ -193,7 +193,7 @@ plugins {
 // Choose the path to the default shell that zellij will use for opening new panes
 // Default: $SHELL
 //
-default_shell "fish"
+default_shell "nu"
 
 // Toggle between having pane frames around the panes
 // Options:
@@ -225,7 +225,7 @@ pane_frames false
 // Choose the theme that is specified in the themes section.
 // Default: default
 //
-// theme "default"
+theme "default"
 
 // The name of the default layout to load on startup
 // Default: "default"

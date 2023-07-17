@@ -14,6 +14,7 @@ application/x-extension-xht=firefox.desktop
 x-scheme-handler/tg=userapp-Kotatogram Desktop-5REG31.desktop
 application/x-zerosize=nvim.desktop
 inode/directory=thunar.desktop
+application/octet-stream=org.gnome.gThumb.desktop
 
 [Added Associations]
 application/x-yaml=thunar.desktop;
@@ -43,3 +44,5 @@ application/x-cue=dev.lapce.lapce.desktop;
 inode/directory=thunar.desktop;
 application/x-shellscript=xed.desktop;wine-extension-txt.desktop;
 text/x-csrc=xed.desktop;
+image/x-nikon-nef=org.gnome.gThumb.desktop;
+application/octet-stream=deepin-image-viewer.desktop;krita_tiff.desktop;org.gnome.gThumb.desktop;
