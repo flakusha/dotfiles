@@ -36,7 +36,7 @@ auto-format = true
 [[language]]
 name = "yaml"
 file-types = ["yaml", "yml"]
-config = { yaml = { schemas = { kubernetes = "/*.yaml" }, format = { enable = true } } }
+# config = { yaml = { schemas = { kubernetes = "/*.yaml" }, format = { enable = true } } }
 auto-format = true
 
 # [[language]]
