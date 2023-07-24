@@ -1,5 +1,5 @@
 # Apply gtk theming
-exec_always ~/.config/sway/scripts/import-gsettings
+#exec_always ~/.config/sway/scripts/import-gsettings
 
 # Set inner/outer gaps
 gaps inner 0
@@ -15,7 +15,7 @@ font pango:Iosevka Nerd Font 10
 smart_borders on
 
 # Set wallpaper:
-exec swaybg -i /usr/share/endeavouros/backgrounds/eos_wallpapers_community/stars.png
+exec swaybg -i /usr/share/backgrounds/artix-login-center.png
 
 # Title format for windows
 for_window [shell="xdg_shell"] title_format "%title (%app_id)"
