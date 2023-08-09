@@ -1,22 +1,12 @@
-window.xfce4-panel widget > box > button > image{
-   padding: 0.2em 0.16em;  -gtk-icon-transform: scale(0.8);
+.mate-panel-menu-bar button {
+    color: transparent;
 }
-
-window#whiskermenu-window treeview>* {
-  padding:0.2em 0.16em;
+panel-toplevel.background.horizontal,
+.mate-panel-menu-bar,
+#clock-applet-button,
+#clock-applet-button:hover  {
+    color: white;
 }
-
-#xfce4-notification-plugin image {
-	-gtk-icon-transform: scale(0.85) translateY(3px);
+#tasklist-button {
+    color: white;
 }
-#pulseaudio-button image {
-	-gtk-icon-transform: scale(0.9);
-}
-#xfce4-power-manager-plugin image {
-	-gtk-icon-transform: scale(0.75);
-}
-
-VteTerminal, vte-terminal {
-    padding: 13px;
-}
-@import 'colors.css';

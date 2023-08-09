@@ -1,4 +1,8 @@
 [[language]]
+name = "rust"
+auto-format = true
+
+[[language]]
 name = "python"
 scope = "source.python"
 auto-format = true
@@ -38,40 +42,3 @@ name = "yaml"
 file-types = ["yaml", "yml"]
 # config = { yaml = { schemas = { kubernetes = "/*.yaml" }, format = { enable = true } } }
 auto-format = true
-
-# [[language]]
-# name = "python"
-# scope = "source.python"
-# language-server = { command = "ruff-lsp" }
-# config = { settings = { args = [] } }
-
-# [language-server.pyright]
-# command = "pyright-langserver"
-# args = ["--stdio"]
-
-# [language-server.pyright.configi]
-# lint = true
-# inlayHint.enable = true
-
-# [language-server.ruff-lsp]
-# command = "ruff-lsp"
-
-# language-server = { command = "pyright-langserver", args = ["--stdio"] }
-# language-server = { command = "ruff-lsp" }
-# config = { settings = { args = [] } }
-# language-server = [
-#     { name = "pyright" },
-#     { name = "ruff-lsp" },
-# ]
-
-# [[language]]
-# name = "python"
-# scope = "source.python"
-# injection-regex = "python"
-# file-types = ["py","pyi","py3","pyw","ptl",".pythonstartup",".pythonrc","SConstruct"]
-# shebangs = ["python"]
-# roots = []
-# comment-token = "#"
-# language-server = { command = "pylsp", args = [""] }
-# # TODO: pyls needs utf-8 offsets
-# indent = { tab-width = 4, unit = "    " }

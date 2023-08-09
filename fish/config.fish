@@ -248,14 +248,15 @@ end
 
 starship init fish | source
 zoxide init fish | source
+thefuck --alias | source
 
 set -x PATH $PATH $HOME/.cargo/bin
 set -x PATH $PATH $HOME/.local/bin
 set -x PATH $PATH /opt/rocm/bin
 set -x PATH $PATH /usr/bin/core_perl
 
-alias helix=hx
-# alias blender-official=$HOME/git-repos/blender-official/blender
+alias hx=helix
 alias exaa="exa -Flagh --icons --octal-permissions --git"
-set -gx VOLTA_HOME "$HOME/.volta"
-set -gx PATH "$VOLTA_HOME/bin" $PATH
+alias ll="ls -la"
+#set -gx VOLTA_HOME "$HOME/.volta"
+#set -gx PATH "$VOLTA_HOME/bin" $PATH

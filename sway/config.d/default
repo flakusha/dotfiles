@@ -229,6 +229,20 @@ bindsym $mod+r mode "resize"
 # Keybindings List
 #
     # bindsym $mod+t exec xed ~/.config/sway/cheatsheet
+#
+# Language
+#
+exec fcitx5 -d
+
+#
+# Dbus
+#
+#exec dbus-run-session pipewire
+#exec dbus-run-session pipewire-pulse
+#exec dbus-run-session wireplumber
+#exec dbus-launch --exit-with-session sway
+
+exec dbus-update-activation-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 
 #
 # Audio
@@ -236,4 +250,14 @@ bindsym $mod+r mode "resize"
 exec pipewire
 exec pipewire-pulse
 exec wireplumber
+#exec pipewire-media-session &
+
+#
+# User session and authorization
+#
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+
+#
+# KDE apps support
+#
+exec --no-startup-id /usr/lib/pam_kwallet_init
