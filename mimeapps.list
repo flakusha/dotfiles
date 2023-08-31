@@ -2,13 +2,14 @@
 application/xhtml+xml=org.kde.falkon.desktop;
 inode/directory=thunar.desktop;pcmanfm.desktop;
 x-content/audio-player=org.kde.elisa.desktop;
-application/pdf=qpdfview.desktop;
+application/pdf=libreoffice-draw.desktop;org.pwmt.zathura-pdf-mupdf.desktop;qpdfview.desktop;
 text/plain=org.gnome.Builder.desktop;helix.desktop;org.kde.kwrite.desktop;
 image/jpeg=org.xfce.ristretto.desktop;
 application/x-zerosize=org.xfce.mousepad.desktop;helix.desktop;
 text/x-log=leafpad.desktop;
 video/x-matroska=smplayer.desktop;org.kde.haruna.desktop;org.xfce.Parole.desktop;org.gnome.Totem.desktop;vlc.desktop;
 inode/symlink=org.gnome.Builder.desktop;
+application/x-core=org.gnome.Builder.desktop;
 
 [Default Applications]
 application/msword=libreoffice-writer.desktop;
@@ -50,3 +51,4 @@ x-content/audio-player=org.kde.elisa.desktop;
 x-scheme-handler/about=org.kde.falkon.desktop;
 x-scheme-handler/mailto=trojita.desktop;
 inode/symlink=org.gnome.Builder.desktop
+application/x-core=org.gnome.Builder.desktop

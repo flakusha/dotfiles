@@ -250,7 +250,6 @@ exec dbus-update-activation-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 exec pipewire
 exec pipewire-pulse
 exec wireplumber
-#exec pipewire-media-session &
 
 #
 # User session and authorization

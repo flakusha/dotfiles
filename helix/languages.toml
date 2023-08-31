@@ -3,6 +3,10 @@ name = "rust"
 auto-format = true
 
 [[language]]
+name = "toml"
+auto-format = true
+
+[[language]]
 name = "python"
 scope = "source.python"
 auto-format = true
