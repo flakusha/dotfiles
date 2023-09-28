@@ -1,16 +1,3 @@
-.mate-panel-menu-bar button {
-  color: transparent;
-}
-panel-toplevel.background.horizontal,
-.mate-panel-menu-bar,
-#clock-applet-button,
-#clock-applet-button:hover {
-  color: white;
-}
-#tasklist-button {
-  color: white;
-}
-
 headerbar {
   border-radius: 0px;
 }

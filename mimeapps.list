@@ -1,8 +1,8 @@
 [Added Associations]
-application/xhtml+xml=org.kde.falkon.desktop;
+application/xhtml+xml=org.kde.falkon.desktop;librewolf.desktop;
 inode/directory=thunar.desktop;pcmanfm.desktop;
 x-content/audio-player=org.kde.elisa.desktop;
-application/pdf=libreoffice-draw.desktop;org.pwmt.zathura-pdf-mupdf.desktop;qpdfview.desktop;
+application/pdf=librewolf.desktop;libreoffice-draw.desktop;atril.desktop;org.gnome.Evince.desktop;org.pwmt.zathura-pdf-mupdf.desktop;qpdfview.desktop;
 text/plain=org.gnome.Builder.desktop;helix.desktop;org.kde.kwrite.desktop;
 image/jpeg=org.xfce.ristretto.desktop;
 application/x-zerosize=org.xfce.mousepad.desktop;helix.desktop;
@@ -10,6 +10,10 @@ text/x-log=leafpad.desktop;
 video/x-matroska=smplayer.desktop;org.kde.haruna.desktop;org.xfce.Parole.desktop;org.gnome.Totem.desktop;vlc.desktop;
 inode/symlink=org.gnome.Builder.desktop;
 application/x-core=org.gnome.Builder.desktop;
+application/xml=org.gnome.Builder.desktop;
+x-scheme-handler/http=librewolf.desktop;
+text/html=librewolf.desktop;
+x-scheme-handler/https=librewolf.desktop;
 
 [Default Applications]
 application/msword=libreoffice-writer.desktop;
@@ -21,7 +25,7 @@ application/vnd.oasis.opendocument.text=libreoffice-writer.desktop;
 application/vnd.openxmlformats-officedocument.spreadsheetml.sheet=libreoffice-calc.desktop;
 application/vnd.openxmlformats-officedocument.wordprocessingml.document=libreoffice-writer.desktop;
 application/x-extension-eml=trojita.desktop;
-application/xhtml+xml=org.kde.falkon.desktop;
+application/xhtml+xml=librewolf.desktop
 audio/mpeg=org.kde.elisa.desktop;
 audio/x-mpegurl=mpv.desktop;
 audio/x-scpls=mpv.desktop;
@@ -34,7 +38,7 @@ image/png=lximage-qt.desktop;
 image/tiff=lximage-qt.desktop;
 inode/directory=pcmanfm.desktop;
 message/rfc822=trojita.desktop;
-text/html=org.kde.falkon.desktop;
+text/html=librewolf.desktop
 text/plain=org.kde.kwrite.desktop;
 video/mp2t=mpv.desktop;
 video/mp4=mpv.desktop;
@@ -52,3 +56,6 @@ x-scheme-handler/about=org.kde.falkon.desktop;
 x-scheme-handler/mailto=trojita.desktop;
 inode/symlink=org.gnome.Builder.desktop
 application/x-core=org.gnome.Builder.desktop
+application/x-ms-dos-executable;application/x-wine-extension-msp;application/x-msi;application/x-msdos-program=PortProton.desktop
+x-scheme-handler/http=librewolf.desktop
+x-scheme-handler/https=librewolf.desktop

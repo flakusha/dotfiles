@@ -256,7 +256,7 @@ set -x PATH $PATH /opt/rocm/bin
 set -x PATH $PATH /usr/bin/core_perl
 
 alias hx=helix
-alias exaa="exa -Flagh --icons --octal-permissions --git"
+alias ezaa="eza -FlaghmuU --icons --group-directories-first --hyperlink"
 alias ll="ls -la"
 #set -gx VOLTA_HOME "$HOME/.volta"
 #set -gx PATH "$VOLTA_HOME/bin" $PATH

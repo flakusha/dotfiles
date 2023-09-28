@@ -19,6 +19,7 @@
 !Trolltech.conf
 !.bashrc
 !.bash_profile
+!.xinitrc
 
 !/alacritty
 !/bottom

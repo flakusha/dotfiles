@@ -241,8 +241,7 @@ exec fcitx5 -d
 #exec dbus-run-session pipewire-pulse
 #exec dbus-run-session wireplumber
 #exec dbus-launch --exit-with-session sway
-
-exec dbus-update-activation-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
+#exec dbus-update-activation-environment DISPLAY WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway SWAYSOCK
 
 #
 # Audio
@@ -259,4 +258,7 @@ exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 #
 # KDE apps support
 #
-exec --no-startup-id /usr/lib/pam_kwallet_init
+# exec --no-startup-id /usr/lib/pam_kwallet_init
+
+# Set env
+# exec --no-startup-id export MOZ_ENABLE_WAYLAND=1
