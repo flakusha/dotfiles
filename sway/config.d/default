@@ -246,9 +246,7 @@ exec fcitx5 -d
 #
 # Audio
 #
-exec pipewire
-exec pipewire-pulse
-exec wireplumber
+exec --no-startup-id pipewire
 
 #
 # User session and authorization

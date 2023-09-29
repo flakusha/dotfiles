@@ -42,4 +42,6 @@ fi
 # xterm -geometry 80x20+494-0 &
 # exec xterm -geometry 80x66+0+0 -name login
 
-exec dbus-run-session i3
+exec pipewire &
+
+exec dbus-launch --exit-with-session i3

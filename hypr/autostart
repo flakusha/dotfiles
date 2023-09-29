@@ -11,13 +11,13 @@ scripts="$config/scripts"
 "$scripts/import-gsettings"
 
 # wallpaper set to cloud.png
-swww init && swww img "$HOME/.config/hypr/wallpapers/houses.jpg" --transition-type center --transition-fps 144
+# swww init && swww img "$HOME/.config/hypr/wallpapers/houses.jpg" --transition-type center --transition-fps 144
 
 # effects
-"$scripts/rgb" &
+#"$scripts/rgb" &
 
 # other
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
-dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP &
+# dbus-update-activation-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP &
 fcitx5 -d &
 corectrl --minimize-systray &
