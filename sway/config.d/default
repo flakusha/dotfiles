@@ -51,7 +51,8 @@ bindsym $mod+f1 exec ~/.config/sway/scripts/lockman.sh
     bindsym $mod+Return exec $term-float
 
     # Open the power menu
-    bindsym $mod+Shift+e exec $powermenu
+    # bindsym $mod+Shift+e exec $powermenu
+    bindsym $mod+Shift+e exec swaymsg exit
 
     # Kill focused window
     bindsym $mod+q kill
