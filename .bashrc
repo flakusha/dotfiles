@@ -172,7 +172,7 @@ alias i3-start='(
   export XDG_CURRENT_SESSION=i3
   export QT_QPA_PLATFORM=xcb
   export MOZ_ENABLE_WAYLAND=0
-  export SDL_VIDEODRIVER=x11
+  #export SDL_VIDEODRIVER=x11
   export $(dbus-launch)
   exec pipewire &
   exec dunst -conf ~/.config/dunst/dunstrc &
