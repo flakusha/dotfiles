@@ -256,3 +256,5 @@ eval "$(zoxide init bash)"
 
 # Clean up PATH from repeating entries
 PATH=`printf %s "$PATH" | awk -v RS=: '{ if (!arr[$0]++) {printf("%s%s",!ln++?"":":",$0)}}'`
+
+source /home/flak/.config/broot/launcher/bash/br

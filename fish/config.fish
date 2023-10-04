@@ -255,8 +255,12 @@ set -x PATH $PATH $HOME/.local/bin
 set -x PATH $PATH /opt/rocm/bin
 set -x PATH $PATH /usr/bin/core_perl
 
-alias hx=helix
-alias ezaa="eza -FlaghmuU --icons --group-directories-first --hyperlink"
+alias ls="ls --color=auto"
 alias ll="ls -la"
+alias grep="grep --color=auto"
+alias hx=helix
+alias ez="eza -FlaghmuU --icons --group-directories-first --hyperlink"
+
+
 #set -gx VOLTA_HOME "$HOME/.volta"
 #set -gx PATH "$VOLTA_HOME/bin" $PATH
