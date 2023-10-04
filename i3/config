@@ -49,6 +49,7 @@ workspace_layout default
 #border indicator on windows:
 # new_window pixel 1
 default_border pixel 1
+smart_borders on
 
 # thin borders
 # hide_edge_borders both
@@ -172,7 +173,8 @@ mode "resize" {
 ######################################
 
 # start a terminal
-bindsym $mod+Return exec xfce4-terminal
+# bindsym $mod+Return exec xfce4-terminal
+bindsym $mod+Return exec alacritty
 
 # kill focused window
 bindsym $mod+q kill
@@ -185,7 +187,7 @@ bindsym $mod+Shift+e exec i3-msg exit
 # lock with a picture:
 #bindsym $mod+l exec i3lock -i  ~/.config/i3/i3-lock-screen.png -p default|win -t
 # lock by blurring the screen:
-bindsym $mod+l exec ~/.config/i3/scripts/blur-lock
+bindsym $mod+F1 exec ~/.config/i3/scripts/blur-lock
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -377,7 +379,7 @@ exec --no-startup-id ~/.screenlayout/monitor.sh
 #exec --no-startup-id xset s 480 dpms 600 600 600
 
 # disable power saving (for example if using xscreensaver)
-#exec --no-startup-id xset -dpms
+exec --no-startup-id xset -dpms
 
 # use xautolock to use autosuspend rules for mobile device
 # https://wiki.archlinux.org/title/Session_lock#xautolock
@@ -504,6 +506,8 @@ bar {
   # “[n][:][NAME]” will display only the name.
   strip_workspace_numbers yes
   ##strip_workspace_name no
+  tray_output primary
+
   colors {
     separator $rosewater
     background $base

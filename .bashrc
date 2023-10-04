@@ -142,6 +142,8 @@ plugins=(
 # alias bashconfig="mate ~/.bashrc"
 # alias ohmybash="mate ~/.oh-my-bash"
 
+# PS1='[\u@\h \W]\$ '
+
 BASH_CACHE_DIR=$HOME/.cache/oh-my-bash
 if [[ ! -d $BASH_CACHE_DIR ]]; then
 	mkdir $BASH_CACHE_DIR
@@ -149,9 +151,10 @@ fi
 
 source "$OSH"/oh-my-bash.sh
 
+
 # SSH Agent connection
 if [ ! -S ~/.ssh/ssh_auth_sock ]; then
-  eval `ssh-agent`
+  eval $'(ssh-agent)'
   ln -sf "$SSH_AUTH_SOCK" ~/.ssh/ssh_auth_sock
 fi
 export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock
@@ -164,7 +167,7 @@ alias ls='ls --color=auto'
 alias ll='ls -la'
 alias grep='grep --color=auto'
 alias hx='helix'
-alias ezaa='eza -FlaghmuU --icons --group-directories-first --hyperlink'
+alias ez='eza -FlaghmuU --icons --group-directories-first --hyperlink'
 
 alias i3-start='(
   export XDG_SESSION_TYPE=x11
@@ -216,12 +219,26 @@ alias sddm-start='(
   sudo rc-service sddm start
 )'
 
-# PS1='[\u@\h \W]\$ '
+alias rust-apps-update='(
+  sudo rsync -uP ~/.cargo/bin/* \
+  ~/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/rust-analyzer \
+  /usr/local/bin/
+)'
+
+alias backup-to-cold-drive='(
+  echo "Home backup"
+  rsync -aEhuc --progress --delete --stats \
+  --exclude=".cache" \
+  --include=".cache/paru/clone" \
+  /home/$LOGNAME /home/ext/
+  echo "Shared backup"
+  rsync -aEhuc --progress --delete --stats /home/shared /home/ext/
+)'
 
 PATH=$PATH:~/.cargo/bin
 PATH=$PATH:~/node_modules/.bin
 
-source /home/flak/.config/broot/launcher/bash/br
+source "$HOME/.config/broot/launcher/bash/br"
 
 eval "$(thefuck --alias)"
 eval "$(zoxide init bash)"
