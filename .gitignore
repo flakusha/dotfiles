@@ -8,6 +8,7 @@
 *cache
 *.zip
 *.svg
+*history.txt
 
 # Include these
 !.gitignore
