@@ -259,7 +259,7 @@ alias ls="ls --color=auto"
 alias ll="ls -la"
 alias grep="grep --color=auto"
 alias hx=helix
-alias ez="eza -FlaghmuU --icons --group-directories-first --hyperlink"
+alias ez="eza -FlaghmuU --icons --group-directories-first --hyperlink --time-style long-iso"
 
 
 #set -gx VOLTA_HOME "$HOME/.volta"
