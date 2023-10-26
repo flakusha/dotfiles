@@ -252,6 +252,13 @@ exec fcitx5 -d
 exec --no-startup-id pipewire
 
 #
+# Network and firewall
+#
+#exec --no-startup-id NetworkManager
+#exec --no-startup-id firewalld
+exec --no-startup-id firewall-applet
+
+#
 # User session and authorization
 #
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
@@ -259,7 +266,5 @@ exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 #
 # KDE apps support
 #
-# exec --no-startup-id /usr/lib/pam_kwallet_init
-
-# Set env
-# exec --no-startup-id export MOZ_ENABLE_WAYLAND=1
+exec --no-startup-id /usr/lib/pam_kwallet_init
+exec --no-startup-id /usr/lib/kdeconnectd

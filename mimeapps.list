@@ -5,15 +5,17 @@ x-content/audio-player=org.kde.elisa.desktop;
 application/pdf=librewolf.desktop;libreoffice-draw.desktop;atril.desktop;org.gnome.Evince.desktop;org.pwmt.zathura-pdf-mupdf.desktop;qpdfview.desktop;
 text/plain=org.gnome.Builder.desktop;helix.desktop;org.kde.kwrite.desktop;
 image/jpeg=org.xfce.ristretto.desktop;
-application/x-zerosize=org.xfce.mousepad.desktop;helix.desktop;
+application/x-zerosize=helix.desktop;org.xfce.mousepad.desktop;
 text/x-log=leafpad.desktop;
-video/x-matroska=smplayer.desktop;org.kde.haruna.desktop;org.xfce.Parole.desktop;org.gnome.Totem.desktop;vlc.desktop;
+video/x-matroska=vlc.desktop;smplayer.desktop;org.kde.haruna.desktop;org.xfce.Parole.desktop;org.gnome.Totem.desktop;
 inode/symlink=org.gnome.Builder.desktop;
 application/x-core=org.gnome.Builder.desktop;
 application/xml=org.gnome.Builder.desktop;
 x-scheme-handler/http=librewolf.desktop;
 text/html=librewolf.desktop;
 x-scheme-handler/https=librewolf.desktop;
+image/png=krita_png.desktop;
+video/vnd.avi=vlc.desktop;
 
 [Default Applications]
 application/msword=libreoffice-writer.desktop;

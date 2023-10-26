@@ -96,7 +96,7 @@
     "spacing": 10
   },
   "clock": {
-    "format": "{: %H:%M %p  󰃶 %Y.%m.%d}"
+    "format": "{:󰃶 %Y.%m.%d %p  %H:%M}"
   },
   "cpu": {
     "interval": 5,

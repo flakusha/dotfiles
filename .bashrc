@@ -207,6 +207,7 @@ alias sway-start='(
   #exec dbus-run-session sway
   export $(dbus-launch)
   exec dbus-launch --exit-with-session sway
+  firewall-applet
 )'
 
 alias hyprland-start='(
@@ -220,6 +221,7 @@ alias hyprland-start='(
   export MOZ_ENABLE_WAYLAND=1
   export $(dbus-launch)
   exec dbus-launch --exit-with-session Hyprland
+  firewall-applet
 )'
 
 alias gdm-start='(
