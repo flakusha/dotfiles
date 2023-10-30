@@ -240,7 +240,7 @@ alias rust-apps-update='(
 
 alias backup-to-cold-drive='(
   echo "Home backup"
-  rsync -aEhuc --progress --delete --stats \
+  rsync -aEhu --progress --delete --stats \
   --exclude=".cache" \
   --include=".cache/paru/clone" \
   /home/$LOGNAME /home/ext/
@@ -259,4 +259,3 @@ eval "$(zoxide init bash)"
 # Clean up PATH from repeating entries
 PATH=`printf %s "$PATH" | awk -v RS=: '{ if (!arr[$0]++) {printf("%s%s",!ln++?"":":",$0)}}'`
 
-source /home/flak/.config/broot/launcher/bash/br
