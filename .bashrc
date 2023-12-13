@@ -249,13 +249,15 @@ alias backup-to-cold-drive='(
 )'
 
 alias gamescope-steam='(
-  vk_radv gamescope -w 3840 -h 2160 -W 3840 -H 2160 -r 144 \
+  vk_radv gamescope -w 3840 -h 2160 -W 3840 -H 2160 \
+  -r 144 -o 15 \
   -e -f --rt --adaptive-sync \
   -- steam
 )'
 
 alias gamescope-steam-native='(
-  vk_radv gamescope -w 3840 -h 2160 -W 3840 -H 2160 -r 144 \
+  vk_radv gamescope -w 3840 -h 2160 -W 3840 -H 2160 \
+  -r 144 -o 15 \
   -e -f --rt --adaptive-sync \
   -- steam-native
 )'
