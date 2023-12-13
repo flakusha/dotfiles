@@ -248,6 +248,18 @@ alias backup-to-cold-drive='(
   rsync -aEhuc --progress --delete --stats /home/shared /home/ext/
 )'
 
+alias gamescope-steam='(
+  vk_radv gamescope -w 3840 -h 2160 -W 3840 -H 2160 -r 144 \
+  -e -f --rt --adaptive-sync \
+  -- steam
+)'
+
+alias gamescope-steam-native='(
+  vk_radv gamescope -w 3840 -h 2160 -W 3840 -H 2160 -r 144 \
+  -e -f --rt --adaptive-sync \
+  -- steam-native
+)'
+
 PATH=$PATH:~/.cargo/bin
 PATH=$PATH:~/node_modules/.bin
 
@@ -259,3 +271,4 @@ eval "$(zoxide init bash)"
 # Clean up PATH from repeating entries
 PATH=`printf %s "$PATH" | awk -v RS=: '{ if (!arr[$0]++) {printf("%s%s",!ln++?"":":",$0)}}'`
 
+source /home/flak/.config/broot/launcher/bash/br
