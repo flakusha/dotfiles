@@ -190,9 +190,8 @@ alias i3-start='(
   export $(dbus-launch)
   exec pipewire &
   exec dunst -conf ~/.config/dunst/dunstrc &
-  startx ~/.xinitrc i3
+  exec dbus-launch --exit-with-session startx ~/.xinitrc i3
   exec xrandr --dpi 98 &
-  # exec xrdb ~/.config/.Xresources
 )'
 
 alias sway-start='(
@@ -249,28 +248,51 @@ alias backup-to-cold-drive='(
 )'
 
 alias gamescope-steam='(
+  export RADV_PERFTEST="rt"
+  export VKD3D_CONFIG=dxr
   vk_radv gamescope -w 3840 -h 2160 -W 3840 -H 2160 \
   -r 144 -o 15 \
-  -e -f --rt --adaptive-sync \
-  -- steam
+  -R -e -f --adaptive-sync \
+  -- gamemoderun steam
 )'
 
 alias gamescope-steam-native='(
+  export RADV_PERFTEST="rt"
+  export VKD3D_CONFIG=dxr
   vk_radv gamescope -w 3840 -h 2160 -W 3840 -H 2160 \
   -r 144 -o 15 \
-  -e -f --rt --adaptive-sync \
-  -- steam-native
+  -R -e -f --adaptive-sync \
+  -- gamemoderun steam-native
+)'
+
+# Rate these mirrors
+alias rate-mirrors-all='(
+  rate-mirrors \
+  --entry-country JP \
+  --country-neighbors-per-country 10 \
+  --country-test-mirrors-per-country 10 \
+  --top-mirrors-number-to-retest 30 \
+  --save mirrorlist artix; \
+  rate-mirrors \
+  --entry-country JP \
+  --country-neighbors-per-country 10 \
+  --country-test-mirrors-per-country 10 \
+  --top-mirrors-number-to-retest 30 \
+  --save mirrorlist-arch arch; \
+  rate-mirrors \
+  --entry-country JP \
+  --country-neighbors-per-country 10 \
+  --country-test-mirrors-per-country 10 \
+  --top-mirrors-number-to-retest 30 \
+  --save mirrorlist-chaotic chaotic-aur
 )'
 
 PATH=$PATH:~/.cargo/bin
 PATH=$PATH:~/node_modules/.bin
 
-source "$HOME/.config/broot/launcher/bash/br"
-
 eval "$(thefuck --alias)"
 eval "$(zoxide init bash)"
+source "$HOME/.config/broot/launcher/bash/br"
 
 # Clean up PATH from repeating entries
 PATH=`printf %s "$PATH" | awk -v RS=: '{ if (!arr[$0]++) {printf("%s%s",!ln++?"":":",$0)}}'`
-
-source /home/flak/.config/broot/launcher/bash/br
