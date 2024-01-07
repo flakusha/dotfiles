@@ -252,7 +252,7 @@ alias gamescope-steam='(
   export VKD3D_CONFIG=dxr
   vk_radv gamescope -w 3840 -h 2160 -W 3840 -H 2160 \
   -r 144 -o 15 \
-  -R -e -f --adaptive-sync \
+  -R -e -b --rt --adaptive-sync \
   -- gamemoderun steam
 )'
 
@@ -261,7 +261,7 @@ alias gamescope-steam-native='(
   export VKD3D_CONFIG=dxr
   vk_radv gamescope -w 3840 -h 2160 -W 3840 -H 2160 \
   -r 144 -o 15 \
-  -R -e -f --adaptive-sync \
+  -R -e -b --rt --adaptive-sync \
   -- gamemoderun steam-native
 )'
 

@@ -551,7 +551,7 @@ $env.config = {
 
 source ~/.cache/starship/init.nu
 source ~/.cache/zoxide/zoxide.nu
-source /home/flak/.config/broot/launcher/nushell/br
+source ~/.config/broot/launcher/nushell/br
 
 alias ll = ls -mla
 alias ez = eza -FlaghmuU --icons --group-directories-first --hyperlink --time-style long-iso
