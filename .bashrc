@@ -175,7 +175,7 @@ source "$OSH"/oh-my-bash.sh
 [[ $- != *i* ]] && return
 
 alias ls='ls --color=auto'
-alias ll='ls -la'
+alias ll='ls -lah'
 alias grep='grep --color=auto'
 alias hx='helix'
 alias ez='eza -FlaghmuU --icons --group-directories-first --hyperlink --time-style long-iso'
@@ -250,19 +250,19 @@ alias backup-to-cold-drive='(
 alias gamescope-steam='(
   export RADV_PERFTEST="rt"
   export VKD3D_CONFIG=dxr
-  vk_radv gamescope -w 3840 -h 2160 -W 3840 -H 2160 \
+  gamemoderun vk_radv gamescope -w 3840 -h 2160 -W 3840 -H 2160 \
   -r 144 -o 15 \
-  -R -e -b --rt --adaptive-sync \
-  -- gamemoderun steam
+  -R -e -f --rt --adaptive-sync \
+  -- steam
 )'
 
 alias gamescope-steam-native='(
   export RADV_PERFTEST="rt"
   export VKD3D_CONFIG=dxr
-  vk_radv gamescope -w 3840 -h 2160 -W 3840 -H 2160 \
+  gamemoderun vk_radv gamescope -w 3840 -h 2160 -W 3840 -H 2160 \
   -r 144 -o 15 \
-  -R -e -b --rt --adaptive-sync \
-  -- gamemoderun steam-native
+  -R -e -f --rt --adaptive-sync \
+  -- steam-native
 )'
 
 # Rate these mirrors
