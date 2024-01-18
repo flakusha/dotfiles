@@ -7,42 +7,64 @@ name = "toml"
 auto-format = true
 
 [[language]]
+name = "yaml"
+file-types = ["yaml", "yml"]
+auto-format = true
+
+# Python setup
+[[language]]
 name = "python"
-scope = "source.python"
+language-servers = [ "pyright", "ruff" ]
 auto-format = true
 indent = { tab-width = 4, unit = " " }
-formatter = { command = "black", args = ["-", "-q"] }
 roots = ["pyproject.toml", "pyrightconfig.json", "Poetry.lock"]
 
+[language-server.pyright.config.python.analysis]
+typeCheckingMode = "basic"
+
+[language-server.ruff]
+command = "ruff-lsp"
+
+[language-server.ruff.config.settings]
+args = ["--ignore", "E501"]
+
+[language.formatter]
+command = "black"
+args = ["--line-length", "88", "--quiet", "-"]
+
+# WEB languages
 [[language]]
 name = "html"
 formatter = { command = 'prettier', args = ["--parser", "html"] }
 
 [[language]]
-name = "json"
-formatter = { command = 'prettier', args = ["--parser", "json"] }
-
-[[language]]
 name = "css"
 formatter = { command = 'prettier', args = ["--parser", "css"] }
 
+# JS/TS family config
+[language-server]
+biome = { command = "biome", args = ["lsp-proxy"] }
+
 [[language]]
 name = "javascript"
-formatter = { command = 'prettier', args = ["--parser", "typescript"] }
+language-servers = [ { name = "typescript-language-server", except-features = [ "format" ] }, "biome" ]
 auto-format = true
 
 [[language]]
 name = "typescript"
-formatter = { command = 'prettier', args = ["--parser", "typescript"] }
+language-servers = [ { name = "typescript-language-server", except-features = [ "format" ] }, "biome" ]
 auto-format = true
 
 [[language]]
 name = "tsx"
-formatter = { command = 'prettier', args = ["--parser", "typescript"] }
 auto-format = true
+language-servers = [ { name = "typescript-language-server", except-features = [ "format" ] }, "biome" ]
 
 [[language]]
-name = "yaml"
-file-types = ["yaml", "yml"]
-# config = { yaml = { schemas = { kubernetes = "/*.yaml" }, format = { enable = true } } }
+name = "jsx"
 auto-format = true
+language-servers = [ { name = "typescript-language-server", except-features = [ "format" ] }, "biome" ]
+
+[[language]]
+name = "json"
+language-servers = [ { name = "vscode-json-language-server", except-features = [ "format" ] }, "biome" ]
