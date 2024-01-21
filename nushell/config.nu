@@ -555,4 +555,4 @@ source ~/.config/broot/launcher/nushell/br
 
 alias ll = ls -mla
 alias ez = eza -FlaghmuU --icons --group-directories-first --hyperlink --time-style long-iso
-
+alias rust-apps-update = sudo rsync -uP ~/.cargo/bin/* ~/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/rust-analyzer /usr/local/bin
