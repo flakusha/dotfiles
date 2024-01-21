@@ -1,3 +1,8 @@
+# Language servers config
+[language-server]
+biome = { command = "biome", args = ["lsp-proxy"] }
+nu-lsp = { command = "nu", args = ["--lsp"] }
+
 [[language]]
 name = "rust"
 auto-format = true
@@ -42,8 +47,6 @@ name = "css"
 formatter = { command = 'prettier', args = ["--parser", "css"] }
 
 # JS/TS family config
-[language-server]
-biome = { command = "biome", args = ["lsp-proxy"] }
 
 [[language]]
 name = "javascript"
@@ -68,3 +71,7 @@ language-servers = [ { name = "typescript-language-server", except-features = [ 
 [[language]]
 name = "json"
 language-servers = [ { name = "vscode-json-language-server", except-features = [ "format" ] }, "biome" ]
+
+[[language]]
+name = "nu"
+language-servers = [ "nu-lsp" ]
