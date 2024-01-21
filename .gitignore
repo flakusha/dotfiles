@@ -9,6 +9,7 @@
 *.zip
 *.svg
 *history.txt
+/alacritty/themes
 
 # Include these
 !.gitignore
