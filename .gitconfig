@@ -1,5 +1,6 @@
 [core]
     pager = delta
+    compression = 0
 
 [interactive]
     diffFilter = delta --color-only
@@ -15,3 +16,6 @@
 
 [diff]
     colorMoved = default
+
+[tag]
+    sort = "version:refname"
