@@ -15,7 +15,7 @@
 !.gitignore
 !README.md
 !mimeapps.list
-!.gtkrc-2.0
+!.gtkrc-2.0.mine
 !starship.toml
 !topgrade.toml
 !Trolltech.conf
