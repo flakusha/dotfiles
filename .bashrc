@@ -104,7 +104,6 @@ plugins=(
   npm
   nvm
   progress
-  zoxide
 )
 
 # Which plugins would you like to conditionally load? (plugins can be found in ~/.oh-my-bash/plugins/*)
@@ -175,7 +174,7 @@ source "$OSH"/oh-my-bash.sh
 [[ $- != *i* ]] && return
 
 alias ls='ls --color=auto'
-alias ll='ls -lah'
+alias ll='ls -lahg --time-style=long-iso --hyperlink=auto'
 alias grep='grep --color=auto'
 alias hx='helix'
 alias ez='eza -FlaghmuU --icons --group-directories-first --hyperlink --time-style long-iso'
@@ -297,4 +296,4 @@ eval "$(zoxide init bash)"
 source "$HOME/.config/broot/launcher/bash/br"
 
 # Clean up PATH from repeating entries
-PATH=`printf %s "$PATH" | awk -v RS=: '{ if (!arr[$0]++) {printf("%s%s",!ln++?"":":",$0)}}'`
+PATH=$(printf %s "$PATH" | awk -v RS=: '{ if (!arr[$0]++) {printf("%s%s",!ln++?"":":",$0)}}')
