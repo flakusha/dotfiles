@@ -3,6 +3,7 @@ case $- in
   *i*) ;;
     *) return;;
 esac
+[[ $- == *i* ]] && source /usr/share/blesh/ble.sh --noattach
 
 # Path to your oh-my-bash installation.
 export OSH=/usr/share/oh-my-bash
@@ -150,7 +151,6 @@ fi
 
 source "$OSH"/oh-my-bash.sh
 
-
 # SSH Agent connection
 # if [ ! -S ~/.ssh/ssh_auth_sock ]; then
 #   eval $'(ssh-agent)'
@@ -293,7 +293,9 @@ PATH=$PATH:~/node_modules/.bin
 
 eval "$(thefuck --alias)"
 eval "$(zoxide init bash)"
+eval "$(atuin init bash)"
 source "$HOME/.config/broot/launcher/bash/br"
+[[ ${BLE_VERSION-} ]] && ble-attach
 
 # Clean up PATH from repeating entries
 PATH=$(printf %s "$PATH" | awk -v RS=: '{ if (!arr[$0]++) {printf("%s%s",!ln++?"":":",$0)}}')
