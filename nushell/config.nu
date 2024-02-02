@@ -549,12 +549,8 @@ $env.config = {
   ]
 }
 
-source ~/.cache/starship/init.nu
-source ~/.cache/zoxide/zoxide.nu
-source ~/.config/broot/launcher/nushell/br
-
 alias ll = ls -mlas
-alias ez = eza -FlaghmuU --icons --group-directories-first --hyperlink --time-style long-iso
+alias ez = eza -laghmuU --icons --group-directories-first --hyperlink --time-style long-iso -F=auto
 alias rust-apps-update = sudo rsync -uP ~/.cargo/bin/* ~/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/rust-analyzer /usr/local/bin
 
 alias gamescope-steam = with-env {RADV_PERFTEST: "rt", VKD3D_CONFIG: 'dxr' } {(
@@ -566,3 +562,8 @@ alias gamescope-steam-native = with-env {RADV_PERFTEST: "rt", VKD3D_CONFIG: 'dxr
   gamemoderun vk_radv gamescope -w 3840 -h 2160 -W 3840 -H 2160 -r 144 -o 15 -e -f --rt
   --adaptive-sync -- steam-native
 )}
+
+source ~/.cache/starship/init.nu
+source ~/.cache/zoxide/zoxide.nu
+source ~/.config/broot/launcher/nushell/br
+source ~/.local/share/atuin/init.nu

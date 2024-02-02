@@ -3,7 +3,8 @@ case $- in
   *i*) ;;
     *) return;;
 esac
-[[ $- == *i* ]] && source /usr/share/blesh/ble.sh --noattach
+
+# [[ $- == *i* ]] && source /usr/share/blesh/ble.sh --noattach
 
 # Path to your oh-my-bash installation.
 export OSH=/usr/share/oh-my-bash
@@ -177,7 +178,7 @@ alias ls='ls --color=auto'
 alias ll='ls -lahg --time-style=long-iso --hyperlink=auto'
 alias grep='grep --color=auto'
 alias hx='helix'
-alias ez='eza -FlaghmuU --icons --group-directories-first --hyperlink --time-style long-iso'
+alias ez='eza -laghmuU --icons --group-directories-first --hyperlink --time-style long-iso -F=auto'
 
 alias i3-start='(
   export XDG_SESSION_TYPE=x11
@@ -293,9 +294,10 @@ PATH=$PATH:~/node_modules/.bin
 
 eval "$(thefuck --alias)"
 eval "$(zoxide init bash)"
-eval "$(atuin init bash)"
 source "$HOME/.config/broot/launcher/bash/br"
-[[ ${BLE_VERSION-} ]] && ble-attach
+# [[ ${BLE_VERSION-} ]] && ble-attach
+eval "$(atuin init bash)"
 
 # Clean up PATH from repeating entries
 PATH=$(printf %s "$PATH" | awk -v RS=: '{ if (!arr[$0]++) {printf("%s%s",!ln++?"":":",$0)}}')
+[[ -f /usr/share/bash-preexec/bash-preexec.sh ]] && source /usr/share/bash-preexec/bash-preexec.sh
