@@ -1,6 +1,4 @@
-import = [
-  "~/.config/alacritty/themes/themes/challenger_deep.toml",
-]
+import = ["~/.config/alacritty/themes/themes/cattpuccin_mocha.toml"]
 
 [colors]
 draw_bold_text_with_bright_colors = true
@@ -35,7 +33,7 @@ LC_CTYPE = "en_US.UTF-8"
 TERM = "alacritty"
 
 [font]
-size = 10.0
+size = 9.0
 
 [font.bold]
 family = "NotoSansM Nerd Font Mono"
@@ -52,3 +50,6 @@ style = "Italic"
 [font.normal]
 family = "NotoSansM Nerd Font Mono"
 style = "Regular"
+
+[window]
+opacity = 0.5
