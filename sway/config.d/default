@@ -21,8 +21,9 @@ set $term-float xfce4-terminal
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
-#set $menu wofi -c ~/.config/wofi/config -I
-set $menu rofi -config ~/.config/rofi/config-wayland.rasi
+# set $menu wofi -c ~/.config/wofi/config -I
+set $menu rofi -config ~/.config/rofi/config-wayland.rasi -show drun | xargs swaymsg exec --
+# set $menu tofi-run | xargs swaymsg exec --
 
 set $powermenu ~/.config/waybar/scripts/power-menu.sh
 
@@ -59,7 +60,7 @@ bindsym $mod+f1 exec ~/.config/sway/scripts/lockman.sh
 
     # Start your launcher
     # bindsym $mod+d exec $menu
-    bindsym $mod+d exec $menu -show drun
+    bindsym $mod+d exec $menu
 
     # Activities
     bindsym $mod+p exec ~/.config/wofi/windows.py
