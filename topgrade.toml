@@ -1,22 +1,22 @@
 [misc]
 # Don't ask for confirmations
-#assume_yes = true
+assume_yes = true
 
 # Disable specific steps - same options as the command line flag
 #disable = ["system", "emacs"]
 
 # Ignore failures for these steps
-#ignore_failures = ["powershell"]
+ignore_failures = ["powershell"]
 
 # Run specific steps - same options as the command line flag
 #only = ["system", "emacs"]
 
 # Do not ask to retry failed steps (default: false)
-#no_retry = true
+no_retry = true
 
 # Run `sudo -v` to cache credentials at the start of the run; this avoids a
 # blocking password prompt in the middle of a possibly-unattended run.
-#pre_sudo = false
+pre_sudo = true
 
 # Run inside tmux
 #run_in_tmux = true
@@ -43,10 +43,10 @@
 #cleanup = true
 
 # Skip sending a notification at the end of a run
-#skip_notify = true
+skip_notify = true
 
 [git]
-#max_concurrency = 5
+max_concurrency = 10
 # Additional git repositories to pull
 #repos = [
 #    "~/src/*/",
