@@ -1,4 +1,4 @@
-theme = "catppuccin_mocha"
+theme = "base16_transparent"
 
 [editor]
 line-number = "absolute"
@@ -23,15 +23,23 @@ color-modes = true
 
 [editor.statusline]
 left = [
-  "mode", "spinner", "file-name", "file-type",
-  "file-encoding", "file-line-ending",
-  "file-modification-indicator"
+  "mode",
+  "spinner",
+  "file-name",
+  "file-type",
+  "file-encoding",
+  "file-line-ending",
+  "file-modification-indicator",
 ]
 center = []
 right = [
-  "diagnostics", "workspace-diagnostics",
-  "selections", "primary-selection-length", "position", "total-line-numbers",
-  "version-control"
+  "diagnostics",
+  "workspace-diagnostics",
+  "selections",
+  "primary-selection-length",
+  "position",
+  "total-line-numbers",
+  "version-control",
 ]
 separator = "|"
 
