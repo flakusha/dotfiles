@@ -1,6 +1,6 @@
 # Nushell Config File
 #
-# version = 0.82.0
+# version = 0.89.0
 
 # For more information on defining custom themes, see
 # https://www.nushell.sh/book/coloring_and_theming.html
@@ -181,6 +181,62 @@ let light_theme = {
 #     carapace $spans.0 nushell $spans | from json
 # }
 
+let fish_completer = {|spans|
+  fish --command $'complete "--do-complete=($spans | str join " ")"'
+  | $"value(char tab)description(char newline)" + $in
+  | from tsv --flexible --no-infer
+}
+
+let zoxide_completer = {|spans|
+  $spans | skip 1 | zoxide query -l $in | lines | where {|x| $x != $env.PWD}
+}
+
+{
+  __zoxide_z => $zoxide_completer
+  __zoxide_zi => $zoxide_completer
+}
+
+let carapace_completer = {|spans: list<string>|
+  carapace $spans.0 nushell $spans
+  | from json
+  | if ($in | default [] | where value == $"($spans | last)ERR" | is-empty) { $in } else { null }
+}
+
+# let multiple_completers = {|spans|
+#     match $spans.0 {
+#         ls => $ls_completer
+#         git => $git_completer
+#         _ => $default_completer
+#     } | do $in $spans
+# }
+
+# This completer will use carapace by default
+let external_completer = {|spans|
+  let expanded_alias = scope aliases
+  | where name == $spans.0
+  | get -i 0.expansion
+
+  let spans = if $expanded_alias != null {
+      $spans
+      | skip 1
+      | prepend ($expanded_alias | split row ' ' | take 1)
+  } else {
+      $spans
+  }
+
+  # carapace completions are incorrect for nu
+  # fish completes commits and branch names in a nicer way
+  # carapace doesn't have completions for asdf
+  # use zoxide completions for zoxide commands
+  match $spans.0 {
+      nu => $fish_completer
+      git => $fish_completer
+      asdf => $fish_completer
+      __zoxide_z | __zoxide_zi => $zoxide_completer
+      _ => $carapace_completer
+  } | do $in $spans
+}
+
 
 # The default config record. This is where much of your global configuration is setup.
 $env.config = {
@@ -276,6 +332,7 @@ $env.config = {
     file_format: "plaintext" # "sqlite" or "plaintext"
     isolation: true # true enables history isolation, false disables it. true will allow the history to be isolated to the current session. false will allow the history to be shared across all sessions.
   }
+
   completions: {
     case_sensitive: false # set to true to enable case-sensitive completions
     quick: true  # set this to false to prevent auto-selecting completions when only one remains
@@ -283,19 +340,22 @@ $env.config = {
     algorithm: "prefix"  # prefix or fuzzy
     external: {
       enable: true # set to false to prevent nushell looking into $env.PATH to find more suggestions, `false` recommended for WSL users as this look up may be very slow
-      max_results: 100 # setting it lower can improve completion performance at the cost of omitting some options
-      completer: null # check 'carapace_completer' above as an example
+      max_results: 500 # setting it lower can improve completion performance at the cost of omitting some options
+      completer: $external_completer
     }
   }
+
   filesize: {
     metric: true # true => KB, MB, GB (ISO standard), false => KiB, MiB, GiB (Windows standard)
     format: "auto" # b, kb, kib, mb, mib, gb, gib, tb, tib, pb, pib, eb, eib, auto
   }
+
   cursor_shape: {
     emacs: line # block, underscore, line, blink_block, blink_underscore, blink_line (line is the default)
     vi_insert: block # block, underscore, line , blink_block, blink_underscore, blink_line (block is the default)
     vi_normal: underscore # block, underscore, line, blink_block, blink_underscore, blink_line (underscore is the default)
   }
+
   color_config: $dark_theme   # if you want a light theme, replace `$dark_theme` to `$light_theme`
   use_grid_icons: true
   footer_mode: "25" # always, never, number_of_rows, auto
@@ -326,6 +386,7 @@ $env.config = {
       null  # replace with source code to return an error message when a command is not found
     }
   }
+
   menus: [
       # Configuration for default nushell menus
       # Note the lack of source parameter
