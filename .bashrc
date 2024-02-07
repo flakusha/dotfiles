@@ -181,12 +181,13 @@ alias hx='helix'
 alias ez='eza -laghmuU --icons --group-directories-first --hyperlink --time-style long-iso -F=auto'
 
 alias i3-start='(
+  #export SDL_VIDEODRIVER=x11
   export XDG_SESSION_TYPE=x11
   export XDG_SESSION_DESKTOP=i3
   export XDG_CURRENT_SESSION=i3
   export QT_QPA_PLATFORM=xcb
   export MOZ_ENABLE_WAYLAND=0
-  #export SDL_VIDEODRIVER=x11
+  export GTK_THEME='Catppuccin-Mocha-Standard-Teal-Dark:dark'
   export $(dbus-launch)
   exec pipewire &
   exec dunst -conf ~/.config/dunst/dunstrc &
@@ -195,6 +196,7 @@ alias i3-start='(
 )'
 
 alias sway-start='(
+  #export SDL_VIDEODRIVER=x11
   #export SDL_VIDEODRIVER="wayland,x11"
   #export SDL_VIDEODRIVER=wayland
   export QT_QPA_PLATFORM="wayland;xcb"
@@ -203,6 +205,7 @@ alias sway-start='(
   export XDG_SESSION_DESKTOP=sway
   export XDG_CURRENT_DESKTOP=sway
   export MOZ_ENABLE_WAYLAND=1
+  export GTK_THEME='Catppuccin-Mocha-Standard-Teal-Dark:dark'
   #exec dbus-run-session sway
   export $(dbus-launch)
   exec dbus-launch --exit-with-session sway
@@ -210,6 +213,7 @@ alias sway-start='(
 )'
 
 alias hyprland-start='(
+  #export SDL_VIDEODRIVER=x11
   #export SDL_VIDEODRIVER="wayland,x11"
   #export SDL_VIDEODRIVER=wayland
   export QT_QPA_PLATFORM="wayland;xcb"
@@ -218,6 +222,7 @@ alias hyprland-start='(
   export XDG_SESSION_DESKTOP=Hyprland
   export XDG_CURRENT_DESKTOP=Hyprland
   export MOZ_ENABLE_WAYLAND=1
+  export GTK_THEME='Catppuccin-Mocha-Standard-Teal-Dark:dark'
   export $(dbus-launch)
   exec dbus-launch --exit-with-session Hyprland
   firewall-applet
