@@ -119,7 +119,7 @@ plugins=(
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
-# export LANG=en_US.UTF-8
+export LANG=en_IE.UTF-8
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
@@ -295,9 +295,16 @@ PATH=$PATH:~/node_modules/.bin
 eval "$(thefuck --alias)"
 eval "$(zoxide init bash)"
 source "$HOME/.config/broot/launcher/bash/br"
-# [[ ${BLE_VERSION-} ]] && ble-attach
+
+for f in "$HOME/.bash_completion/"*; do
+   source "$f"
+done;
+
 eval "$(atuin init bash)"
 
 # Clean up PATH from repeating entries
 PATH=$(printf %s "$PATH" | awk -v RS=: '{ if (!arr[$0]++) {printf("%s%s",!ln++?"":":",$0)}}')
+
+# Add preexec
 [[ -f /usr/share/bash-preexec/bash-preexec.sh ]] && source /usr/share/bash-preexec/bash-preexec.sh
+# [[ ${BLE_VERSION-} ]] && ble-attach
