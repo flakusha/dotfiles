@@ -10,6 +10,9 @@
 *.svg
 *history.txt
 /alacritty/themes
+/fish/functions
+/fish/completions
+/fish/fish_plugins
 
 # Include these
 !.gitignore
