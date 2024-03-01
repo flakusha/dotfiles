@@ -196,20 +196,25 @@ alias i3-start='(
 )'
 
 alias sway-start='(
-  #export SDL_VIDEODRIVER=x11
+  export SDL_VIDEODRIVER=x11
   #export SDL_VIDEODRIVER="wayland,x11"
-  #export SDL_VIDEODRIVER=wayland
+  export SDL_VIDEODRIVER=wayland
   export QT_QPA_PLATFORM="wayland;xcb"
-  export QT_WAYLAND_DISABLE_WINDOWDECORATION="1"
+  export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
   export XDG_SESSION_TYPE=wayland
   export XDG_SESSION_DESKTOP=sway
   export XDG_CURRENT_DESKTOP=sway
   export MOZ_ENABLE_WAYLAND=1
   export GTK_THEME="Catppuccin-Mocha-Standard-Teal-Dark:dark"
+  export GDK_BACKEND=wayland
+  export OZONE_PLATFORM=wayland
+  export WLR_RENDERER_ALLOW_SOFTWARE=1
+  export WLR_NO_HARDWARE_CURSORS=1
   #exec dbus-run-session sway
   export $(dbus-launch)
   exec dbus-launch --exit-with-session sway
   firewall-applet
+  exec dbus-update-activation-environment DISPLAY SWAYSOCK WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
 )'
 
 alias hyprland-start='(
@@ -305,7 +310,9 @@ for f in "$HOME/.bash_completion/"*; do
    source "$f"
 done;
 
-eval "$(atuin init bash)"
+eval "$(atuin init bash --disable-up-arrow)"
+export CARAPACE_BRIDGES='zsh,fish,bash,inshellisense' # optional
+source <(carapace _carapace)
 
 # Clean up PATH from repeating entries
 PATH=$(printf %s "$PATH" | awk -v RS=: '{ if (!arr[$0]++) {printf("%s%s",!ln++?"":":",$0)}}')
