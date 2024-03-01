@@ -11,21 +11,21 @@ TERM = "alacritty"
 [font]
 size = 9.0
 
+[font.normal]
+family = "Iosevka Nerd Font Mono"
+style = "Regular"
+
 [font.bold]
-family = "NotoSansM Nerd Font Mono"
+# family = "Iosevka Nerd Font Mono"
 style = "Bold"
 
 [font.bold_italic]
-family = "NotoSansM Nerd Font Mono"
+# family = "Iosevka Nerd Font Mono"
 style = "Bold Italic"
 
 [font.italic]
-family = "NotoSansM Nerd Font Mono"
+# family = "Iosevka Nerd Font Mono"
 style = "Italic"
-
-[font.normal]
-family = "NotoSansM Nerd Font Mono"
-style = "Regular"
 
 [window]
 opacity = 0.9
