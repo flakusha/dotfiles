@@ -1,6 +1,6 @@
 # Nushell Config File
 #
-# version = 0.89.0
+# version = 0.90.1
 
 # For more information on defining custom themes, see
 # https://www.nushell.sh/book/coloring_and_theming.html
@@ -176,11 +176,6 @@ let light_theme = {
     shape_vardecl: purple
 }
 
-# External completer example
-# let carapace_completer = {|spans|
-#     carapace $spans.0 nushell $spans | from json
-# }
-
 let fish_completer = {|spans|
   fish --command $'complete "--do-complete=($spans | str join " ")"'
   | $"value(char tab)description(char newline)" + $in
@@ -197,18 +192,10 @@ let zoxide_completer = {|spans|
 }
 
 let carapace_completer = {|spans: list<string>|
-  carapace $spans.0 nushell $spans
+  carapace $spans.0 nushell ...$spans
   | from json
   | if ($in | default [] | where value == $"($spans | last)ERR" | is-empty) { $in } else { null }
 }
-
-# let multiple_completers = {|spans|
-#     match $spans.0 {
-#         ls => $ls_completer
-#         git => $git_completer
-#         _ => $default_completer
-#     } | do $in $spans
-# }
 
 # This completer will use carapace by default
 let external_completer = {|spans|
@@ -236,7 +223,6 @@ let external_completer = {|spans|
       _ => $carapace_completer
   } | do $in $spans
 }
-
 
 # The default config record. This is where much of your global configuration is setup.
 $env.config = {
@@ -624,6 +610,7 @@ alias gamescope-steam-native = with-env {RADV_PERFTEST: "rt", VKD3D_CONFIG: 'dxr
   --adaptive-sync -- steam-native
 )}
 
+source ~/.cache/carapace/init.nu
 source ~/.cache/starship/init.nu
 source ~/.cache/zoxide/zoxide.nu
 source ~/.config/broot/launcher/nushell/br
