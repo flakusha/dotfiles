@@ -218,8 +218,10 @@ bindsym $mod+r mode "resize"
     bindsym $mod+o exec firefox
 
 # Screenshots
-    bindsym print exec /usr/share/sway/scripts/grimshot --notify save output
-    bindsym Shift+print exec ~/.config/sway/scripts/screenshot.sh
+    bindsym print exec grimshot --notify save active "$HOME/Pictures/$(date --iso-8601=ns)-active.png"
+    # bindsym Shift+print exec ~/.config/sway/scripts/screenshot.sh
+    # Shift / Alt / Ctrl + FNScrinshot is not suported on the small-format keyboard, use META
+    bindsym $mod+print exec grimshot --notify save screen "$HOME/Pictures/$(date --iso-8601=ns)-screen.png"
 
 # Keybindings List
     # bindsym $mod+t exec xed ~/.config/sway/cheatsheet
@@ -227,7 +229,7 @@ bindsym $mod+r mode "resize"
 # Language
     exec fcitx5 -d
 
-# Dbus
+# Dbus (moved to bashrc)
     #exec dbus-run-session pipewire
     #exec dbus-run-session pipewire-pulse
     #exec dbus-run-session wireplumber
@@ -237,13 +239,12 @@ bindsym $mod+r mode "resize"
 # Audio
     exec --no-startup-id pipewire
 
-# Network and firewall
-    #exec --no-startup-id NetworkManager
-    #exec --no-startup-id firewalld
-    exec --no-startup-id firewall-applet
+# Network and firewall (removed NetworkManager)
+    exec --no-startup-id firewalld
 
-# User session and authorization
+# GNOME User session and authorization
     exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+    exec --no-startup-id gnome-keyring-daemon
 
 # KDE apps support
     exec --no-startup-id /usr/lib/pam_kwallet_init
