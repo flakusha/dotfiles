@@ -189,17 +189,16 @@ alias i3-start='(
   export MOZ_ENABLE_WAYLAND=0
   export GTK_THEME="Catppuccin-Mocha-Standard-Teal-Dark:dark"
   export $(dbus-launch)
-  exec pipewire &
   exec dunst -conf ~/.config/dunst/dunstrc &
   exec dbus-launch --exit-with-session startx ~/.xinitrc i3
   exec xrandr --dpi 98 &
 )'
 
 alias sway-start='(
-  export SDL_VIDEODRIVER=x11
-  #export SDL_VIDEODRIVER="wayland,x11"
+  # export SDL_VIDEODRIVER="wayland,x11"
   export SDL_VIDEODRIVER=wayland
-  export QT_QPA_PLATFORM="wayland;xcb"
+  export QT_QPA_PLATFORM=wayland
+  # export QT_QPA_PLATFORM="wayland;xcb"
   export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
   export XDG_SESSION_TYPE=wayland
   export XDG_SESSION_DESKTOP=sway
@@ -210,27 +209,25 @@ alias sway-start='(
   export OZONE_PLATFORM=wayland
   export WLR_RENDERER_ALLOW_SOFTWARE=1
   export WLR_NO_HARDWARE_CURSORS=1
-  #exec dbus-run-session sway
-  export $(dbus-launch)
   exec dbus-launch --exit-with-session sway
-  firewall-applet
+  export $(dbus-launch)
   exec dbus-update-activation-environment DISPLAY SWAYSOCK WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
 )'
 
 alias hyprland-start='(
   #export SDL_VIDEODRIVER=x11
   #export SDL_VIDEODRIVER="wayland,x11"
-  #export SDL_VIDEODRIVER=wayland
-  export QT_QPA_PLATFORM="wayland;xcb"
+  export SDL_VIDEODRIVER=wayland
+  export QT_QPA_PLATFORM=wayland
+  # export QT_QPA_PLATFORM="wayland;xcb"
   export QT_WAYLAND_DISABLE_WINDOWDECORATION="1"
   export XDG_SESSION_TYPE=wayland
   export XDG_SESSION_DESKTOP=Hyprland
   export XDG_CURRENT_DESKTOP=Hyprland
   export MOZ_ENABLE_WAYLAND=1
   export GTK_THEME="Catppuccin-Mocha-Standard-Teal-Dark:dark"
-  export $(dbus-launch)
   exec dbus-launch --exit-with-session Hyprland
-  firewall-applet
+  export $(dbus-launch)
 )'
 
 alias gdm-start='(
