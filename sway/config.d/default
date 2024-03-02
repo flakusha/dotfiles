@@ -215,7 +215,7 @@ bindsym $mod+r mode "resize"
 
 # App shortcuts
     bindsym $mod+n exec thunar
-    bindsym $mod+o exec firefox
+    bindsym $mod+o exec librewolf
 
 # Screenshots
     bindsym print exec grimshot --notify save active "$HOME/Pictures/$(date --iso-8601=ns)-active.png"
@@ -230,14 +230,16 @@ bindsym $mod+r mode "resize"
     exec fcitx5 -d
 
 # Dbus (moved to bashrc)
-    #exec dbus-run-session pipewire
-    #exec dbus-run-session pipewire-pulse
-    #exec dbus-run-session wireplumber
-    #exec dbus-launch --exit-with-session sway
-    #exec dbus-update-activation-environment DISPLAY WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway SWAYSOCK
+    # exec dbus-run-session pipewire
+    # exec dbus-run-session pipewire-pulse
+    # exec dbus-run-session wireplumber
+    # exec dbus-launch --exit-with-session sway
+    # exec dbus-update-activation-environment DISPLAY WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway SWAYSOCK
 
 # Audio
     exec --no-startup-id pipewire
+    # exec --no-startup-id pipewire-pulse
+    # exec --no-startup-id wireplumber
 
 # Network and firewall (removed NetworkManager)
     exec --no-startup-id firewalld
@@ -249,3 +251,4 @@ bindsym $mod+r mode "resize"
 # KDE apps support
     exec --no-startup-id /usr/lib/pam_kwallet_init
     exec --no-startup-id /usr/lib/kdeconnectd
+    # exec --no-startup-id /usr/lib/polkit-kde-authentication-agent-1
