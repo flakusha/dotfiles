@@ -7,7 +7,7 @@ esac
 # [[ $- == *i* ]] && source /usr/share/blesh/ble.sh --noattach
 
 # Path to your oh-my-bash installation.
-export OSH=/usr/share/oh-my-bash
+export OSH="$HOME/.oh-my-bash"
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-bash is loaded.
@@ -153,31 +153,35 @@ fi
 source "$OSH"/oh-my-bash.sh
 
 # SSH Agent connection
-# if [ ! -S ~/.ssh/ssh_auth_sock ]; then
+# if [ ! -S ~/.ssh/.ssh-auth-sock ]; then
 #   eval $'(ssh-agent)'
-#   ln -sf "$SSH_AUTH_SOCK" ~/.ssh/ssh_auth_sock
+#   ln -sf "$SSH_AUTH_SOCK" ~/.ssh/.ssh-auth-sock
 # fi
-# export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock
+# export SSH_AUTH_SOCK=~/.ssh/.ssh-auth-sock
 # ssh-add -l > /dev/null || ssh-add
 
 # Ensure that we have an ssh config with AddKeysToAgent set to true
- if [ ! -f ~/.ssh/config ] || ! cat ~/.ssh/config | grep AddKeysToAgent | grep yes > /dev/null; then
-     echo "AddKeysToAgent  yes" >> ~/.ssh/config
- fi
- # Ensure a ssh-agent is running so you only have to enter keys once
- if [ ! -S ~/.ssh/ssh_auth_sock ]; then
-   eval `ssh-agent`
-   ln -sf "$SSH_AUTH_SOCK" ~/.ssh/ssh_auth_sock
- fi
- export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock
+if [ ! -f ~/.ssh/config ] || ! cat ~/.ssh/config | grep AddKeysToAgent | grep yes > /dev/null; then
+   echo "AddKeysToAgent  yes" >> ~/.ssh/config
+fi
+
+# Ensure a ssh-agent is running so you only have to enter keys once
+if [ ! -S ~/.ssh/.ssh-auth-sock ]; then
+	eval `ssh-agent`
+	ln -sf "$SSH_AUTH_SOCK" ~/.ssh/.ssh-auth-sock
+fi
+
+export SSH_AUTH_SOCK=~/.ssh/.ssh-auth-sock
+
+# Configure GPG
+export GPG_TTY=$(tty)
 
 # If not running interactively, don't do anything
-[[ $- != *i* ]] && return
+# [[ $- != *i* ]] && return
 
 alias ls='ls --color=auto'
 alias ll='ls -lahg --time-style=long-iso --hyperlink=auto'
 alias grep='grep --color=auto'
-alias hx='helix'
 alias ez='eza -laghmuU --icons --group-directories-first --hyperlink --time-style long-iso -F=auto'
 
 alias i3-start='(
@@ -198,20 +202,30 @@ alias sway-start='(
   # export SDL_VIDEODRIVER="wayland,x11"
   export SDL_VIDEODRIVER=wayland
   export QT_QPA_PLATFORM=wayland
+  export QT_QPA_PLATFORMTHEME=qt5ct
   # export QT_QPA_PLATFORM="wayland;xcb"
   export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
   export XDG_SESSION_TYPE=wayland
   export XDG_SESSION_DESKTOP=sway
   export XDG_CURRENT_DESKTOP=sway
   export MOZ_ENABLE_WAYLAND=1
-  export GTK_THEME="Catppuccin-Mocha-Standard-Teal-Dark:dark"
+  export GTK_THEME=Materia-dark-compact
+  export GTK2_RC_FILES=/usr/share/themes/Materia-dark-compact/gtk-2.0/gtkrc
   export GDK_BACKEND=wayland
   export OZONE_PLATFORM=wayland
   export WLR_RENDERER_ALLOW_SOFTWARE=1
   export WLR_NO_HARDWARE_CURSORS=1
-  exec dbus-launch --exit-with-session sway
+  export GTK_IM_MODULE=fcitx
+  export QT_IM_MODULE=fcitx
+  export XMODIFIERS="@im=fcitx"
+  export SDL_IM_MODULE=fcitx
+  export EDITOR=hx
+  export RUSTICL_ENABLE=radeon radeonsi clinfo
+  export GDK_SCALE=0.75
+  exec dbus-launch --exit-with-session sway 
   export $(dbus-launch)
-  exec dbus-update-activation-environment DISPLAY SWAYSOCK WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+  exec dbus-update-activation-environment --all
+  #DISPLAY SWAYSOCK WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
 )'
 
 alias hyprland-start='(
@@ -225,7 +239,7 @@ alias hyprland-start='(
   export XDG_SESSION_DESKTOP=Hyprland
   export XDG_CURRENT_DESKTOP=Hyprland
   export MOZ_ENABLE_WAYLAND=1
-  export GTK_THEME="Catppuccin-Mocha-Standard-Teal-Dark:dark"
+  export GTK_THEME="Catppuccin-Mocha-Compact-Teal-Dark:dark"
   exec dbus-launch --exit-with-session Hyprland
   export $(dbus-launch)
 )'
@@ -238,9 +252,10 @@ alias sddm-start='(
   sudo rc-service sddm start
 )'
 
+# Moved it from rsync
+# ~/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/rust-analyzer \
 alias rust-apps-update='(
   sudo rsync -uP ~/.cargo/bin/* \
-  ~/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/rust-analyzer \
   /usr/local/bin/
 )'
 
@@ -274,38 +289,17 @@ alias gamescope-steam-native='(
   -- steam-native
 )'
 
-# Rate these mirrors
-alias rate-mirrors-all='(
-  rate-mirrors \
-  --entry-country JP \
-  --country-neighbors-per-country 10 \
-  --country-test-mirrors-per-country 10 \
-  --top-mirrors-number-to-retest 30 \
-  --save mirrorlist artix; \
-  rate-mirrors \
-  --entry-country JP \
-  --country-neighbors-per-country 10 \
-  --country-test-mirrors-per-country 10 \
-  --top-mirrors-number-to-retest 30 \
-  --save mirrorlist-arch arch; \
-  rate-mirrors \
-  --entry-country JP \
-  --country-neighbors-per-country 10 \
-  --country-test-mirrors-per-country 10 \
-  --top-mirrors-number-to-retest 30 \
-  --save mirrorlist-chaotic chaotic-aur
-)'
+alias git-pull-full='git fetch -fptP && git pull'
 
-PATH=$PATH:~/.cargo/bin
+# PATH=$PATH:~/.cargo/bin
 PATH=$PATH:~/node_modules/.bin
 
-eval "$(thefuck --alias)"
 eval "$(zoxide init bash)"
 source "$HOME/.config/broot/launcher/bash/br"
 
-for f in "$HOME/.bash_completion/"*; do
-   source "$f"
-done;
+# for f in "$HOME/.bash_completion/"*; do
+#    source "$f"
+# done;
 
 eval "$(atuin init bash --disable-up-arrow)"
 export CARAPACE_BRIDGES='zsh,fish,bash,inshellisense' # optional
@@ -313,6 +307,9 @@ source <(carapace _carapace)
 
 # Clean up PATH from repeating entries
 PATH=$(printf %s "$PATH" | awk -v RS=: '{ if (!arr[$0]++) {printf("%s%s",!ln++?"":":",$0)}}')
+
+# Add more exports
+export STEAM_FORCE_DESKTOPUI_SCALING='0.5'
 
 # Add preexec
 [[ -f /usr/share/bash-preexec/bash-preexec.sh ]] && source /usr/share/bash-preexec/bash-preexec.sh

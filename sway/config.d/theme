@@ -15,7 +15,7 @@ font pango:Iosevka Nerd Font 10
 smart_borders on
 
 # Set wallpaper:
-exec swaybg -i /usr/share/backgrounds/artix-dark-abstract-00.jpg
+exec swaybg -i ~/.config/dark-blue-pink.jpg
 
 # Title format for windows
 for_window [shell="xdg_shell"] title_format "%title (%app_id)"

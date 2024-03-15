@@ -19,3 +19,5 @@
 
 [tag]
     sort = "version:refname"
+[gpg]
+	program = gpg
