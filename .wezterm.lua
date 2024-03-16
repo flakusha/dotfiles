@@ -53,6 +53,12 @@ config.font_size = 10.0
 config.window_background_opacity = 0.5
 config.use_fancy_tab_bar = false
 
+-- Pass environment variables to programs
+config.set_environment_variables = {
+	LANG = "en_IE.UTF8",
+	LC_CTYPE = "en_IE.UTF8",
+}
+
 config.window_padding = {
 	left = 0,
 	right = 0,
@@ -61,6 +67,17 @@ config.window_padding = {
 }
 
 local act = wezterm.action
+
+-- Add actions
+wezterm.on("toggle-opacity", function(window, pane)
+	local overrides = window:get_config_overrides() or {}
+	if overrides.window_background_opacity == 1.0 then
+		overrides.window_background_opacity = 0.5
+	else
+		overrides.window_background_opacity = 1.0
+	end
+	window:set_config_overrides(overrides)
+end)
 
 config.keys = {
 	-- Create a new tab in the same domain as the current pane.
@@ -84,6 +101,11 @@ config.keys = {
 		key = "w",
 		mods = "ALT",
 		action = wezterm.action.CloseCurrentTab({ confirm = true }),
+	},
+	{
+		key = "B",
+		mods = "CTRL",
+		action = wezterm.action.EmitEvent("toggle-opacity"),
 	},
 }
 

@@ -289,7 +289,7 @@ alias gamescope-steam-native='(
   -- steam-native
 )'
 
-alias git-pull-full='git fetch -fptP && git pull'
+alias git-pull-full='git fetch -fptP --all && git pull --all'
 
 # PATH=$PATH:~/.cargo/bin
 PATH=$PATH:~/node_modules/.bin
