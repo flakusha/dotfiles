@@ -239,8 +239,7 @@ alias sway-start='(
   export GDK_SCALE=0.75
   export LC_LOCALE=en_IE.UTF-8
   # exec dbus-launch --sh-syntax --exit-with-session sway &>>sway.log
-  dbus-run-session -- sway &>>sway.log
-  # export WAYLAND_SOCKET=$SWAYSOCK
+  exec dbus-run-session -- sway &>>sway.log
 )'
 
 alias hyprland-start='(

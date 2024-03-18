@@ -257,15 +257,15 @@ input type:touchpad {
     # input type:keyboard xkb_layout "us"
 
 # Update stuff in environment
-    exec --no-startup-id dbus-update-activation-environment --all
+    exec --no-startup-id dbus-update-activation-environment DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP WAYLAND_DISPLAY WAYLAND_SOCK=$SWAYSOCK
+    # exec bash -c "export WAYLAND_SOCK=$SWAYSOCK && echo $WAYLAND_SOCK is set"
     exec --no-startup-id /usr/libexec/xdg-desktop-portal-gtk -r
     exec --no-startup-id /usr/libexec/xdg-desktop-portal-wlr -r
-    set $WAYLAND_SOCKET $(echo $SWAYSOCK)
 
 # KDE/GNOME User session and authorization
     exec --no-startup-id /usr/libexec/polkit-gnome-authentication-agent-1
     exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=secrets
-    exec export $(gnome-keyring-daemon)
+    # exec export $(gnome-keyring-daemon)
     exec --no-startup-id /lib64/libexec/pam_kwallet_init
     exec --no-startup-id /usr/lib64/libexec/kdeconnectd
     # exec --no-startup-id /usr/lib/polkit-kde-authentication-agent-1
@@ -279,9 +279,9 @@ input type:touchpad {
     # exec --no-startup-id firewalld
 
 # Language - execute the server after sway started (placed to bashrc starter script)
-    exec fcitx5 -dr --enable all
-    exec ibus-daemon -drx --panel=disabled
-    exec /usr/libexec/fcitx5-wayland-launcher
-    exec /usr/libexec/ibus-wayland
+    exec LD_LIBRARY_PATH=/usr/lib64 fcitx5 -dr --enable all
+    exec LD_LIBRARY_PATH=/usr/lib64 ibus-daemon -drx --panel=disabled
+    # exec LD_LIBRARY_PATH=/usr/lib64 /usr/libexec/fcitx5-wayland-launcher
+    # exec LD_LIBRARY_PATH=/usr/lib64 /usr/libexec/ibus-wayland
     # exec --no-startup-id ~/.config/sway/scripts/language-start.sh
     # bindsym $mod+f2 exec ~/.config/sway/scripts/language.sh

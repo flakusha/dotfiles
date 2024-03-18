@@ -20,12 +20,13 @@
     "modules-right": [
         "gamemode",
         "network",
-        "idle_inhibitor",
+        // "idle_inhibitor",
         "memory",
         "cpu",
         "pulseaudio",
-        //"custom/keyboard-layout",
-        "battery",
+        // "custom/keyboard-layout",
+        // "custom/keyboard-ibus",
+        //"battery",
         //"custom/PBPbattery",
         "backlight#icon",
         "backlight#value",
@@ -35,7 +36,6 @@
     ],
 
     // Modules
-
     "idle_inhibitor": {
         "format": "{icon} ",
         "format-icons":{
@@ -77,7 +77,7 @@
             "warning": 70,
             "critical": 90,
         },
-        "on-click": "xfce4-terminal -e 'htop'",
+        "on-click": "wezterm -e 'htop'",
     },
 
     "custom/keyboard-layout": {
@@ -89,6 +89,14 @@
         "signal": 1, // SIGHUP
         "tooltip": false,
         "on-click": "~/.config/waybar/scripts/keyhint.sh",
+    },
+
+    "custom/keyboard-ibus": {
+        "exec": "ibus engine",
+        "interval": 30,
+        "format": "  {}", // Icon: keyboard
+        "signal": 1,
+        "tooltip": false,
     },
 
     "memory": {
@@ -109,6 +117,7 @@
         "tooltip-format": "{ifname}: {ipaddr}",
         "on-click": "xfce4-terminal -e 'nmtui'",
     },
+
     "network#vpn": {
         "interface": "tun0",
         "format": "  {essid} ({signalStrength}%)",
@@ -218,6 +227,7 @@
         "on-click": "exec ~/.config/waybar/scripts/power-menu.sh",
         "tooltip": false,
     },
+
     "gamemode": {
         "format": "{glyph}",
         "format-alt": "{glyph} {count}",
