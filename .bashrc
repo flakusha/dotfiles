@@ -184,6 +184,20 @@ alias ll='ls -lahg --time-style=long-iso --hyperlink=auto'
 alias grep='grep --color=auto'
 alias ez='eza -laghmuU --icons --group-directories-first --hyperlink --time-style long-iso -F=auto'
 
+# Possible G$$GL issues
+export GOPROXY=direct
+export GOSUMDB=off
+export GOTELEMETRY=off
+export GOTOOLCHAIN=local
+
+# Set home directories
+export XDG_DESKTOP_DIR="$HOME"
+export XDG_DOWNLOAD_DIR="$HOME/Downloads"
+export XDG_DOCUMENTS_DIR="$HOME/Documents"
+export XDG_MUSIC_DIR="$HOME/Music"
+export XDG_PICTURES_DIR="$HOME/Pictures"
+export XDG_VIDEOS_DIR="$HOME/Videos"
+
 alias i3-start='(
   #export SDL_VIDEODRIVER=x11
   export XDG_SESSION_TYPE=x11
@@ -200,32 +214,33 @@ alias i3-start='(
 
 alias sway-start='(
   # export SDL_VIDEODRIVER="wayland,x11"
-  export SDL_VIDEODRIVER=wayland
-  export QT_QPA_PLATFORM=wayland
+  export SDL_VIDEODRIVER=x11
+  export QT_QPA_PLATFORM="wayland;xcb"
   export QT_QPA_PLATFORMTHEME=qt5ct
-  # export QT_QPA_PLATFORM="wayland;xcb"
   export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
   export XDG_SESSION_TYPE=wayland
   export XDG_SESSION_DESKTOP=sway
   export XDG_CURRENT_DESKTOP=sway
+  export OZONE_PLATFORM=wayland
   export MOZ_ENABLE_WAYLAND=1
   export GTK_THEME=Materia-dark-compact
   export GTK2_RC_FILES=/usr/share/themes/Materia-dark-compact/gtk-2.0/gtkrc
   export GDK_BACKEND=wayland
-  export OZONE_PLATFORM=wayland
   export WLR_RENDERER_ALLOW_SOFTWARE=1
   export WLR_NO_HARDWARE_CURSORS=1
   export GTK_IM_MODULE=fcitx
   export QT_IM_MODULE=fcitx
   export XMODIFIERS="@im=fcitx"
   export SDL_IM_MODULE=fcitx
+  export IMSETTINGS_INTEGRATE_DESKTOP=yes
+  export IMSETTINGS_MODULE=fcitx
   export EDITOR=hx
-  export RUSTICL_ENABLE=radeon radeonsi clinfo
+  # export RUSTICL_ENABLE=radeon radeonsi clinfo
   export GDK_SCALE=0.75
-  exec dbus-launch --exit-with-session sway 
-  export $(dbus-launch)
-  exec dbus-update-activation-environment --all
-  #DISPLAY SWAYSOCK WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+  export LC_LOCALE=en_IE.UTF-8
+  # exec dbus-launch --sh-syntax --exit-with-session sway &>>sway.log
+  dbus-run-session -- sway &>>sway.log
+  # export WAYLAND_SOCKET=$SWAYSOCK
 )'
 
 alias hyprland-start='(
@@ -293,6 +308,7 @@ alias git-pull-full='git fetch -fptP --all && git pull --all'
 
 # PATH=$PATH:~/.cargo/bin
 PATH=$PATH:~/node_modules/.bin
+PATH=$PATH:~/go/bin
 
 eval "$(zoxide init bash)"
 source "$HOME/.config/broot/launcher/bash/br"
