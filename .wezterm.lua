@@ -50,7 +50,7 @@ config.colors = {
 
 config.font = wezterm.font("Iosevka Nerd Font")
 config.font_size = 10.0
-config.window_background_opacity = 0.5
+config.window_background_opacity = 1.0
 config.use_fancy_tab_bar = false
 
 -- Pass environment variables to programs

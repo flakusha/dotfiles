@@ -308,6 +308,7 @@ alias git-pull-full='git fetch -fptP --all && git pull --all'
 # PATH=$PATH:~/.cargo/bin
 PATH=$PATH:~/node_modules/.bin
 PATH=$PATH:~/go/bin
+PATH=$PATH:~/.local/bin
 
 eval "$(zoxide init bash)"
 source "$HOME/.config/broot/launcher/bash/br"
