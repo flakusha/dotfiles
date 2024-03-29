@@ -223,6 +223,7 @@ alias sway-start='(
   export XDG_CURRENT_DESKTOP=sway
   export OZONE_PLATFORM=wayland
   export MOZ_ENABLE_WAYLAND=1
+  export GTK_USE_PORTAL=1
   export GTK_THEME=Materia-dark-compact
   export GTK2_RC_FILES=/usr/share/themes/Materia-dark-compact/gtk-2.0/gtkrc
   export GDK_BACKEND=wayland
@@ -238,8 +239,12 @@ alias sway-start='(
   # export RUSTICL_ENABLE=radeon radeonsi clinfo
   export GDK_SCALE=0.75
   export LC_LOCALE=en_IE.UTF-8
+  # ESYNC and FSYNC are not guaranteed to work
+  export WINEESYNC=1
+  export WINEFSYNC=1
   # exec dbus-launch --sh-syntax --exit-with-session sway &>>sway.log
-  exec dbus-run-session -- sway &>>sway.log
+  xrdb -merge ~/.Xresources
+  exec dbus-run-session sway &>>sway.log
 )'
 
 alias hyprland-start='(
@@ -267,21 +272,23 @@ alias sddm-start='(
 )'
 
 # Moved it from rsync
+# It's not required to send the rust-analyzer binary, as we can install it with useflag in Gentoo
 # ~/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/rust-analyzer \
 alias rust-apps-update='(
   sudo rsync -uP ~/.cargo/bin/* \
   /usr/local/bin/
 )'
 
-alias backup-to-cold-drive='(
-  echo "Home backup"
-  rsync -aEhu --progress --delete --stats \
-  --exclude=".cache" \
-  --include=".cache/paru/clone" \
-  /home/$LOGNAME /home/ext/
-  echo "Shared backup"
-  rsync -aEhuc --progress --delete --stats /home/shared /home/ext/
-)'
+# Temporary disable this
+# alias backup-to-cold-drive='(
+#   echo "Home backup"
+#   rsync -aEhu --progress --delete --stats \
+#   --exclude=".cache" \
+#   --include=".cache/paru/clone" \
+#   /home/$LOGNAME /home/ext/
+#   echo "Shared backup"
+#   rsync -aEhuc --progress --delete --stats /home/shared /home/ext/
+# )'
 
 alias gamescope-steam='(
   export RADV_PERFTEST="rt"
@@ -305,6 +312,7 @@ alias gamescope-steam-native='(
 
 alias git-pull-full='git fetch -fptP --all && git pull --all'
 
+# Add locally installed and compiled packages
 # PATH=$PATH:~/.cargo/bin
 PATH=$PATH:~/node_modules/.bin
 PATH=$PATH:~/go/bin
@@ -325,6 +333,7 @@ source <(carapace _carapace)
 PATH=$(printf %s "$PATH" | awk -v RS=: '{ if (!arr[$0]++) {printf("%s%s",!ln++?"":":",$0)}}')
 
 # Add more exports
+# Steam seem to ignore this setting
 export STEAM_FORCE_DESKTOPUI_SCALING='0.5'
 
 # Add preexec
