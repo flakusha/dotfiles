@@ -231,10 +231,13 @@ bindsym $mod+r mode "resize"
     bindsym $mod+o exec librewolf
 
 # Screenshots
-    bindsym print exec grimshot --notify save active "$HOME/Pictures/$(date --iso-8601=ns)-active.png"
+    set $scrn $HOME/Pictures/$(date --iso-8601=ns).png
+    # bindsym print exec grimshot --notify save active "$HOME/Pictures/$(date --iso-8601=ns)-active.png"
     # bindsym Shift+print exec ~/.config/sway/scripts/screenshot.sh
     # Shift / Alt / Ctrl + FNScrinshot is not suported on the small-format keyboard, use META
-    bindsym $mod+print exec grimshot --notify save screen "$HOME/Pictures/$(date --iso-8601=ns)-screen.png"
+    # bindsym $mod+print exec grimshot --notify save screen "$HOME/Pictures/$(date --iso-8601=ns)-screen.png"
+    bindsym print exec grim $scrn
+    bindsym $mod+print exec grim -g "$(slurp)" $scrn
 
 # Keybindings List
     # bindsym $mod+t exec xed ~/.config/sway/cheatsheet
@@ -257,31 +260,39 @@ input type:touchpad {
     # input type:keyboard xkb_layout "us"
 
 # Update stuff in environment
-    exec --no-startup-id dbus-update-activation-environment --all 
-    exec --no-startup-id /usr/libexec/xdg-desktop-portal-gtk -r
-    exec --no-startup-id /usr/libexec/xdg-desktop-portal-wlr -r
+    exec bash -c 'export WAYLAND_SOCKET=$(sway --get-socketpath)'
+    exec /usr/bin/dbus-update-activation-environment --all 
+    exec /usr/libexec/xdg-desktop-portal-gtk -r
+    exec /usr/libexec/xdg-desktop-portal-wlr -r
     # DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP WAYLAND_DISPLAY WAYLAND_SOCK=$SWAYSOCK
     # exec bash -c "export WAYLAND_SOCK=$SWAYSOCK && echo $WAYLAND_SOCK is set"
 
 # KDE/GNOME User session and authorization
-    exec --no-startup-id /usr/libexec/polkit-gnome-authentication-agent-1
-    exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=secrets
+    exec /usr/libexec/polkit-gnome-authentication-agent-1
+    exec /usr/bin/gnome-keyring-daemon --start --components=secrets
     # exec export $(gnome-keyring-daemon)
-    exec --no-startup-id /lib64/libexec/pam_kwallet_init
-    exec --no-startup-id /usr/lib64/libexec/kdeconnectd
-    # exec --no-startup-id /usr/lib/polkit-kde-authentication-agent-1
+    exec /lib64/libexec/pam_kwallet_init
+    exec /usr/lib64/libexec/kdeconnectd
+    # exec /usr/lib/polkit-kde-authentication-agent-1
 
 # Audio
-    exec --no-startup-id pipewire
+    exec /usr/bin/pipewire
     # exec --no-startup-id pipewire-pulse
     # exec --no-startup-id wireplumber
 
 # Network and firewall (removed NetworkManager)
     # exec --no-startup-id firewalld
+    exec /usr/bin/firewall-applet
+
+# X11 Legacy
+    exec xrdb -merge ~/.Xresources
 
 # Language - execute the server after sway started (placed to bashrc starter script)
-    # exec ibus-daemon -drxR --panel=disable --desktop=sway
-    exec LD_LIBRARY_PATH=/usr/lib64 fcitx5 -dr --enable all
+    exec LD_LIBRARY_PATH=/usr/lib64 /usr/local/bin/fcitx5 -dr --enable all
+    exec /usr/bin/ibus-daemon -dxr --panel=disable
+    exec WAYLAND_SOCKET=$SWAYSOCK /usr/libexec/ibus-wayland
+    # exec WAYLAND_SOCKET=$SWAYSOCK /usr/bin/ibus start --type=direct --verbose
+    # exec LD_LIBRARY_PATH=/usr/lib64 WAYLAND_SOCKET=$SWAYSOCK /usr/bin/ibus-daemon -drR --panel=disable --desktop=gnome
     # exec LD_LIBRARY_PATH=/usr/lib64 /usr/libexec/fcitx5-wayland-launcher
     # exec LD_LIBRARY_PATH=/usr/lib64 /usr/libexec/ibus-wayland
     # exec --no-startup-id ~/.config/sway/scripts/language-start.sh
