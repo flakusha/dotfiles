@@ -236,15 +236,14 @@ alias sway-start='(
   export IMSETTINGS_INTEGRATE_DESKTOP=yes
   export IMSETTINGS_MODULE=fcitx
   export EDITOR=hx
-  # export RUSTICL_ENABLE=radeon radeonsi clinfo
+  # export RUSTICL_ENABLE=radeonsi
   export GDK_SCALE=0.75
   export LC_LOCALE=en_IE.UTF-8
   # ESYNC and FSYNC are not guaranteed to work
   export WINEESYNC=1
   export WINEFSYNC=1
-  # exec dbus-launch --sh-syntax --exit-with-session sway &>>sway.log
-  xrdb -merge ~/.Xresources
-  exec dbus-run-session sway &>>sway.log
+  # exec dbus-launch --sh-syntax --exit-with-session sway
+  exec dbus-run-session sway
 )'
 
 alias hyprland-start='(
