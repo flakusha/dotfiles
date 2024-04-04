@@ -16,6 +16,7 @@
 
 [diff]
     colorMoved = default
+    algorithm = histogram
 
 [tag]
     sort = "version:refname"
