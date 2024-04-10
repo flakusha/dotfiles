@@ -25,6 +25,7 @@
 !.bashrc
 !.bash_profile
 !.xinitrc
+!package.json
 
 !/alacritty
 !/bottom

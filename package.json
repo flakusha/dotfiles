@@ -1,0 +1,16 @@
+{
+  "devDependencies": {
+    "@ansible/ansible-language-server": "latest",
+    "@biomejs/biome": "latest",
+    "aws-cdk": "^2.136.0",
+    "bash-language-server": "latest",
+    "esbuild": "latest",
+    "nx": "^18.2.3",
+    "prettier": "latest",
+    "typescript": "^5.4.5",
+    "typescript-language-server": "latest",
+    "vscode-css-languageservice": "latest",
+    "vscode-json-languageserver": "latest",
+    "vscode-langservers-extracted": "latest"
+  }
+}
