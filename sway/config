@@ -284,8 +284,19 @@ input type:touchpad {
     # exec --no-startup-id firewalld
     exec /usr/bin/firewall-applet
 
-# X11 Legacy
-    exec xrdb -merge ~/.Xresources
+# X11 Legacy and cursors
+    # exec xrdb -merge ~/.Xresources
+    exec /usr/bin/xsettingsd
+
+    # set $gnome-schema org.gnome.desktop.interface
+
+    # exec_always {
+    #     gsettings set $gnome-schema gtk-theme 'Catppuccin-Mocha-Standard-Teal-Dark:dark'
+    #     gsettings set $gnome-schema icon-theme 'Catppuccin-Mocha-Teal'
+    #     gsettings set $gnome-schema cursor-theme 'Catppuccin-Mocha-Teal'
+    #     gsettings set $gnome-schema font-name 'Iosevka Nerd Font 12'
+    # }
+
 
 # Language - execute the server after sway started (placed to bashrc starter script)
     exec LD_LIBRARY_PATH=/usr/lib64 /usr/local/bin/fcitx5 -dr --enable all
