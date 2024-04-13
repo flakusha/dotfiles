@@ -25,6 +25,7 @@
 !.bashrc
 !.bash_profile
 !.xinitrc
+!.yarnrc.yml
 !package.json
 
 !/alacritty
