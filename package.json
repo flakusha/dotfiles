@@ -2,15 +2,17 @@
   "devDependencies": {
     "@ansible/ansible-language-server": "latest",
     "@biomejs/biome": "latest",
-    "aws-cdk": "^2.136.0",
+    "aws-cdk": "^2.137.0",
     "bash-language-server": "latest",
+    "corepack": "^0.26.0",
     "esbuild": "latest",
-    "nx": "^18.2.3",
+    "nx": "^18.2.4",
     "prettier": "latest",
     "typescript": "^5.4.5",
     "typescript-language-server": "latest",
     "vscode-css-languageservice": "latest",
     "vscode-json-languageserver": "latest",
     "vscode-langservers-extracted": "latest"
-  }
+  },
+  "packageManager": "yarn@4.1.1"
 }
