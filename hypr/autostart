@@ -1,0 +1,45 @@
+#!/usr/bin/bash
+
+# variables
+config="$HOME/.config/hypr"
+scripts="$config/scripts"
+
+# waybar
+"$scripts/launch_waybar" &
+
+# gsettings
+"$scripts/import-gsettings"
+
+# effects
+#"$scripts/rgb" &
+
+# Dbus
+# dbus-update-activation-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP &
+/usr/bin/dbus-update-activation-enviroment --all
+
+# Portal integration
+/usr/libexec/xdg-desktop-portal-gtk &
+/usr/libexec/xdg-desktop-portal-hyprland &
+/usr/libexec/xdg-desktop-portal &
+
+# Root privilegies
+/usr/libexec/polkit-gnome-authentication-agent-1 &
+/usr/bin/gnome-keyring-daemon --start --components=secrets
+/lib64/libexec/pam_kwallet_init
+/usr/lib64/libexec/kdeconnectd
+
+# KDE Connect
+/usr/lib64/libexec/kdeconnectd
+
+# Firewall
+/usr/bin/firewall-applet
+
+# Languages
+LD_LIBRARY_PATH=/usr/lib64 /usr/local/bin/fcitx5 -dr --enable all &
+/usr/bin/ibus-daemon -dxr --panel=disable
+
+# Sound
+/usr/bin/pipewire
+
+# Legacy X11
+/usr/bin/xsettingsd
