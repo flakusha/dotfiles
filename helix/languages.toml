@@ -27,7 +27,7 @@ formatter = { command = "taplo", args = ["fmt", "-"] }
 [[language]]
 name = "yaml"
 auto-format = true
-formatter = { command = "prettier", args = ["--parser", "yaml"] }
+formatter = { command = "npx", args = ["prettier", "--parser", "yaml"] }
 file-types = ["yaml", "yml"]
 
 # Python setup
@@ -48,12 +48,15 @@ formatter = { command = "black", args = [
 [[language]]
 name = "html"
 auto-format = true
-formatter = { command = "prettier", args = ["--parser", "html"] }
+formatter = { command = "npx", args = ["prettier", "--parser", "html"] }
+# This is original hx recommended setup that *can* conflict with VSCodium
+# prettier formatting
+# formatter = { command = "prettier", args = ["--parser", "html"] }
 
 [[language]]
 name = "css"
 auto-format = true
-formatter = { command = "prettier", args = ["--parser", "css"] }
+formatter = { command = "npx", args = ["prettier", "--parser", "css"] }
 
 # JS/TS family config
 [[language]]
@@ -65,7 +68,7 @@ language-servers = [
   ] },
   "biome",
 ]
-formatter = { command = "prettier", args = ["--parser", "typescript"] }
+formatter = { command = "npx", args = ["prettier", "--parser", "typescript"] }
 
 [[language]]
 name = "typescript"
@@ -76,7 +79,7 @@ language-servers = [
   ] },
   "biome",
 ]
-formatter = { command = "prettier", args = ["--parser", "typescript"] }
+formatter = { command = "npx", args = ["prettier", "--parser", "typescript"] }
 
 [[language]]
 name = "tsx"
@@ -87,7 +90,7 @@ language-servers = [
   ] },
   "biome",
 ]
-formatter = { command = "prettier", args = ["--parser", "typescript"] }
+formatter = { command = "npx", args = ["prettier", "--parser", "typescript"] }
 
 [[language]]
 name = "jsx"
@@ -98,7 +101,7 @@ language-servers = [
   ] },
   "biome",
 ]
-formatter = { command = "prettier", args = ["--parser", "typescript"] }
+formatter = { command = "npx", args = ["prettier", "--parser", "typescript"] }
 
 [[language]]
 name = "json"
@@ -109,7 +112,12 @@ language-servers = [
   ] },
   "biome",
 ]
-formatter = { command = "prettier", args = ["--parser", "json"] }
+formatter = { command = "npx", args = ["prettier", "--parser", "json"] }
+
+[[language]]
+name = "jsonnet"
+auto-format = true
+formatter = { command = "npx", args = ["prettier", "--parser", "json"] }
 
 [[language]]
 name = "nu"
@@ -119,7 +127,7 @@ language-servers = ["nu-lsp"]
 [[language]]
 name = "markdown"
 auto-format = true
-formatter = { command = "prettier", args = ["--parser", "markdown"] }
+formatter = { command = "npx", args = ["prettier", "--parser", "markdown"] }
 
 [[language]]
 name = "bash"
