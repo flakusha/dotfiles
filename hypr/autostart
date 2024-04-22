@@ -1,45 +1,66 @@
-#!/usr/bin/bash
+#!/bin/bash
 
 # variables
 config="$HOME/.config/hypr"
 scripts="$config/scripts"
-
-# waybar
-"$scripts/launch_waybar" &
-
-# gsettings
-"$scripts/import-gsettings"
-
-# effects
-#"$scripts/rgb" &
+hm="Hyprland autostart"
 
 # Dbus
 # dbus-update-activation-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP &
-/usr/bin/dbus-update-activation-enviroment --all
+echo $hm
 
-# Portal integration
-/usr/libexec/xdg-desktop-portal-gtk &
-/usr/libexec/xdg-desktop-portal-hyprland &
-/usr/libexec/xdg-desktop-portal &
+# echo "$hm updating dbus environment"
+# /usr/bin/dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+# /usr/bin/dbus-update-activation-environment --all
+# echo "$hm updating dbus environment finished"
 
-# Root privilegies
-/usr/libexec/polkit-gnome-authentication-agent-1 &
-/usr/bin/gnome-keyring-daemon --start --components=secrets
-/lib64/libexec/pam_kwallet_init
-/usr/lib64/libexec/kdeconnectd
+# echo "$hm portal activation"
+# /usr/libexec/xdg-desktop-portal-gtk &
+# sleep 1
+# /usr/libexec/xdg-desktop-portal-hyprland &
+# sleep 2
+# /usr/libexec/xdg-desktop-portal &
+# echo "$hm portal activation finished"
+
+# echo "$hm root managers"
+# /usr/libexec/polkit-gnome-authentication-agent-1 &
+# /usr/bin/gnome-keyring-daemon --start --components=secrets
+# /lib64/libexec/pam_kwallet_init
+# echo "$hm root managers finished"
+
+# echo "$hm pipewire"
+# /usr/bin/pipewire
+# echo "$hm pipewire finished"
+
+echo "$hm xsettingsd"
+/usr/bin/xsettingsd
+echo "$hm xsettingsd finished"
 
 # KDE Connect
-/usr/lib64/libexec/kdeconnectd
+# echo "$hm kdeconnectd"
+# /usr/lib64/libexec/kdeconnectd
+# echo "$hm kdeconnectd finished"
 
-# Firewall
-/usr/bin/firewall-applet
+# Start GUI components after daemons started
+# echo "$hm waybar"
+# "$scripts/launch_waybar" &
+# echo "$hm waybar finished"
+
+# gsettings
+# echo "$hm import-gsettings"
+# "$scripts/import-gsettings"
+# echo "$hm import-gsettings finished"
 
 # Languages
-LD_LIBRARY_PATH=/usr/lib64 /usr/local/bin/fcitx5 -dr --enable all &
-/usr/bin/ibus-daemon -dxr --panel=disable
+# echo "$hm fcitx and ibus"
+# # LD_LIBRARY_PATH=/usr/lib64
+# /usr/local/bin/fcitx5 -dr --enable all &
+# /usr/bin/ibus-daemon -dxr --panel=disable &
+# echo "$hm fcitx and ibus finished"
 
-# Sound
-/usr/bin/pipewire
+# echo "$hm firewall applet"
+# /usr/bin/firewall-applet
+# echo "$hm firewall applet finished"
 
-# Legacy X11
-/usr/bin/xsettingsd
+echo "$hm autostart finished"
+exit 0
