@@ -9,6 +9,13 @@ local config = wezterm.config_builder()
 -- For example, changing the color scheme:
 config.color_scheme = "Catppuccin Mocha"
 
+-- Wayland setup
+if os.getenv("XDG_CURRENT_DESKTOP") == "Hyprland" then
+	config.enable_wayland = false
+else
+	config.enable_wayland = true
+end
+
 -- Window tab bar config
 config.window_frame = {
 	-- The font used in the tab bar.
