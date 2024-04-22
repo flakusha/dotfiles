@@ -1,13 +1,7 @@
 {
   "layer": "top",
-  "modules-left": [
-    "wlr/workspaces",
-    "hyprland/workspaces",
-    "hyprland/window"
-  ],
-  "modules-center": [
-    "clock"
-  ],
+  "modules-left": ["hyprland/workspaces", "hyprland/window"],
+  "modules-center": ["clock"],
   "modules-right": [
     "gamemode",
     "disk",
@@ -24,21 +18,20 @@
     "format-muted": "{icon} {volume}%",
     "on-click": "pavucontrol",
     "format-icons": {
-      "default": [
-        "",
-        "",
-        ""
-      ]
+      "default": ["", "", ""]
     }
   },
   "hyprland/window": {
-    "format": "👉 {}",
+    "format": "👉 {class}|{title}",
     "separate-outputs": true
   },
   "hyprland/submap": {
     "format": "✌️ {}",
     "max-length": 8,
     "tooltip": false
+  },
+  "hyprland/workspaces": {
+    "all-outputs": true
   },
   "wlr/workspaces": {
     "format": "{icon}",
@@ -58,14 +51,15 @@
       "active": "",
       "default": ""
     },
-    "sort-by-number": true
+    "sort-by-number": true,
+    "all-outputs": true
   },
-  "network": {
-    "tooltip": false,
-    "format-wifi": "  {essid}",
-    "format-ethernet": "",
-    "on-click": "nm-connection-editor",
-  },
+  // "network": {
+  //   "tooltip": false,
+  //   "format-wifi": "  {essid}",
+  //   "format-ethernet": "",
+  //   "on-click": "nm-connection-editor"
+  // },
   "backlight": {
     "tooltip": false,
     "format": " {}%",
@@ -83,13 +77,7 @@
     "format-charging": " {capacity}%",
     "format-plugged": " {capacity}%",
     "format-alt": "{time} {icon}",
-    "format-icons": [
-      "",
-      "",
-      "",
-      "",
-      ""
-    ]
+    "format-icons": ["", "", "", "", ""]
   },
   "tray": {
     "icon-size": 24,
@@ -112,12 +100,12 @@
     "interval": 300,
     "format": "󱘲 {path} {percentage_free}%",
     "path": "/",
-    "on-click": "thunar",
+    "on-click": "thunar"
   },
   "gamemode": {
     "format": "{glyph}",
     "format-alt": "{glyph} {count}",
-    "glyph": "",
+    "glyph": "",
     "hide-not-running": true,
     "use-icon": true,
     "icon-name": "input-gaming-symbolic",
@@ -125,5 +113,5 @@
     "icon-size": 20,
     "tooltip": true,
     "tooltip-format": "Games running: {count}"
-  },
+  }
 }
