@@ -1,3 +1,5 @@
 #!/bin/bash
 
-grim -g "$(slurp)" - | wl-copy
+# grim -g "$(slurp)" - | wl-copy
+active_workspace_monitor=$(hyprctl -j activeworkspace | jq -r '(.monitor)')
+grim -o $active_workspace_monitor "$HOME/Pictures/$(date --iso-8601=ns).png"
