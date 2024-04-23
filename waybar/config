@@ -1,243 +1,241 @@
-// Global 
+// Global
 {
-    "layer": "top",
-    "position": "top",
+  "layer": "top",
+  "position": "top",
 
-    // If height property would be not present, it'd be calculated dynamically
-    "height": 30,
+  // If height property would be not present, it'd be calculated dynamically
+  "height": 30,
 
-    "modules-left": [
-        "custom/launcher",
-        "sway/workspaces",
-        "sway/mode",
-        "sway/window",
-    ],
- 
-    "modules-center": [
-        "clock",
-    ],
+  "modules-left": [
+    "custom/launcher",
+    "sway/workspaces",
+    "sway/mode",
+    "sway/window"
+  ],
 
-    "modules-right": [
-        "gamemode",
-        "network",
-        // "idle_inhibitor",
-        "memory",
-        "cpu",
-        "pulseaudio",
-        // "custom/keyboard-layout",
-        // "custom/keyboard-ibus",
-        //"battery",
-        //"custom/PBPbattery",
-        "backlight#icon",
-        "backlight#value",
-        "tray",
-        //"custom/weather",
-        "custom/power",
-    ],
+  "modules-center": ["clock"],
 
-    // Modules
-    "idle_inhibitor": {
-        "format": "{icon} ",
-        "format-icons":{
-            "activated": "",
-            "deactivated": ""
-        }
+  "modules-right": [
+    "gamemode",
+    "network",
+    // "idle_inhibitor",
+    "memory",
+    "cpu",
+    "pulseaudio",
+    // "custom/keyboard-layout",
+    // "custom/keyboard-ibus",
+    //"battery",
+    //"custom/PBPbattery",
+    "backlight#icon",
+    "backlight#value",
+    "tray",
+    //"custom/weather",
+    "custom/power"
+  ],
+
+  // Modules
+  "idle_inhibitor": {
+    "format": "{icon} ",
+    "format-icons": {
+      "activated": "",
+      "deactivated": ""
+    }
+  },
+
+  "battery": {
+    "states": {
+      // "good": 95,
+      "warning": 30,
+      "critical": 15
     },
+    "format": "{capacity}% {icon}",
+    "format-charging": "{capacity}% ",
+    "format-plugged": "{capacity}% ",
+    // "format-good": "", // An empty format will hide the module
+    // "format-full": "",
+    "format-icons": ["", "", "", "", ""]
+  },
 
-    "battery": {
-        "states": {
-            // "good": 95,
-            "warning": 30,
-            "critical": 15
-        },
-        "format": "{capacity}% {icon}",
-        "format-charging": "{capacity}% ",
-        "format-plugged": "{capacity}% ",
-        // "format-good": "", // An empty format will hide the module
-        // "format-full": "",
-        "format-icons": ["", "", "", "", ""]
+  "custom/PBPbattery": {
+    "exec": "~/.config/waybar/scripts/PBPbattery.sh",
+    "format": "{}"
+  },
+
+  "clock": {
+    "interval": 10,
+    "format-alt": " {:%e %b %Y}", // Icon: calendar-alt
+    "format": "{:%Y.%m.%d | %H:%M}",
+    "tooltip-format": "{:%e %B %Y}"
+  },
+
+  "cpu": {
+    "interval": 5,
+    "format": "  {usage}% ({load})", // Icon: microchip
+    "states": {
+      "warning": 70,
+      "critical": 90
     },
+    "on-click": "wezterm -e 'htop'"
+  },
 
-    "custom/PBPbattery": {
-        "exec": "~/.config/waybar/scripts/PBPbattery.sh",
-        "format": "{}",
+  "custom/keyboard-layout": {
+    "exec": "swaymsg -t get_inputs | grep -m1 'xkb_active_layout_name' | cut -d '\"' -f4",
+    // Interval set only as a fallback, as the value is updated by signal
+    "interval": 30,
+    "format": "  {}", // Icon: keyboard
+    // Signal sent by Sway key binding (~/.config/sway/key-bindings)
+    "signal": 1, // SIGHUP
+    "tooltip": false,
+    "on-click": "~/.config/waybar/scripts/keyhint.sh"
+  },
+
+  "custom/keyboard-ibus": {
+    "exec": "ibus engine",
+    "interval": 30,
+    "format": "  {}", // Icon: keyboard
+    "signal": 1,
+    "tooltip": false
+  },
+
+  "memory": {
+    "interval": 5,
+    "format": "  {}%", // Icon: memory
+    "on-click": "xfce4-terminal -e 'btop'",
+    "states": {
+      "warning": 70,
+      "critical": 90
+    }
+  },
+
+  "network": {
+    "interval": 5,
+    "format-wifi": "  {essid} ({signalStrength}%)", // Icon: wifi
+    "format-ethernet": "  {ifname}: {ipaddr}/{cidr}", // Icon: ethernet
+    "format-disconnected": "⚠  Disconnected",
+    "tooltip-format": "{ifname}: {ipaddr}",
+    "on-click": "xfce4-terminal -e 'nmtui'"
+  },
+
+  "network#vpn": {
+    "interface": "tun0",
+    "format": "  {essid} ({signalStrength}%)",
+    "format-disconnected": "⚠  Disconnected",
+    "tooltip-format": "{ifname}: {ipaddr}/{cidr}"
+  },
+
+  "sway/mode": {
+    "format": " {}",
+    "tooltip": false,
+    "max-length": 50
+  },
+
+  "sway/window": {
+    "format": "{app_id}|{shell}|{title}",
+    "max-length": 120
+  },
+
+  "sway/workspaces": {
+    "disable-scroll": true,
+    "disable-markup": false,
+    "all-outputs": true,
+    "format": "  {icon}  ",
+    //"format":"{icon}",
+    "format-icons": {
+      "1": "",
+      "2": "",
+      "3": "",
+      "4": ""
+    }
+  },
+
+  "pulseaudio": {
+    "scroll-step": 1, // %, can be a float
+    "format": "{volume}% {icon}",
+    "format-bluetooth": "{volume}% {icon}  {format_source}",
+    "format-bluetooth-muted": " {icon}  {format_source}",
+    "format-muted": " {format_source}",
+    "format-source": "{volume}% ",
+    "format-source-muted": "",
+    "format-icons": {
+      "headphone": "",
+      "hands-free": "וֹ",
+      "headset": "  ",
+      "phone": "",
+      "portable": "",
+      "car": "",
+      "default": [""]
     },
+    "on-click": "pavucontrol",
+    "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +2%",
+    "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -2%"
+  },
 
-    "clock": {
-        "interval": 10,
-        "format-alt": " {:%e %b %Y}", // Icon: calendar-alt
-        "format": "{:%Y.%m.%d | %H:%M}",
-        "tooltip-format": "{:%e %B %Y}"
-    },
+  // to use the weather module replace <your_location> with your city or town
+  // note: do not use spaces: new york would be newyork
+  "custom/weather": {
+    "exec": "~/.config/waybar/scripts/weather.sh <your_location>",
+    "return-type": "json",
+    "interval": 600
+  },
 
-    "cpu": {
-        "interval": 5,
-        "format": "  {usage}% ({load})", // Icon: microchip
-        "states": {
-            "warning": 70,
-            "critical": 90,
-        },
-        "on-click": "wezterm -e 'htop'",
-    },
+  "tray": {
+    "icon-size": 18,
+    "spacing": 10
+  },
 
-    "custom/keyboard-layout": {
-        "exec": "swaymsg -t get_inputs | grep -m1 'xkb_active_layout_name' | cut -d '\"' -f4",
-        // Interval set only as a fallback, as the value is updated by signal
-        "interval": 30,
-        "format": "  {}", // Icon: keyboard
-        // Signal sent by Sway key binding (~/.config/sway/key-bindings)
-        "signal": 1, // SIGHUP
-        "tooltip": false,
-        "on-click": "~/.config/waybar/scripts/keyhint.sh",
-    },
+  "backlight#icon": {
+    "format": "{icon}",
+    "format-icons": [""],
+    "on-scroll-down": "brightnessctl -c backlight set 1%-",
+    "on-scroll-up": "brightnessctl -c backlight set +1%"
+  },
 
-    "custom/keyboard-ibus": {
-        "exec": "ibus engine",
-        "interval": 30,
-        "format": "  {}", // Icon: keyboard
-        "signal": 1,
-        "tooltip": false,
-    },
+  "backlight#value": {
+    "format": "{percent}%",
+    "on-scroll-down": "brightnessctl -c backlight set 1%-",
+    "on-scroll-up": "brightnessctl -c backlight set +1%"
+  },
 
-    "memory": {
-        "interval": 5,
-        "format": "  {}%", // Icon: memory
-        "on-click": "xfce4-terminal -e 'btop'", 
-        "states": {
-            "warning": 70,
-            "critical": 90
-        }
-    },
+  "custom/firefox": {
+    "format": " ",
+    "on-click": "exec firefox",
+    "tooltip": false
+  },
 
-    "network": {
-        "interval": 5,
-        "format-wifi": "  {essid} ({signalStrength}%)", // Icon: wifi
-        "format-ethernet": "  {ifname}: {ipaddr}/{cidr}", // Icon: ethernet
-        "format-disconnected": "⚠  Disconnected",
-        "tooltip-format": "{ifname}: {ipaddr}",
-        "on-click": "xfce4-terminal -e 'nmtui'",
-    },
+  "custom/terminal": {
+    "format": " ",
+    "on-click": "exec xfce4-terminal",
+    "tooltip": false
+  },
 
-    "network#vpn": {
-        "interface": "tun0",
-        "format": "  {essid} ({signalStrength}%)",
-        "format-disconnected": "⚠  Disconnected",
-        "tooltip-format": "{ifname}: {ipaddr}/{cidr}",
-    },
+  "custom/files": {
+    "format": " ",
+    "on-click": "exec thunar",
+    "tooltip": false
+  },
 
-    "sway/mode": {
-        "format": " {}",
-        "tooltip": false,
-        "max-length": 50,
-    },
+  "custom/launcher": {
+    "format": " ",
+    "on-click": "exec wofi -c ~/.config/wofi/config -I",
+    "tooltip": false
+  },
 
-    "sway/window": {
-        "format": "{app_id}|{shell}|{title}",
-        "max-length": 120
-    },
+  "custom/power": {
+    "format": "⏻",
+    "on-click": "exec ~/.config/waybar/scripts/power-menu.sh",
+    "tooltip": false
+  },
 
-    "sway/workspaces": {
-        "disable-scroll": true,
-        "disable-markup" : false,
-        "all-outputs": true,
-        "format": "  {icon}  ",
-        //"format":"{icon}",
-        "format-icons": {
-            "1": "",
-            "2": "",
-            "3": "",
-            "4": "",
-        }
-    },
-
-    "pulseaudio": {
-        "scroll-step": 1, // %, can be a float
-        "format": "{volume}% {icon}",
-        "format-bluetooth": "{volume}% {icon}  {format_source}",
-        "format-bluetooth-muted": " {icon}  {format_source}",
-        "format-muted": " {format_source}",
-        "format-source": "{volume}% ",
-        "format-source-muted": "",
-        "format-icons": {
-            "headphone": "",
-            "hands-free": "וֹ",
-            "headset": "  ",
-            "phone": "",
-            "portable": "",
-            "car": "",
-            "default": [""]
-        },
-        "on-click": "pavucontrol",
-        "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +2%",
-        "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -2%",
-    },
-
-    // to use the weather module replace <your_location> with your city or town
-    // note: do not use spaces: new york would be newyork
-    "custom/weather": {
-        "exec": "~/.config/waybar/scripts/weather.sh <your_location>", 
-        "return-type": "json",
-        "interval": 600,
-    },
-
-    "tray": {
-        "icon-size": 18,
-        "spacing":10,
-     },
-
-    "backlight#icon": {
-        "format": "{icon}",
-        "format-icons": [""],
-        "on-scroll-down": "brightnessctl -c backlight set 1%-",
-        "on-scroll-up": "brightnessctl -c backlight set +1%"
-    },
-
-    "backlight#value" :{
-         "format": "{percent}%",
-         "on-scroll-down": "brightnessctl -c backlight set 1%-",
-         "on-scroll-up": "brightnessctl -c backlight set +1%"
-    },
-
-    "custom/firefox": {
-        "format": " ",
-        "on-click": "exec firefox",
-        "tooltip": false
-    },
-
-    "custom/terminal": {
-        "format": " ",
-        "on-click": "exec xfce4-terminal",
-        "tooltip": false
-    },
-
-    "custom/files": {
-        "format": " ",
-        "on-click": "exec thunar",
-        "tooltip": false
-    },
-
-    "custom/launcher": {
-        "format":" ",
-        "on-click": "exec wofi -c ~/.config/wofi/config -I",
-        "tooltip": false,
-    },
-
-    "custom/power": {
-        "format":"⏻",
-        "on-click": "exec ~/.config/waybar/scripts/power-menu.sh",
-        "tooltip": false,
-    },
-
-    "gamemode": {
-        "format": "{glyph}",
-        "format-alt": "{glyph} {count}",
-        "glyph": "",
-        "hide-not-running": true,
-        "use-icon": true,
-        "icon-name": "input-gaming-symbolic",
-        "icon-spacing": 4,
-        "icon-size": 20,
-        "tooltip": true,
-        "tooltip-format": "Games running: {count}"
-    },
+  "gamemode": {
+    "format": "{glyph}",
+    "format-alt": "{glyph} {count}",
+    "glyph": "",
+    "hide-not-running": true,
+    "use-icon": true,
+    "icon-name": "input-gaming-symbolic",
+    "icon-spacing": 4,
+    "icon-size": 20,
+    "tooltip": true,
+    "tooltip-format": "Games running: {count}"
+  }
 }
