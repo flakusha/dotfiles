@@ -285,7 +285,7 @@ input type:touchpad {
     exec /usr/bin/firewall-applet
 
 # X11 Legacy and cursors
-    # exec xrdb -merge ~/.Xresources
+    exec xrdb -merge ~/.Xresources
     exec /usr/bin/xsettingsd
 
     # set $gnome-schema org.gnome.desktop.interface
