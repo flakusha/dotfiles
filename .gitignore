@@ -25,6 +25,7 @@
 !.bashrc
 !.bash_profile
 !.xinitrc
+!.Xresources
 !.yarnrc.yml
 !package.json
 
