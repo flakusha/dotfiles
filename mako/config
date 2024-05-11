@@ -1,10 +1,16 @@
 # Colors
-
 background-color=#1e1e2e
 text-color=#cdd6f4
 border-color=#89b4fa
 progress-color=over #313244
 default-timeout=5000
+
+# Size
+width=512
+height=486
+
+# History
+sort=-time
 
 [urgency=high]
 border-color=#fab387
