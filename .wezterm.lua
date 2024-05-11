@@ -10,11 +10,13 @@ local config = wezterm.config_builder()
 config.color_scheme = "Catppuccin Mocha"
 
 -- Wayland setup
-if os.getenv("XDG_CURRENT_DESKTOP") == "Hyprland" then
-	config.enable_wayland = false
-else
-	config.enable_wayland = true
-end
+-- if os.getenv("XDG_SESSION_DESKTOP") == "Hyprland" then
+-- 	config.enable_wayland = false
+-- else
+-- 	config.enable_wayland = true
+-- end
+
+config.enable_wayland = false
 
 -- Window tab bar config
 config.window_frame = {
@@ -24,7 +26,7 @@ config.window_frame = {
 	-- Whatever font is selected here, it will have the
 	-- main font setting appended to it to pick up any
 	-- fallback fonts you may have used there.
-	font = wezterm.font({ family = "Iosevka Nerd Font Mono", weight = "Regular" }),
+	font = wezterm.font({ family = "IosevkaTerm NFM", weight = "Regular" }),
 
 	-- The size of the font in the tab bar.
 	-- Default to 10.0 on Windows but 12.0 on other systems
