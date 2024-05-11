@@ -84,3 +84,7 @@ character = "▏"
 
 [editor.soft-wrap]
 enable = true
+
+[keys.normal]
+A-g = [":new", ":insert-output lazygit", ":buffer-close!", ":redraw"]
+A-S-g = [":new", ":insert-output gitui", ":buffer-close!", ":redraw"]
