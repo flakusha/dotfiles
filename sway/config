@@ -299,8 +299,8 @@ input type:touchpad {
 
 
 # Language - execute the server after sway started (placed to bashrc starter script)
-    exec LD_LIBRARY_PATH=/usr/lib64 /usr/local/bin/fcitx5 -dr --enable all
-    exec /usr/bin/ibus-daemon -dxr --panel=disable
+    exec LD_LIBRARY_PATH=/usr/lib64 fcitx5 -dr --enable all
+    # exec /usr/bin/ibus-daemon -dxr --panel=disable
     # exec WAYLAND_SOCKET=$SWAYSOCK /usr/libexec/ibus-wayland
     # exec WAYLAND_SOCKET=$SWAYSOCK /usr/bin/ibus start --type=direct --verbose
     # exec LD_LIBRARY_PATH=/usr/lib64 WAYLAND_SOCKET=$SWAYSOCK /usr/bin/ibus-daemon -drR --panel=disable --desktop=gnome
