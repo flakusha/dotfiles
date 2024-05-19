@@ -99,7 +99,7 @@
     "spacing": 10
   },
   "clock": {
-    "format": "{:%Y.%m.%d %p %H:%M}",
+    "format": "{:%Y.%m.%d %H:%M}",
     "format-alt": "{:%A, %B %d, %Y (%R)}",
     "tooltip-format": "<tt><big>{calendar}</big></tt>",
     "calendar": {

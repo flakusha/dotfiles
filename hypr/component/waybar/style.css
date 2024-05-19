@@ -23,7 +23,7 @@ window#waybar.hidden {
   padding-left: 10px;
   padding-right: 10px;
   border-radius: 10px;
-  min-width: 640px;
+  min-width: 768px;
   transition: none;
   color: #161320;
   background: #414559;
