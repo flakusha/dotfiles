@@ -1,20 +1,18 @@
-// Global
 {
+  // Global
   "layer": "top",
   "position": "top",
-
   // If height property would be not present, it'd be calculated dynamically
   "height": 30,
-
   "modules-left": [
     "custom/launcher",
     "sway/workspaces",
     "sway/mode",
     "sway/window"
   ],
-
-  "modules-center": ["clock"],
-
+  "modules-center": [
+    "clock"
+  ],
   "modules-right": [
     "gamemode",
     "network",
@@ -32,7 +30,6 @@
     //"custom/weather",
     "custom/power"
   ],
-
   // Modules
   "idle_inhibitor": {
     "format": "{icon} ",
@@ -41,7 +38,6 @@
       "deactivated": ""
     }
   },
-
   "battery": {
     "states": {
       // "good": 95,
@@ -53,21 +49,24 @@
     "format-plugged": "{capacity}% ",
     // "format-good": "", // An empty format will hide the module
     // "format-full": "",
-    "format-icons": ["", "", "", "", ""]
+    "format-icons": [
+      "",
+      "",
+      "",
+      "",
+      ""
+    ]
   },
-
   "custom/PBPbattery": {
     "exec": "~/.config/waybar/scripts/PBPbattery.sh",
     "format": "{}"
   },
-
   "clock": {
     "interval": 10,
     "format-alt": " {:%e %b %Y}", // Icon: calendar-alt
     "format": "{:%Y.%m.%d | %H:%M}",
     "tooltip-format": "{:%e %B %Y}"
   },
-
   "cpu": {
     "interval": 5,
     "format": "  {usage}% ({load})", // Icon: microchip
@@ -77,7 +76,6 @@
     },
     "on-click": "wezterm -e 'htop'"
   },
-
   "custom/keyboard-layout": {
     "exec": "swaymsg -t get_inputs | grep -m1 'xkb_active_layout_name' | cut -d '\"' -f4",
     // Interval set only as a fallback, as the value is updated by signal
@@ -88,7 +86,6 @@
     "tooltip": false,
     "on-click": "~/.config/waybar/scripts/keyhint.sh"
   },
-
   "custom/keyboard-ibus": {
     "exec": "ibus engine",
     "interval": 30,
@@ -96,7 +93,6 @@
     "signal": 1,
     "tooltip": false
   },
-
   "memory": {
     "interval": 5,
     "format": "  {}%", // Icon: memory
@@ -106,7 +102,6 @@
       "critical": 90
     }
   },
-
   "network": {
     "interval": 5,
     "format-wifi": "  {essid} ({signalStrength}%)", // Icon: wifi
@@ -115,25 +110,21 @@
     "tooltip-format": "{ifname}: {ipaddr}",
     "on-click": "xfce4-terminal -e 'nmtui'"
   },
-
   "network#vpn": {
     "interface": "tun0",
     "format": "  {essid} ({signalStrength}%)",
     "format-disconnected": "⚠  Disconnected",
     "tooltip-format": "{ifname}: {ipaddr}/{cidr}"
   },
-
   "sway/mode": {
     "format": " {}",
     "tooltip": false,
     "max-length": 50
   },
-
   "sway/window": {
-    "format": "{app_id}|{shell}|{title}",
+    "format": "{app_id} | {shell} | {title}",
     "max-length": 120
   },
-
   "sway/workspaces": {
     "disable-scroll": true,
     "disable-markup": false,
@@ -147,7 +138,6 @@
       "4": ""
     }
   },
-
   "pulseaudio": {
     "scroll-step": 1, // %, can be a float
     "format": "{volume}% {icon}",
@@ -163,13 +153,14 @@
       "phone": "",
       "portable": "",
       "car": "",
-      "default": [""]
+      "default": [
+        ""
+      ]
     },
     "on-click": "pavucontrol",
     "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +2%",
     "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -2%"
   },
-
   // to use the weather module replace <your_location> with your city or town
   // note: do not use spaces: new york would be newyork
   "custom/weather": {
@@ -177,55 +168,48 @@
     "return-type": "json",
     "interval": 600
   },
-
   "tray": {
     "icon-size": 18,
     "spacing": 10
   },
-
   "backlight#icon": {
     "format": "{icon}",
-    "format-icons": [""],
+    "format-icons": [
+      ""
+    ],
     "on-scroll-down": "brightnessctl -c backlight set 1%-",
     "on-scroll-up": "brightnessctl -c backlight set +1%"
   },
-
   "backlight#value": {
     "format": "{percent}%",
     "on-scroll-down": "brightnessctl -c backlight set 1%-",
     "on-scroll-up": "brightnessctl -c backlight set +1%"
   },
-
   "custom/firefox": {
     "format": " ",
     "on-click": "exec firefox",
     "tooltip": false
   },
-
   "custom/terminal": {
     "format": " ",
     "on-click": "exec xfce4-terminal",
     "tooltip": false
   },
-
   "custom/files": {
     "format": " ",
     "on-click": "exec thunar",
     "tooltip": false
   },
-
   "custom/launcher": {
     "format": " ",
     "on-click": "exec wofi -c ~/.config/wofi/config -I",
     "tooltip": false
   },
-
   "custom/power": {
     "format": "⏻",
     "on-click": "exec ~/.config/waybar/scripts/power-menu.sh",
     "tooltip": false
   },
-
   "gamemode": {
     "format": "{glyph}",
     "format-alt": "{glyph} {count}",
