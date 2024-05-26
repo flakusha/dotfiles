@@ -26,7 +26,7 @@ config.window_frame = {
 	-- Whatever font is selected here, it will have the
 	-- main font setting appended to it to pick up any
 	-- fallback fonts you may have used there.
-	font = wezterm.font({ family = "IosevkaTerm NFM", weight = "Regular" }),
+	font = wezterm.font({ family = "M+1Code Nerd Font", weight = "Regular" }),
 
 	-- The size of the font in the tab bar.
 	-- Default to 10.0 on Windows but 12.0 on other systems
