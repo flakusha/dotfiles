@@ -2,9 +2,9 @@
   "devDependencies": {
     "@ansible/ansible-language-server": "latest",
     "@biomejs/biome": "latest",
-    "aws-cdk": "^2.137.0",
+    "aws-cdk": "^2.143.0",
     "bash-language-server": "latest",
-    "corepack": "^0.26.0",
+    "corepack": "^0.28.1",
     "esbuild": "latest",
     "nx": "^18.2.4",
     "prettier": "latest",
