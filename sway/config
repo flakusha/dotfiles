@@ -282,7 +282,7 @@ input type:touchpad {
 
 # Network and firewall (removed NetworkManager)
     # exec --no-startup-id firewalld
-    exec /usr/bin/firewall-applet
+    # exec /usr/bin/firewall-applet
 
 # X11 Legacy and cursors
     exec xrdb -merge ~/.Xresources
@@ -308,3 +308,6 @@ input type:touchpad {
     # exec LD_LIBRARY_PATH=/usr/lib64 /usr/libexec/ibus-wayland
     # exec --no-startup-id ~/.config/sway/scripts/language-start.sh
     # bindsym $mod+f2 exec ~/.config/sway/scripts/language.sh
+
+# Setup the vrr only for fullscreen & focused
+    exec "~/.config/sway/scripts/vrr_fullscreen.sh"
