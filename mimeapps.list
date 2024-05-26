@@ -3,3 +3,8 @@ application/vnd.kde.kxmlguirc=xemacs.desktop;
 text/css=org.gnome.gedit.desktop;
 text/plain=org.gnome.gedit.desktop;
 application/x-compressed-tar=org.kde.ark.desktop;
+text/csv=libreoffice-calc.desktop;
+
+[Default Applications]
+x-scheme-handler/element=element-desktop.desktop
+inode/directory=thunar.desktop
