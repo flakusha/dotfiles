@@ -6,6 +6,11 @@ esac
 
 # [[ $- == *i* ]] && source /usr/share/blesh/ble.sh --noattach
 
+# Load additional aliases
+if [ -f ~/.bash_aliases ]; then
+    . ~/.bash_aliases
+fi
+
 # Path to your oh-my-bash installation.
 export OSH="$HOME/.oh-my-bash"
 
@@ -183,6 +188,7 @@ alias ls='ls --color=auto'
 alias ll='ls -lahg --time-style=long-iso --hyperlink=auto'
 alias grep='grep --color=auto'
 alias ez='eza -laghmuU --icons --group-directories-first --hyperlink --time-style long-iso -F=auto'
+alias wez='wezterm'
 
 # Possible G$$GL issues
 export GOPROXY=direct
@@ -212,55 +218,51 @@ alias i3-start='(
   exec xrandr --dpi 98 &
 )'
 
-alias sway-start='(
-  # export SDL_VIDEODRIVER="wayland,x11"
-  export SDL_IM_MODULE=fcitx
+alias sway-start="(
+  # SDL / Games
+  # export SDL_VIDEODRIVER='wayland,x11'
   export SDL_VIDEODRIVER=x11
-  export QT_QPA_PLATFORM="wayland;xcb"
-  export QT_QPA_PLATFORMTHEME=qt5ct
+  # export QT_QPA_PLATFORM='wayland;xcb'
+  export QT_QPA_PLATFORM=wayland
+  # Theme settings
+  export GTK_THEME='Catppuccin-Mocha-Standard-Teal-Dark:dark'
+  export XCURSOR_THEME='Catppuccin-Mocha-Teal'
+  export XCURSOR_SIZE=14
+  export XCURSOR_PATH=/usr/share/icons
   export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
-  export QT_IM_MODULES="wayland;fcitx;ibus"
-  export QT_IM_MODULE=fcitx
+  export QT_STYLE_OVERRIDE=kvantum
+  # Wayland integration
   export XDG_SESSION_TYPE=wayland
   export XDG_SESSION_DESKTOP=sway
-  export XDG_CURRENT_DESKTOP=sway
+  export XDG_CURRENT_DESKTOP=KDE
   export OZONE_PLATFORM=wayland
   export MOZ_ENABLE_WAYLAND=1
-  export GTK_USE_PORTAL=1
-  export GTK_THEME=Materia-dark-compact
-  export GTK2_RC_FILES=/usr/share/themes/Materia-dark-compact/gtk-2.0/gtkrc
-  export GTK_IM_MODULE=fcitx
+  # export GTK_USE_PORTAL=1
   export GDK_BACKEND=wayland
-  export WLR_RENDERER_ALLOW_SOFTWARE=1
-  export WLR_NO_HARDWARE_CURSORS=1
-  export XMODIFIERS="@im=fcitx"
+  # export WLR_RENDERER_ALLOW_SOFTWARE=1
+  # export WLR_NO_HARDWARE_CURSORS=1
+  export GTK_IM_MODULE=fcitx
+  export QT_IM_MODULE=fcitx
+  export XMODIFIERS='@im=fcitx'
+  export SDL_IM_MODULE=fcitx
   export IMSETTINGS_INTEGRATE_DESKTOP=yes
   export IMSETTINGS_MODULE=fcitx
   export EDITOR=hx
-  # export RUSTICL_ENABLE=radeonsi
+  export RUSTICL_ENABLE=radeonsi
   export GDK_SCALE=0.75
+  export STEAM_FORCE_DESKTOPUI_SCALING='0.5'
   export LC_LOCALE=en_IE.UTF-8
   # ESYNC and FSYNC are not guaranteed to work
   export WINEESYNC=1
   export WINEFSYNC=1
   # exec dbus-launch --sh-syntax --exit-with-session sway
   exec dbus-run-session sway
-)'
+)"
 
-alias hyprland-start='(
-  #export SDL_VIDEODRIVER=x11
-  #export SDL_VIDEODRIVER="wayland,x11"
-  export SDL_VIDEODRIVER=wayland
-  export QT_QPA_PLATFORM=wayland
-  # export QT_QPA_PLATFORM="wayland;xcb"
-  export QT_WAYLAND_DISABLE_WINDOWDECORATION="1"
-  export XDG_SESSION_TYPE=wayland
-  export XDG_SESSION_DESKTOP=Hyprland
-  export XDG_CURRENT_DESKTOP=Hyprland
-  export MOZ_ENABLE_WAYLAND=1
-  export GTK_THEME="Catppuccin-Mocha-Compact-Teal-Dark:dark"
-  exec dbus-launch --exit-with-session Hyprland
-  export $(dbus-launch)
+alias hypr-start='(
+  exec dbus-run-session Hyprland 
+  # &>> ~/hypr.log
+  # exec dbus-launch --sh-syntax --exit-with-session Hyprland &>> ~/hypr.log
 )'
 
 alias gdm-start='(
@@ -310,7 +312,11 @@ alias gamescope-steam-native='(
   -- steam-native
 )'
 
-alias git-pull-full='git fetch -fptP --all && git pull --all'
+alias git-pull-full='(
+  git fetch -fptP --all --recurse-submodules && \
+  git submodule update --init && \
+  git merge --no-commit --strategy=recursive -X diff-algorithm=histogram
+)'
 
 # Add locally installed and compiled packages
 # PATH=$PATH:~/.cargo/bin
@@ -326,15 +332,12 @@ source "$HOME/.config/broot/launcher/bash/br"
 # done;
 
 eval "$(atuin init bash --disable-up-arrow)"
+eval "$(fzf --bash)"
 export CARAPACE_BRIDGES='zsh,fish,bash,inshellisense' # optional
 source <(carapace _carapace)
 
 # Clean up PATH from repeating entries
 PATH=$(printf %s "$PATH" | awk -v RS=: '{ if (!arr[$0]++) {printf("%s%s",!ln++?"":":",$0)}}')
-
-# Add more exports
-# Steam seem to ignore this setting
-export STEAM_FORCE_DESKTOPUI_SCALING='0.5'
 
 # Add preexec
 [[ -f /usr/share/bash-preexec/bash-preexec.sh ]] && source /usr/share/bash-preexec/bash-preexec.sh
