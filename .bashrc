@@ -293,19 +293,18 @@ alias rust-apps-update='(
 # )'
 
 alias gamescope-steam='(
-  export RADV_PERFTEST="rt"
-  export VKD3D_CONFIG=dxr
-  gamemoderun vk_radv gamescope -w 3840 -h 2160 -W 3840 -H 2160 \
+  # export RADV_PERFTEST="rt"
+  # export VKD3D_CONFIG=dxr
+  gamemoderun gamescope -w 3840 -h 2160 -W 3840 -H 2160 \
   -r 144 -o 15 \
-  --expose-wayland \
-  -e -f --rt --adaptive-sync \
-  -- steam
+  -e -f --rt -R --adaptive-sync \
+  -- flatpak run com.valvesoftware.Steam
 )'
 
 alias gamescope-steam-native='(
   export RADV_PERFTEST="rt"
   export VKD3D_CONFIG=dxr
-  gamemoderun vk_radv gamescope -w 3840 -h 2160 -W 3840 -H 2160 \
+  gamemoderun gamescope -w 3840 -h 2160 -W 3840 -H 2160 \
   -r 144 -o 15 \
   --expose-wayland \
   -e -f --rt --adaptive-sync \

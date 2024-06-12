@@ -2,10 +2,10 @@
 # Any customization should be done in ~/.gtkrc-2.0.mine instead.
 
 include "/home/flak/.gtkrc-2.0.mine"
-gtk-theme-name="Catppuccin-Mocha-Standard-Teal-Dark"
+gtk-theme-name="catppuccin-mocha-teal-standard+default"
 gtk-icon-theme-name="Catppuccin-Mocha-Teal"
-gtk-font-name="Iosevka Nerd Font 12"
-gtk-cursor-theme-name="Catppuccin-Mocha-Teal-Cursors"
+gtk-font-name="M+2 Nerd Font 11"
+gtk-cursor-theme-name="catppuccin-mocha-teal-cursors"
 gtk-cursor-theme-size=14
 gtk-toolbar-style=GTK_TOOLBAR_ICONS
 gtk-toolbar-icon-size=GTK_ICON_SIZE_LARGE_TOOLBAR
@@ -17,4 +17,3 @@ gtk-xft-antialias=1
 gtk-xft-hinting=1
 gtk-xft-hintstyle="hintfull"
 gtk-xft-rgba="rgb"
-gtk-im-module="fcitx"

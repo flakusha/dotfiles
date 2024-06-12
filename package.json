@@ -1,18 +1,19 @@
 {
   "devDependencies": {
-    "@ansible/ansible-language-server": "latest",
-    "@biomejs/biome": "latest",
-    "aws-cdk": "^2.143.0",
-    "bash-language-server": "latest",
-    "corepack": "^0.28.1",
-    "esbuild": "latest",
-    "nx": "^18.2.4",
-    "prettier": "latest",
+    "@ansible/ansible-language-server": "^1.2.3",
+    "@biomejs/biome": "1.8.1",
+    "aws-cdk": "^2.145.0",
+    "bash-language-server": "^5.4.0",
+    "corepack": "^0.28.2",
+    "esbuild": "^0.21.5",
+    "nx": "^19.2.3",
+    "prettier": "^3.3.2",
+    "pyright": "^1.1.367",
     "typescript": "^5.4.5",
-    "typescript-language-server": "latest",
-    "vscode-css-languageservice": "latest",
-    "vscode-json-languageserver": "latest",
-    "vscode-langservers-extracted": "latest"
+    "typescript-language-server": "^4.3.3",
+    "vscode-css-languageservice": "^6.2.14",
+    "vscode-json-languageserver": "^1.3.4",
+    "vscode-langservers-extracted": "^4.10.0"
   },
-  "packageManager": "yarn@4.1.1"
+  "packageManager": "yarn@4.3.0"
 }
