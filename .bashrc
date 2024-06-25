@@ -225,7 +225,7 @@ alias sway-start="(
   # export QT_QPA_PLATFORM='wayland;xcb'
   export QT_QPA_PLATFORM=wayland
   # Theme settings
-  export GTK_THEME='Catppuccin-Mocha-Standard-Teal-Dark:dark'
+  # export GTK_THEME='Catppuccin-Mocha-Standard-Teal-Dark:dark'
   export XCURSOR_THEME='Catppuccin-Mocha-Teal'
   export XCURSOR_SIZE=14
   export XCURSOR_PATH=/usr/share/icons
