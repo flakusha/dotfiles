@@ -7,7 +7,7 @@
     "corepack": "^0.28.2",
     "esbuild": "^0.21.5",
     "prettier": "^3.3.2",
-    "pyright": "^1.1.368",
+    "pyright": "^1.1.369",
     "typescript": "^5.5.2",
     "typescript-language-server": "^4.3.3",
     "vscode-css-languageservice": "^6.3.0",
