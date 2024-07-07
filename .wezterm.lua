@@ -16,7 +16,7 @@ config.color_scheme = "Catppuccin Mocha"
 -- 	config.enable_wayland = true
 -- end
 
-config.enable_wayland = false
+-- config.enable_wayland = false
 
 -- Window tab bar config
 config.window_frame = {
@@ -26,7 +26,11 @@ config.window_frame = {
 	-- Whatever font is selected here, it will have the
 	-- main font setting appended to it to pick up any
 	-- fallback fonts you may have used there.
-	font = wezterm.font({ family = "M+1Code Nerd Font", weight = "Regular" }),
+	font = wezterm.font_with_fallback({
+		{ family = "ShureTechMono Nerd Font", weight = "Regular" },
+		{ family = "Iosevka Nerd Font" },
+		{ family = "M+1Code Nerd Font" },
+	}),
 
 	-- The size of the font in the tab bar.
 	-- Default to 10.0 on Windows but 12.0 on other systems
