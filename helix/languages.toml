@@ -14,6 +14,9 @@ command = "ruff-lsp"
 [language-server.ruff.config.settings]
 args = ["--ignore", "E501"]
 
+[language-server.emmet-lsp]
+command = "emmet-language-server"
+args = ["--stdio"]
 
 [[language]]
 name = "rust"
@@ -68,9 +71,8 @@ formatter = { command = "black", args = [
 name = "html"
 auto-format = true
 formatter = { command = "prettier", args = ["--parser", "html"] }
-# This is original hx recommended setup that *can* conflict with VSCodium
-# prettier formatting
-# formatter = { command = "prettier", args = ["--parser", "html"] }
+roots = [".git"]
+language-servers = ["emmet-lsp"]
 
 [[language]]
 name = "css"
