@@ -182,7 +182,6 @@ feature_snippets = true      # enable snippets
 feature_unicode_input = true # enable "unicode input"
 feature_paths = true         # enable path completion
 
-
 # write logs to /tmp/completion.log
 [language-server.scls.environment]
 RUST_LOG = "info,simple-completion-langauge-server=info"
@@ -196,6 +195,16 @@ language-servers = ["scls", "rust-analyzer"]
 [[language]]
 name = "git-commit"
 language-servers = ["scls"]
+
+[[language]]
+name = "c"
+auto-format = true
+formatter = { command = "clang-format", args = ["--falback-style=LLVM"] }
+
+[[language]]
+name = "cpp"
+auto-format = true
+formatter = { command = "clang-format" }
 
 # etc..
 
