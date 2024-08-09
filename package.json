@@ -1,5 +1,5 @@
 {
-  "packageManager": "yarn@4.3.1",
+  "packageManager": "yarn@4.4.0",
   "dependencies": {
     "@ansible/ansible-language-server": "^1.2.3",
     "@biomejs/biome": "1.8.3",
@@ -7,7 +7,7 @@
     "corepack": "^0.29.3",
     "esbuild": "^0.23.0",
     "prettier": "^3.3.3",
-    "pyright": "^1.1.373",
+    "pyright": "^1.1.375",
     "typescript": "^5.5.4",
     "typescript-language-server": "^4.3.3",
     "vscode-css-languageservice": "^6.3.0",
