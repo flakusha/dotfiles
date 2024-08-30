@@ -6,8 +6,8 @@
 [delta]
     navigate = true    # use n and N to move between diff sections
     light = false      # set to true if you're in a terminal w/ a light background color (e.g. the default macOS terminal)
-	side-by-side = true
-	line-numbers = true
+    side-by-side = true
+    line-numbers = true
 [merge]
     conflictstyle = diff3
 [diff]
@@ -15,15 +15,15 @@
     colorMoved = default
     algorithm = histogram
 [difftool]
-        prompt = false
+    prompt = false
 [difftool "difftastic"]
-        cmd = difft "$LOCAL" "$REMOTE"
+    cmd = difft "$LOCAL" "$REMOTE"
 [pager]
         difftool = true
 [tag]
     sort = "version:refname"
 [gpg]
-	program = gpg
+    program = gpg
 [alias]
     dft = difftool
     dlog = "-c diff.external=difft log -p --ext-diff"

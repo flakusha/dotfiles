@@ -18,3 +18,4 @@ fi
 
 export HELIX_DEFAULT_RUNTIME=$HOME/git-repos/helix/runtime
 
+source /home/flak/.config/broot/launcher/bash/br

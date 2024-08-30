@@ -324,7 +324,6 @@ PATH=$PATH:~/go/bin
 PATH=$PATH:~/.local/bin
 
 eval "$(zoxide init bash)"
-source "$HOME/.config/broot/launcher/bash/br"
 
 # for f in "$HOME/.bash_completion/"*; do
 #    source "$f"
