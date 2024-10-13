@@ -14,30 +14,26 @@ command = "ruff-lsp"
 [language-server.ruff.config.settings]
 args = ["--ignore", "E501"]
 
-[language-server.emmet-lsp]
-command = "emmet-language-server"
-args = ["--stdio"]
-
 [[language]]
 name = "rust"
 formatter = { command = "rustfmt" }
 auto-format = true
 
 # Temporary for llvm <18
-[language.debugger]
-command = "lldb-dap"
-name = "lldb-dap"
-port-arg = "--port {}"
-transport = "tcp"
-[[language.debugger.templates]]
-name = "binary"
-request = "launch"
-[[language.debugger.templates.completion]]
-completion = "filename"
-name = "binary"
-[language.debugger.templates.args]
-program = "{0}"
-runInTerminal = true
+# [language.debugger]
+# command = "lldb-dap"
+# name = "lldb-dap"
+# port-arg = "--port {}"
+# transport = "tcp"
+# [[language.debugger.templates]]
+# name = "binary"
+# request = "launch"
+# [[language.debugger.templates.completion]]
+# completion = "filename"
+# name = "binary"
+# [language.debugger.templates.args]
+# program = "{0}"
+# runInTerminal = true
 
 [[language]]
 name = "toml"
@@ -71,7 +67,6 @@ name = "html"
 auto-format = true
 formatter = { command = "prettier", args = ["--parser", "html"] }
 roots = [".git"]
-language-servers = ["emmet-lsp"]
 
 [[language]]
 name = "css"
@@ -87,6 +82,7 @@ language-servers = [
     "format",
   ] },
   "biome",
+  "vscode-eslint-language-server",
 ]
 formatter = { command = "prettier", args = ["--parser", "typescript"] }
 
@@ -98,6 +94,7 @@ language-servers = [
     "format",
   ] },
   "biome",
+  "vscode-eslint-language-server",
 ]
 formatter = { command = "prettier", args = ["--parser", "typescript"] }
 
@@ -109,6 +106,7 @@ language-servers = [
     "format",
   ] },
   "biome",
+  "vscode-eslint-language-server",
 ]
 formatter = { command = "prettier", args = ["--parser", "typescript"] }
 
@@ -120,6 +118,7 @@ language-servers = [
     "format",
   ] },
   "biome",
+  "vscode-eslint-language-server",
 ]
 formatter = { command = "prettier", args = ["--parser", "typescript"] }
 
