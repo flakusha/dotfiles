@@ -22,13 +22,13 @@
     "pulseaudio",
     // "custom/keyboard-layout",
     // "custom/keyboard-ibus",
-    //"battery",
-    //"custom/PBPbattery",
-    "backlight#icon",
-    "backlight#value",
-    "tray",
-    //"custom/weather",
-    "custom/power"
+    // "battery",
+    // "custom/PBPbattery",
+    // "backlight#icon",
+    // "backlight#value",
+    "tray"
+    // "custom/weather",
+    // "custom/power"
   ],
   // Modules
   "idle_inhibitor": {
