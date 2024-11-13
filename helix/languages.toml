@@ -8,6 +8,9 @@ termux-language-server = { command = "termux-language-server" }
 [language-server.pyright.config.python.analysis]
 typeCheckingMode = "basic"
 
+[language-server.typescript-language-server.config.preferences]
+importModuleSpecifier = "non-relative"
+
 [language-server.ruff]
 command = "ruff-lsp"
 
@@ -15,7 +18,8 @@ command = "ruff-lsp"
 args = ["--ignore", "E501"]
 
 [language-server.eslint]
-command = "vscode-eslint-language-server"
+# command = "vscode-eslint-language-server"
+command = "eslint"
 args = ["--stdio"]
 
 # Configuration reference: https://github.com/microsoft/vscode-eslint?tab=readme-ov-file#settings-options
@@ -49,6 +53,21 @@ feature_paths = true         # enable path completion
 [language-server.scls.environment]
 RUST_LOG = "info,simple-completion-langauge-server=info"
 LOG_FILE = "/tmp/completion.log"
+
+[language-server.deno-lsp]
+command = "deno"
+args = ["lsp"]
+
+[language-server.deno-lsp.config.deno]
+enable = true
+unstable = true
+suggest.imports.hosts = { "https://deno.land" = true }
+inlayHints.parameterNames.enabled = "all"
+inlayHints.parameterTypes.enabled = true
+inlayHints.variableTypes.enabled = true
+inlayHints.propertyDeclarationTypes.enabled = true
+inlayHints.functionLikeReturnTypes.enabled = true
+inlayHints.enumMemberValues.enabled = true
 
 [[language]]
 name = "rust"
@@ -115,11 +134,10 @@ formatter = { command = "prettier", args = ["--parser", "css"] }
 name = "javascript"
 auto-format = true
 language-servers = [
-  { name = "typescript-language-server", except-features = [
-    "format",
-  ] },
+  { name = "typescript-language-server", except-features = ["format"] },
   "biome",
   "eslint",
+  # "deno-lsp",
 ]
 formatter = { command = "prettier", args = ["--parser", "typescript"] }
 
@@ -127,11 +145,10 @@ formatter = { command = "prettier", args = ["--parser", "typescript"] }
 name = "typescript"
 auto-format = true
 language-servers = [
-  { name = "typescript-language-server", except-features = [
-    "format",
-  ] },
+  { name = "typescript-language-server", except-features = ["format"] },
   "biome",
   "eslint",
+  # "deno-lsp",
 ]
 formatter = { command = "prettier", args = ["--parser", "typescript"] }
 
@@ -139,11 +156,10 @@ formatter = { command = "prettier", args = ["--parser", "typescript"] }
 name = "tsx"
 auto-format = true
 language-servers = [
-  { name = "typescript-language-server", except-features = [
-    "format",
-  ] },
+  { name = "typescript-language-server", except-features = ["format"] },
   "biome",
   "eslint",
+  # "deno-lsp",
 ]
 formatter = { command = "prettier", args = ["--parser", "typescript"] }
 
@@ -151,11 +167,10 @@ formatter = { command = "prettier", args = ["--parser", "typescript"] }
 name = "jsx"
 auto-format = true
 language-servers = [
-  { name = "typescript-language-server", except-features = [
-    "format",
-  ] },
+  { name = "typescript-language-server", except-features = ["format"] },
   "biome",
   "eslint",
+  # "deno-lsp",
 ]
 formatter = { command = "prettier", args = ["--parser", "typescript"] }
 
