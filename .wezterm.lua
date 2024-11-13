@@ -10,6 +10,7 @@ local config = wezterm.config_builder()
 config.color_scheme = "Catppuccin Mocha"
 
 -- Wayland setup
+-- config.enable_wayland = false
 if os.getenv("XDG_SESSION_TYPE") == "wayland" then
 	config.enable_wayland = true
 else
