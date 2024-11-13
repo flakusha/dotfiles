@@ -1,4 +1,3 @@
-import = ["~/.config/alacritty/themes/themes/catppuccin_mocha.toml"]
 
 [colors]
 draw_bold_text_with_bright_colors = true
@@ -35,3 +34,6 @@ style = "Italic"
 opacity = 1.0
 dynamic_padding = true
 blur = true
+
+[general]
+import = ["~/.config/alacritty/themes/themes/catppuccin_mocha.toml"]
