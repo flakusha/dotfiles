@@ -9,11 +9,14 @@
   ],
   "modules-right": [
     "gamemode",
+    "keyboard-state",
     "disk",
     "cpu",
     "memory",
     "pulseaudio",
+    "wireplumber",
     "network",
+    "bluetooth",
     "tray"
   ],
   "pulseaudio": {
@@ -150,5 +153,34 @@
     "icon-size": 20,
     "tooltip": true,
     "tooltip-format": "Games running: {count}"
+  },
+  "wireplumber": {
+    "format": "{volume}%",
+    "format-muted": "",
+    // "on-click": "helvum",
+    "max-volume": 150,
+    "scroll-step": 0.2
+  },
+  "bluetooth": {
+    "format": " {status}",
+    "format-connected": " {device_alias}",
+    "format-connected-battery": " {device_alias} {device_battery_percentage}%",
+    // "format-device-preference": [ "device1", "device2" ], // preference list deciding the displayed device
+    "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
+    "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
+    "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+    "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%"
+  },
+  "keyboard-state": {
+    "numlock": true,
+    "capslock": true,
+    "format": {
+      "numlock": "N {icon}",
+      "capslock": "C {icon}"
+    },
+    "format-icons": {
+      "locked": "",
+      "unlocked": ""
+    }
   }
 }
