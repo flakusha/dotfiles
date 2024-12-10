@@ -10,11 +10,10 @@
   "modules-right": [
     "gamemode",
     "keyboard-state",
-    "disk",
     "cpu",
     "memory",
+    "disk",
     "pulseaudio",
-    "wireplumber",
     "network",
     "bluetooth",
     "tray"

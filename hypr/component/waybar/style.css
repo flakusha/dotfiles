@@ -2,22 +2,18 @@
   color: white;
   border: none;
   border-radius: 10px;
-  margin-top: 1px;
-  margin-bottom: 1px;
-  margin-left: 6px;
-  margin-right: 6px;
-  padding-top: 2px;
-  padding-bottom: 2px;
-  padding-left: 6px;
-  padding-right: 6px;
+  min-height: 18px;
+  margin: 1px;
+  padding: 2px;
+  padding-left: 8px;
+  padding-right: 8px;
   font-family: "ShureTechMono Nerd Font";
-  font-size: 15px;
-  min-height: 6px;
+  font-size: 18px;
 }
 
 window#waybar {
   background: transparent;
-  border-bottom: 6px;
+  /* border-bottom: 2px; */
 }
 
 window#waybar.hidden {
@@ -41,16 +37,9 @@ window#waybar.hidden {
 }
 
 #workspaces button {
-  margin-top: 0px;
-  margin-bottom: 0px;
-  margin-left: 2px;
-  margin-right: 2px;
-  padding-left: 2px;
-  padding-right: 2px;
   transition: none;
   color: #b5e8e0;
   background: transparent;
-  font-size: 16px;
 }
 
 #workspaces button.visible {
@@ -67,17 +56,11 @@ window#waybar.hidden {
 #workspaces button.focused {
   color: #abe9b3;
   background: darkturquoise;
-  /* border-top: 2px solid #abe9b3; */
-  /* border-bottom: 2px solid #abe9b3; */
-  /* border-left: 2px solid #abe9b3; */
-  /* border-right: 2px solid #abe9b3; */
   border: 2px solid #abe9b3;
 }
 
 #workspaces button:hover {
   transition: none;
-  /* box-shadow: inherit; */
-  /* text-shadow: inherit; */
   color: #fae3b0;
   /* color: #e8a2af; */
   border-color: #e8a2af;
@@ -87,6 +70,21 @@ window#waybar.hidden {
   color: #e8a2af;
 }
 
+#network,
+#pulseaudio,
+#wireplumber,
+#battery,
+#backlight,
+#disk,
+#memory,
+#cpu,
+#bluetooth {
+  min-width: 80px;
+  color: #161320;
+  background: #96cdfb;
+  /* border: 4px solid #444444; */
+}
+
 #network {
   transition: none;
   color: #161320;
@@ -94,6 +92,12 @@ window#waybar.hidden {
 }
 
 #pulseaudio {
+  transition: none;
+  color: #1a1826;
+  background: #fae3b0;
+}
+
+#wireplumber {
   transition: none;
   color: #1a1826;
   background: #fae3b0;
@@ -153,7 +157,13 @@ window#waybar.hidden {
   background: #96cdfb;
 }
 
+#bluetooth {
+  color: #161320;
+  background: #96cdfb;
+}
+
 #tray {
+  min-width: 128px;
   transition: none;
   color: #b5e8e0;
   background: #161320;
