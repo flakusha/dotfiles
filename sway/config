@@ -11,6 +11,8 @@ include $HOME/.config/sway/config.d/*
 # only enable this if every app you use is compatible with wayland
 # xwayland disable
 
+output * adaptive_sync on
+
 # Logo key. Use Mod1 for Alt.
 set $mod Mod4
 
@@ -271,8 +273,8 @@ input type:touchpad {
     exec /usr/libexec/polkit-gnome-authentication-agent-1
     exec /usr/bin/gnome-keyring-daemon --start --components=secrets
     # exec export $(gnome-keyring-daemon)
-    exec /lib64/libexec/pam_kwallet_init
-    exec /usr/lib64/libexec/kdeconnectd
+    exec /usr/libexec/pam_kwallet_init
+    exec /usr/bin/kdeconnectd
     # exec /usr/lib/polkit-kde-authentication-agent-1
 
 # Audio
