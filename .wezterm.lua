@@ -110,9 +110,19 @@ config.keys = {
 	-- }),
 	-- },
 	{
+		key = "r",
+		mods = "ALT",
+		action = act.SplitPane({ direction = "Right" }),
+	},
+	{
 		key = "w",
 		mods = "ALT",
 		action = wezterm.action.CloseCurrentTab({ confirm = true }),
+	},
+	{
+		key = "q",
+		mods = "ALT",
+		action = wezterm.action.CloseCurrentPane({ confirm = true }),
 	},
 	{
 		key = "B",
