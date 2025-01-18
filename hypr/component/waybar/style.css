@@ -169,6 +169,16 @@ window#waybar.hidden {
   background: #161320;
 }
 
+#tray menu * {
+  padding: 0px 5px;
+  transition: all 0.3s ease;
+}
+
+#tray menu separator {
+  padding: 0px 5px;
+  transition: all 0.3s ease;
+}
+
 #custom-launcher {
   transition: none;
   color: #89dceb;
