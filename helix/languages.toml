@@ -203,7 +203,7 @@ formatter = { command = "prettier", args = ["--parser", "markdown"] }
 [[language]]
 name = "bash"
 auto-format = true
-formatter = { command = "shfmt", args = ["-w", "-s", "-i", "2", "-sr", "-bn"] }
+formatter = { command = "shfmt", args = ["-s", "-i", "2", "-sr", "-bn"] }
 
 [[language]]
 name = "lua"
