@@ -60,10 +60,29 @@ config.colors = {
 	},
 }
 
-config.font = wezterm.font("Iosevka Nerd Font")
+config.font = wezterm.font_with_fallback({
+	-- { family = "ShureTechMono Nerd Font", weight = "Regular" },
+	{ family = "Iosevka Nerd Font" },
+	{ family = "M+1Code Nerd Font" },
+})
 config.font_size = 10.0
 config.window_background_opacity = 1.0
 config.use_fancy_tab_bar = false
+-- config.animation_fps = 144
+config.front_end = "WebGpu"
+-- config.webgpu_power_preference = "HighPerformance"
+config.line_height = 0.9
+config.treat_east_asian_ambiguous_width_as_wide = false
+
+config.tiling_desktop_environments = {
+	"X11 LG3D",
+	"X11 bspwm",
+	"X11 i3",
+	"X11 dwm",
+	"Wayland",
+}
+
+config.use_ime = true
 
 -- Pass environment variables to programs
 config.set_environment_variables = {
@@ -114,6 +133,15 @@ config.keys = {
 		mods = "ALT",
 		action = act.SplitPane({ direction = "Right" }),
 	},
+	{
+		key = "d",
+		mods = "ALT",
+		action = act.SplitPane({ direction = "Down" }),
+	},
+	-- Show the selector, using the quick_select_alphabet
+	{ key = "v", mods = "ALT", action = wezterm.action({ PaneSelect = {} }) },
+	-- Show the selector, using your own alphabet
+	{ key = "b", mods = "ALT", action = wezterm.action({ PaneSelect = { alphabet = "0123456789" } }) },
 	{
 		key = "w",
 		mods = "ALT",
