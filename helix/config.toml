@@ -21,6 +21,7 @@ cursorline = true
 bufferline = "always"
 color-modes = true
 popup-border = "all"
+end-of-line-diagnostics = "hint"
 
 # [editor.gutters.line-numbers]
 # min-width = 3

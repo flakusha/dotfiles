@@ -18,25 +18,21 @@ command = "ruff-lsp"
 args = ["--ignore", "E501"]
 
 [language-server.eslint]
-# command = "vscode-eslint-language-server"
-command = "eslint"
+command = "vscode-eslint-language-server"
 args = ["--stdio"]
 
-# Configuration reference: https://github.com/microsoft/vscode-eslint?tab=readme-ov-file#settings-options
 [language-server.eslint.config]
+# runtime = "node"
+# nodePath = "~/node_modules"
 validate = "on"
 run = "onType"
-workingDirectory.mode = "location"
 experimental = { useFlatConfig = true }
 format.enable = false
-nodePath = ""
-
-# Rules/actions/reporting configuration
-rulesCustomizations = [{ rule = "*", severity = "warn" }]
 codeActionOnSave.enable = false
-codeAction.disableRuleComment = { enable = true, location = "separateLine" }
-codeAction.showDocumentation.enable = true
-problems = { shortenToSingleLine = true }
+rulesCustomizations = [{ rule = "*", severity = "warn" }]
+# codeAction.disableRuleComment = { enable = true, location = "separateLine" }
+# codeAction.showDocumentation.enable = true
+# problems = { shortenToSingleLine = true }
 
 [language-server.scls]
 command = "simple-completion-language-server"
@@ -69,32 +65,20 @@ inlayHints.propertyDeclarationTypes.enabled = true
 inlayHints.functionLikeReturnTypes.enabled = true
 inlayHints.enumMemberValues.enabled = true
 
+[language-server.cspell]
+command = "cspell-lsp"
+args = ["--stdio", "--dictionary", "~/node_modules/@cspell/dict-en_us"]
+
 [[language]]
 name = "rust"
 formatter = { command = "rustfmt" }
 auto-format = true
 language-servers = ["scls", "rust-analyzer"]
 
-# Temporary for llvm <18
-# [language.debugger]
-# command = "lldb-dap"
-# name = "lldb-dap"
-# port-arg = "--port {}"
-# transport = "tcp"
-# [[language.debugger.templates]]
-# name = "binary"
-# request = "launch"
-# [[language.debugger.templates.completion]]
-# completion = "filename"
-# name = "binary"
-# [language.debugger.templates.args]
-# program = "{0}"
-# runInTerminal = true
-
 [[language]]
 name = "toml"
 auto-format = true
-language-servers = ["taplo"]
+language-servers = ["taplo", "cspell"]
 formatter = { command = "taplo", args = ["fmt", "-"] }
 
 [[language]]
@@ -136,7 +120,7 @@ auto-format = true
 language-servers = [
   { name = "typescript-language-server", except-features = ["format"] },
   "biome",
-  "eslint",
+  { name = "eslint", except-features = ["format"] },
   # "deno-lsp",
 ]
 formatter = { command = "prettier", args = ["--parser", "typescript"] }
@@ -147,7 +131,7 @@ auto-format = true
 language-servers = [
   { name = "typescript-language-server", except-features = ["format"] },
   "biome",
-  "eslint",
+  { name = "eslint", except-features = ["format"] },
   # "deno-lsp",
 ]
 formatter = { command = "prettier", args = ["--parser", "typescript"] }
