@@ -1,14 +1,14 @@
 # Enable the subsequent settings only in interactive sessions
 case $- in
-  *i*) ;;
-    *) return;;
+*i*) ;;
+*) return ;;
 esac
 
 # [[ $- == *i* ]] && source /usr/share/blesh/ble.sh --noattach
 
 # Load additional aliases
 if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
+  . ~/.bash_aliases
 fi
 
 # Path to your oh-my-bash installation.
@@ -17,7 +17,7 @@ export OSH="$HOME/.oh-my-bash"
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-bash is loaded.
 # OSH_THEME="font"
-OSH_THEME="powerline-naked"
+export OSH_THEME="powerline-naked"
 
 # Uncomment the following line to use case-sensitive completion.
 # OMB_CASE_SENSITIVE="true"
@@ -27,7 +27,7 @@ OSH_THEME="powerline-naked"
 # OMB_HYPHEN_SENSITIVE="false"
 
 # Uncomment the following line to disable bi-weekly auto-update checks.
-DISABLE_AUTO_UPDATE="true"
+export DISABLE_AUTO_UPDATE="true"
 
 # Uncomment the following line to change how often to auto-update (in days).
 # export UPDATE_OSH_DAYS=13
@@ -78,7 +78,7 @@ DISABLE_AUTO_UPDATE="true"
 
 # To disable the uses of "sudo" by oh-my-bash, please set "false" to
 # this variable.  The default behavior for the empty value is "true".
-OMB_USE_SUDO=true
+export OMB_USE_SUDO=true
 
 # To enable/disable display of Python virtualenv and condaenv
 # OMB_PROMPT_SHOW_PYTHON_VENV=true  # enable
@@ -91,6 +91,7 @@ OMB_USE_SUDO=true
 completions=(
   git
   ssh
+  bcachefs
 )
 
 # Which aliases would you like to load? (aliases can be found in ~/.oh-my-bash/aliases/*)
@@ -111,6 +112,7 @@ plugins=(
   npm
   nvm
   progress
+  starship
 )
 
 # Which plugins would you like to conditionally load? (plugins can be found in ~/.oh-my-bash/plugins/*)
@@ -152,10 +154,10 @@ export LANG=en_IE.UTF-8
 
 BASH_CACHE_DIR=$HOME/.cache/oh-my-bash
 if [[ ! -d $BASH_CACHE_DIR ]]; then
-	mkdir $BASH_CACHE_DIR
+  mkdir "$BASH_CACHE_DIR"
 fi
 
-source "$OSH"/oh-my-bash.sh
+source "$OSH/oh-my-bash.sh"
 
 # SSH Agent connection
 # if [ ! -S ~/.ssh/.ssh-auth-sock ]; then
@@ -167,13 +169,13 @@ source "$OSH"/oh-my-bash.sh
 
 # Ensure that we have an ssh config with AddKeysToAgent set to true
 if [ ! -f ~/.ssh/config ] || ! cat ~/.ssh/config | grep AddKeysToAgent | grep yes > /dev/null; then
-   echo "AddKeysToAgent  yes" >> ~/.ssh/config
+  echo "AddKeysToAgent yes" >> ~/.ssh/config
 fi
 
 # Ensure a ssh-agent is running so you only have to enter keys once
 if [ ! -S ~/.ssh/.ssh-auth-sock ]; then
-	eval `ssh-agent`
-	ln -sf "$SSH_AUTH_SOCK" ~/.ssh/.ssh-auth-sock
+  eval $(ssh-agent)
+  ln -sf "$SSH_AUTH_SOCK" ~/.ssh/.ssh-auth-sock
 fi
 
 export SSH_AUTH_SOCK=~/.ssh/.ssh-auth-sock
@@ -219,15 +221,14 @@ alias i3-start='(
 )'
 
 alias sway-start="(
-  # SDL / Games
-  # export SDL_VIDEODRIVER='wayland,x11'
-  export SDL_VIDEODRIVER=x11
-  # export QT_QPA_PLATFORM='wayland;xcb'
-  export QT_QPA_PLATFORM=wayland
+  export SDL_VIDEODRIVER='wayland,x11'
+  # export SDL_VIDEODRIVER=x11
+  export QT_QPA_PLATFORM='wayland;xcb'
+  # export QT_QPA_PLATFORM=wayland
   # Theme settings
   # export GTK_THEME='Catppuccin-Mocha-Standard-Teal-Dark:dark'
   export XCURSOR_THEME='Catppuccin-Mocha-Teal'
-  export XCURSOR_SIZE=14
+  export XCURSOR_SIZE=24
   export XCURSOR_PATH=/usr/share/icons
   export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
   export QT_STYLE_OVERRIDE=kvantum
@@ -253,7 +254,7 @@ alias sway-start="(
   export STEAM_FORCE_DESKTOPUI_SCALING='0.5'
   export LC_LOCALE=en_IE.UTF-8
   # ESYNC and FSYNC are not guaranteed to work
-  export WINEESYNC=1
+  # export WINEESYNC=1
   export WINEFSYNC=1
   # exec dbus-launch --sh-syntax --exit-with-session sway
   exec dbus-run-session sway
@@ -265,13 +266,13 @@ alias hypr-start='(
   # exec dbus-launch --sh-syntax --exit-with-session Hyprland &>> ~/hypr.log
 )'
 
-alias gdm-start='(
-  sudo rc-service gdm start
+alias gnome-start='(
+  doas rc-service display-manager start
 )'
 
-alias sddm-start='(
-  sudo rc-service sddm start
-)'
+# alias sddm-start='(
+#   sudo rc-service sddm start
+# )'
 
 # Moved it from rsync
 # It's not required to send the rust-analyzer binary, as we can install it with useflag in Gentoo
@@ -292,13 +293,14 @@ alias rust-apps-update='(
 #   rsync -aEhuc --progress --delete --stats /home/shared /home/ext/
 # )'
 
+# alias sync-disks=~/.config/sync-disks.sh
+
 alias gamescope-steam='(
-  # export RADV_PERFTEST="rt"
-  # export VKD3D_CONFIG=dxr
   gamemoderun gamescope -w 3840 -h 2160 -W 3840 -H 2160 \
   -r 144 -o 15 \
-  -e -f --rt -R --adaptive-sync \
-  -- flatpak run com.valvesoftware.Steam
+  -e \
+  -f --rt -R --adaptive-sync \
+  -- flatpak run com.valvesoftware.Steam --tenfoot
 )'
 
 alias gamescope-steam-native='(
@@ -314,8 +316,12 @@ alias gamescope-steam-native='(
 alias git-pull-full='(
   git fetch -fptP --all --recurse-submodules && \
   git submodule update --init && \
-  git merge --no-commit --strategy=recursive -X diff-algorithm=histogram
+  git merge --no-commit --strategy=ort
 )'
+
+alias npm-reset-registry='npm config set registry https://registry.npmjs.org/'
+alias madge-circular='madge --circular --extensions js,mjs,ts'
+alias dpdm='dpdm --no-warning --no-tree --transform'
 
 # Add locally installed and compiled packages
 # PATH=$PATH:~/.cargo/bin
@@ -340,3 +346,5 @@ PATH=$(printf %s "$PATH" | awk -v RS=: '{ if (!arr[$0]++) {printf("%s%s",!ln++?"
 # Add preexec
 [[ -f /usr/share/bash-preexec/bash-preexec.sh ]] && source /usr/share/bash-preexec/bash-preexec.sh
 # [[ ${BLE_VERSION-} ]] && ble-attach
+
+source ~/.config/broot/launcher/bash/br
