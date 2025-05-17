@@ -206,6 +206,9 @@ export XDG_MUSIC_DIR="$HOME/Music"
 export XDG_PICTURES_DIR="$HOME/Pictures"
 export XDG_VIDEOS_DIR="$HOME/Videos"
 
+export PAGER=/usr/bin/bat
+export MANPAGER="sh -c 'sed -u -e \"s/\\x1B\[[0-9;]*m//g; s/.\\x08//g\" | bat -p -lman'"
+
 alias i3-start='(
   #export SDL_VIDEODRIVER=x11
   export XDG_SESSION_TYPE=x11
