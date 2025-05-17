@@ -45,6 +45,7 @@
 !/mako
 !/MangoHud
 !/nushell
+/nushell/*.msgpackz
 !/paru
 !/pipewire
 !/qutebrowser
