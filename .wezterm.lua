@@ -9,9 +9,24 @@ local config = wezterm.config_builder()
 -- For example, changing the color scheme:
 config.color_scheme = "Catppuccin Mocha"
 
+-- Select correct GPU
+for _, gpu in ipairs(wezterm.gui.enumerate_gpus()) do
+	if gpu.backend == "Vulkan" and gpu.device_type == "IntegratedGpu" and gpu.driver == "radv" then
+		config.webgpu_preferred_adapter = gpu
+		config.front_end = "WebGpu"
+		-- config.webgpu_force_fallback_adapter = true
+		break
+	end
+end
+
+-- Test out specific adapter from list
+-- config.webgpu_preferred_adapter = wezterm.gui.enumerate_gpus()[2]
+-- config.webgpu_force_fallback_adapter = true
+
 -- Wayland setup
 -- config.enable_wayland = false
 if os.getenv("XDG_SESSION_TYPE") == "wayland" then
+	-- not stable yet
 	config.enable_wayland = true
 else
 	config.enable_wayland = false
@@ -67,18 +82,27 @@ config.font = wezterm.font_with_fallback({
 })
 config.font_size = 10.0
 config.window_background_opacity = 1.0
-config.use_fancy_tab_bar = false
 -- config.animation_fps = 144
-config.front_end = "WebGpu"
+-- config.front_end = "WebGpu"
 -- config.webgpu_power_preference = "HighPerformance"
 config.line_height = 0.9
 config.treat_east_asian_ambiguous_width_as_wide = false
+config.freetype_load_target = "Light"
+
+config.use_fancy_tab_bar = false
+config.enable_scroll_bar = true
+
+-- In case of tiling, this option is better left off
+-- depends on tiling_desktop_environments list
+-- config.adjust_window_size_when_changing_font_size = false
 
 config.tiling_desktop_environments = {
 	"X11 LG3D",
 	"X11 bspwm",
 	"X11 i3",
 	"X11 dwm",
+	"X11 awesome",
+	"X11 Hyprland :D",
 	"Wayland",
 }
 
@@ -159,5 +183,9 @@ config.keys = {
 	},
 }
 
--- and finally, return the configuration to wezterm
+-- No need to check for updates, as they are managed by Distro / pulled from Git
+config.check_for_updates = false
+-- config.check_for_updates_interval_seconds = 86400
+
+-- Return the configuration to wezterm
 return config
