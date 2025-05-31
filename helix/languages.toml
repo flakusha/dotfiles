@@ -76,6 +76,10 @@ auto-format = true
 language-servers = ["scls", "rust-analyzer"]
 
 [[language]]
+name = "wgsl"
+formatter = { command = "wgslfmt" }
+
+[[language]]
 name = "toml"
 auto-format = true
 language-servers = ["taplo", "cspell"]
