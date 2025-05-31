@@ -3,6 +3,11 @@ local wezterm = require("wezterm")
 
 -- This will hold the configuration.
 local config = wezterm.config_builder()
+local fonts = {
+	{ family = "Iosevka Nerd Font Propo" },
+	{ family = "M+1Code Nerd Font" },
+	{ family = "ShureTechMono Nerd Font Propo", weight = "Regular" },
+}
 
 -- This is where you actually apply your config choices
 
@@ -40,11 +45,7 @@ config.window_frame = {
 	-- Whatever font is selected here, it will have the
 	-- main font setting appended to it to pick up any
 	-- fallback fonts you may have used there.
-	font = wezterm.font_with_fallback({
-		{ family = "ShureTechMono Nerd Font", weight = "Regular" },
-		{ family = "Iosevka Nerd Font" },
-		{ family = "M+1Code Nerd Font" },
-	}),
+	font = wezterm.font_with_fallback(fonts),
 
 	-- The size of the font in the tab bar.
 	-- Default to 10.0 on Windows but 12.0 on other systems
@@ -75,11 +76,7 @@ config.colors = {
 	},
 }
 
-config.font = wezterm.font_with_fallback({
-	-- { family = "ShureTechMono Nerd Font", weight = "Regular" },
-	{ family = "Iosevka Nerd Font" },
-	{ family = "M+1Code Nerd Font" },
-})
+config.font = wezterm.font_with_fallback(fonts)
 config.font_size = 10.0
 config.window_background_opacity = 1.0
 -- config.animation_fps = 144
