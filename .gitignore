@@ -18,6 +18,7 @@
 !.gitignore
 !README.md
 !mimeapps.list
+!.gtkrc-2.0
 !.gtkrc-2.0.mine
 !starship.toml
 !topgrade.toml
@@ -36,6 +37,7 @@
 !/cava
 !/dunst
 !/fish
+!/fontconfig
 !/gtk-3.0
 !/gtk-4.0
 !/helix
