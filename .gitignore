@@ -13,6 +13,7 @@
 /fish/functions
 /fish/completions
 /fish/fish_plugins
+*nohup*
 
 # Include these
 !.gitignore
