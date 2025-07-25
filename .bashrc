@@ -192,23 +192,6 @@ alias grep='grep --color=auto'
 alias ez='eza -laghmuU --icons --group-directories-first --hyperlink --time-style long-iso -F=auto'
 alias wez='wezterm'
 
-# Possible G$$GL issues
-export GOPROXY=direct
-export GOSUMDB=off
-export GOTELEMETRY=off
-export GOTOOLCHAIN=local
-
-# Set home directories
-export XDG_DESKTOP_DIR="$HOME"
-export XDG_DOWNLOAD_DIR="$HOME/Downloads"
-export XDG_DOCUMENTS_DIR="$HOME/Documents"
-export XDG_MUSIC_DIR="$HOME/Music"
-export XDG_PICTURES_DIR="$HOME/Pictures"
-export XDG_VIDEOS_DIR="$HOME/Videos"
-
-export PAGER=/usr/bin/bat
-export MANPAGER="sh -c 'sed -u -e \"s/\\x1B\[[0-9;]*m//g; s/.\\x08//g\" | bat -p -lman'"
-
 alias i3-start='(
   #export SDL_VIDEODRIVER=x11
   export XDG_SESSION_TYPE=x11
@@ -281,7 +264,7 @@ alias gnome-start='(
 # It's not required to send the rust-analyzer binary, as we can install it with useflag in Gentoo
 # ~/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/rust-analyzer \
 alias rust-apps-update='(
-  sudo rsync -uP ~/.cargo/bin/* \
+  doas rsync -uP ~/.cargo/bin/[^.]*[^.] \
   /usr/local/bin/
 )'
 
@@ -319,12 +302,33 @@ alias gamescope-steam-native='(
 alias git-pull-full='(
   git fetch -fptP --all --recurse-submodules && \
   git submodule update --init && \
-  git merge --no-commit --strategy=ort
+  git merge --no-commit
 )'
 
 alias npm-reset-registry='npm config set registry https://registry.npmjs.org/'
 alias madge-circular='madge --circular --extensions js,mjs,ts'
 alias dpdm='dpdm --no-warning --no-tree --transform'
+
+# Possible G$$GL issues
+export GOPROXY=direct
+export GOSUMDB=off
+export GOTELEMETRY=off
+export GOTOOLCHAIN=local
+
+# Set home directories
+export XDG_DESKTOP_DIR="$HOME"
+export XDG_DOWNLOAD_DIR="$HOME/Downloads"
+export XDG_DOCUMENTS_DIR="$HOME/Documents"
+export XDG_MUSIC_DIR="$HOME/Music"
+export XDG_PICTURES_DIR="$HOME/Pictures"
+export XDG_VIDEOS_DIR="$HOME/Videos"
+
+export PAGER=/usr/bin/bat
+export MANPAGER="sh -c 'sed -u -e \"s/\\x1B\[[0-9;]*m//g; s/.\\x08//g\" | bat -p -lman'"
+
+# Experimental change
+export CARGO_TARGET_DIR=/tmp/cargo
+export CARAPACE_BRIDGES='zsh,fish,bash,inshellisense' # optional
 
 # Add locally installed and compiled packages
 # PATH=$PATH:~/.cargo/bin
@@ -332,15 +336,13 @@ PATH=$PATH:~/node_modules/.bin
 PATH=$PATH:~/go/bin
 PATH=$PATH:~/.local/bin
 
-eval "$(zoxide init bash)"
-
 # for f in "$HOME/.bash_completion/"*; do
 #    source "$f"
 # done;
 
+eval "$(zoxide init bash)"
 eval "$(atuin init bash --disable-up-arrow)"
 eval "$(fzf --bash)"
-export CARAPACE_BRIDGES='zsh,fish,bash,inshellisense' # optional
 source <(carapace _carapace)
 
 # Clean up PATH from repeating entries
@@ -350,4 +352,14 @@ PATH=$(printf %s "$PATH" | awk -v RS=: '{ if (!arr[$0]++) {printf("%s%s",!ln++?"
 [[ -f /usr/share/bash-preexec/bash-preexec.sh ]] && source /usr/share/bash-preexec/bash-preexec.sh
 # [[ ${BLE_VERSION-} ]] && ble-attach
 
+# Add the command line file browsers
+# Broot
 source ~/.config/broot/launcher/bash/br
+# Yazi
+function y() {
+  local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+  yazi "$@" --cwd-file="$tmp"
+  IFS= read -r -d '' cwd < "$tmp"
+  [ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
+  rm -f -- "$tmp"
+}
