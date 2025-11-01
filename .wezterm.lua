@@ -4,6 +4,7 @@ local wezterm = require("wezterm")
 -- This will hold the configuration.
 local config = wezterm.config_builder()
 local fonts = {
+	{ family = "Maple Mono NF CN", weight = "Light" },
 	{ family = "Iosevka Nerd Font Propo" },
 	{ family = "M+1Code Nerd Font" },
 	{ family = "ShureTechMono Nerd Font Propo", weight = "Regular" },
