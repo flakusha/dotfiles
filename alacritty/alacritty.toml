@@ -15,7 +15,8 @@ size = 11.0
 # family = "ZedMono Nerd Font"
 # family = "M+1Code Nerd Font"
 # family = "Hack Nerd Font"
-family = "ShureTechMono Nerd Font"
+# family = "ShureTechMono Nerd Font"
+family = "Maple Mono NF CN"
 style = "Regular"
 
 [font.bold]
