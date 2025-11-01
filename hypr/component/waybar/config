@@ -8,8 +8,8 @@
     "clock"
   ],
   "modules-right": [
-    "gamemode",
     "keyboard-state",
+    "gamemode",
     "cpu",
     "memory",
     "disk",

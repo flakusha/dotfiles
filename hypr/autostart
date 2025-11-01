@@ -1,13 +1,13 @@
 #!/bin/bash
 
 # variables
-config="$HOME/.config/hypr"
-scripts="$config/scripts"
+# config="$HOME/.config/hypr"
+# scripts="$config/scripts"
 hm="Hyprland autostart"
 
 # Dbus
 # dbus-update-activation-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP &
-echo $hm
+echo "$hm"
 
 # echo "$hm updating dbus environment"
 # /usr/bin/dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
@@ -32,9 +32,9 @@ echo $hm
 # /usr/bin/pipewire
 # echo "$hm pipewire finished"
 
-echo "$hm xsettingsd"
-/usr/bin/xsettingsd
-echo "$hm xsettingsd finished"
+# echo "$hm xsettingsd"
+# /usr/bin/xsettingsd
+# echo "$hm xsettingsd finished"
 
 # KDE Connect
 # echo "$hm kdeconnectd"
@@ -61,6 +61,6 @@ echo "$hm xsettingsd finished"
 # echo "$hm firewall applet"
 # /usr/bin/firewall-applet
 # echo "$hm firewall applet finished"
+# sleep 3s
 
 echo "$hm autostart finished"
-exit 0
