@@ -4,160 +4,21 @@ case $- in
 *) return ;;
 esac
 
-# [[ $- == *i* ]] && source /usr/share/blesh/ble.sh --noattach
-
 # Load additional aliases
 if [ -f ~/.bash_aliases ]; then
   . ~/.bash_aliases
 fi
 
-# Path to your oh-my-bash installation.
-export OSH="$HOME/.oh-my-bash"
-
-# Set name of the theme to load. Optionally, if you set this to "random"
-# it'll load a random theme each time that oh-my-bash is loaded.
-# OSH_THEME="font"
-export OSH_THEME="powerline-naked"
-
-# Uncomment the following line to use case-sensitive completion.
-# OMB_CASE_SENSITIVE="true"
-
-# Uncomment the following line to use hyphen-insensitive completion. Case
-# sensitive completion must be off. _ and - will be interchangeable.
-# OMB_HYPHEN_SENSITIVE="false"
-
-# Uncomment the following line to disable bi-weekly auto-update checks.
-export DISABLE_AUTO_UPDATE="true"
-
-# Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_OSH_DAYS=13
-
-# Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
-
-# Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
-
-# Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
-
-# Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
-
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# Uncomment the following line if you don't want the repository to be considered dirty
-# if there are untracked files.
-# SCM_GIT_DISABLE_UNTRACKED_DIRTY="true"
-
-# Uncomment the following line if you want to completely ignore the presence
-# of untracked files in the repository.
-# SCM_GIT_IGNORE_UNTRACKED="true"
-
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.  One of the following values can
-# be used to specify the timestamp format.
-# * 'mm/dd/yyyy'     # mm/dd/yyyy + time
-# * 'dd.mm.yyyy'     # dd.mm.yyyy + time
-# * 'yyyy-mm-dd'     # yyyy-mm-dd + time
-# * '[mm/dd/yyyy]'   # [mm/dd/yyyy] + [time] with colors
-# * '[dd.mm.yyyy]'   # [dd.mm.yyyy] + [time] with colors
-# * '[yyyy-mm-dd]'   # [yyyy-mm-dd] + [time] with colors
-# If not set, the default value is 'yyyy-mm-dd'.
-# HIST_STAMPS='yyyy-mm-dd'
-
-# Uncomment the following line if you do not want OMB to overwrite the existing
-# aliases by the default OMB aliases defined in lib/*.sh
-# OMB_DEFAULT_ALIASES="check"
-
-# Would you like to use another custom folder than $OSH/custom?
-# OSH_CUSTOM=/path/to/new-custom-folder
-
-# To disable the uses of "sudo" by oh-my-bash, please set "false" to
-# this variable.  The default behavior for the empty value is "true".
-export OMB_USE_SUDO=true
-
-# To enable/disable display of Python virtualenv and condaenv
-# OMB_PROMPT_SHOW_PYTHON_VENV=true  # enable
-# OMB_PROMPT_SHOW_PYTHON_VENV=false # disable
-
-# Which completions would you like to load? (completions can be found in ~/.oh-my-bash/completions/*)
-# Custom completions may be added to ~/.oh-my-bash/custom/completions/
-# Example format: completions=(ssh git bundler gem pip pip3)
-# Add wisely, as too many completions slow down shell startup.
-completions=(
-  git
-  ssh
-  bcachefs
-)
-
-# Which aliases would you like to load? (aliases can be found in ~/.oh-my-bash/aliases/*)
-# Custom aliases may be added to ~/.oh-my-bash/custom/aliases/
-# Example format: aliases=(vagrant composer git-avh)
-# Add wisely, as too many aliases slow down shell startup.
-aliases=(
-  general
-)
-
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-bash/plugins/*)
-# Custom plugins may be added to ~/.oh-my-bash/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-plugins=(
-  git
-  bashmarks
-  npm
-  nvm
-  progress
-  starship
-)
-
-# Which plugins would you like to conditionally load? (plugins can be found in ~/.oh-my-bash/plugins/*)
-# Custom plugins may be added to ~/.oh-my-bash/custom/plugins/
-# Example format:
-#  if [ "$DISPLAY" ] || [ "$SSH" ]; then
-#      plugins+=(tmux-autoattach)
-#  fi
-
-# User configuration
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-export LANG=en_IE.UTF-8
+# Use bash-completion, if available
+[[ $PS1 && -f /usr/share/bash-completion/bash_completion ]] \
+  && . /usr/share/bash-completion/bash_completion
 
 # Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# ssh
-# export SSH_KEY_PATH="~/.ssh/rsa_id"
-
-# Set personal aliases, overriding those provided by oh-my-bash libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-bash
-# users are encouraged to define aliases within the OSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias bashconfig="mate ~/.bashrc"
-# alias ohmybash="mate ~/.oh-my-bash"
-
-# PS1='[\u@\h \W]\$ '
-
-BASH_CACHE_DIR=$HOME/.cache/oh-my-bash
-if [[ ! -d $BASH_CACHE_DIR ]]; then
-  mkdir "$BASH_CACHE_DIR"
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR='vim'
+else
+  export EDITOR='hx'
 fi
-
-source "$OSH/oh-my-bash.sh"
 
 # SSH Agent connection
 # if [ ! -S ~/.ssh/.ssh-auth-sock ]; then
@@ -168,23 +29,21 @@ source "$OSH/oh-my-bash.sh"
 # ssh-add -l > /dev/null || ssh-add
 
 # Ensure that we have an ssh config with AddKeysToAgent set to true
-if [ ! -f ~/.ssh/config ] || ! cat ~/.ssh/config | grep AddKeysToAgent | grep yes > /dev/null; then
-  echo "AddKeysToAgent yes" >> ~/.ssh/config
-fi
+# if [ ! -f ~/.ssh/config ] || ! cat ~/.ssh/config | grep AddKeysToAgent | grep yes > /dev/null; then
+#   echo "AddKeysToAgent yes" >> ~/.ssh/config
+# fi
 
 # Ensure a ssh-agent is running so you only have to enter keys once
 if [ ! -S ~/.ssh/.ssh-auth-sock ]; then
-  eval $(ssh-agent)
+  eval "$(ssh-agent)"
   ln -sf "$SSH_AUTH_SOCK" ~/.ssh/.ssh-auth-sock
 fi
 
 export SSH_AUTH_SOCK=~/.ssh/.ssh-auth-sock
 
 # Configure GPG
-export GPG_TTY=$(tty)
-
-# If not running interactively, don't do anything
-# [[ $- != *i* ]] && return
+GPG_TTY=$(tty)
+export GPG_TTY
 
 alias ls='ls --color=auto'
 alias ll='ls -lahg --time-style=long-iso --hyperlink=auto'
@@ -192,19 +51,19 @@ alias grep='grep --color=auto'
 alias ez='eza -laghmuU --icons --group-directories-first --hyperlink --time-style long-iso -F=auto'
 alias wez='wezterm'
 
-alias i3-start='(
+alias i3-start="(
   #export SDL_VIDEODRIVER=x11
   export XDG_SESSION_TYPE=x11
   export XDG_SESSION_DESKTOP=i3
   export XDG_CURRENT_SESSION=i3
   export QT_QPA_PLATFORM=xcb
   export MOZ_ENABLE_WAYLAND=0
-  export GTK_THEME="Catppuccin-Mocha-Standard-Teal-Dark:dark"
+  export GTK_THEME='Catppuccin-Mocha-Standard-Teal-Dark:dark'
   export $(dbus-launch)
   exec dunst -conf ~/.config/dunst/dunstrc &
   exec dbus-launch --exit-with-session startx ~/.xinitrc i3
   exec xrandr --dpi 98 &
-)'
+)"
 
 alias sway-start="(
   export SDL_VIDEODRIVER='wayland,x11'
@@ -246,15 +105,19 @@ alias sway-start="(
   exec dbus-run-session sway
 )"
 
-alias hypr-start='(
+alias hypr-start="(
   exec dbus-run-session Hyprland 
   # &>> ~/hypr.log
   # exec dbus-launch --sh-syntax --exit-with-session Hyprland &>> ~/hypr.log
-)'
+)"
 
-alias gnome-start='(
+alias plasma-start="(
+  exec dbus-run-session startplasma-wayland
+)"
+
+alias gnome-start="(
   doas rc-service display-manager start
-)'
+)"
 
 # alias sddm-start='(
 #   sudo rc-service sddm start
@@ -305,9 +168,18 @@ alias git-pull-full='(
   git merge --no-commit
 )'
 
-alias npm-reset-registry='npm config set registry https://registry.npmjs.org/'
+# alias npm-reset-registry='npm config set registry https://registry.npmjs.org/'
 alias madge-circular='madge --circular --extensions js,mjs,ts'
 alias dpdm='dpdm --no-warning --no-tree --transform'
+
+# User configuration
+# export MANPATH="/usr/local/man:$MANPATH"
+HISTSIZE=90000000
+HISTFILESIZE=90000000
+HISTTIMEFORMAT='#%s%n'
+
+# You may need to manually set your language environment
+export LANG=en_IE.UTF-8
 
 # Possible G$$GL issues
 export GOPROXY=direct
@@ -326,35 +198,45 @@ export XDG_VIDEOS_DIR="$HOME/Videos"
 export PAGER=/usr/bin/bat
 export MANPAGER="sh -c 'sed -u -e \"s/\\x1B\[[0-9;]*m//g; s/.\\x08//g\" | bat -p -lman'"
 
-# Experimental change
+# Experimental change (build in RAM, but only 1 package)
 export CARGO_TARGET_DIR=/tmp/cargo
+
+# UV package manager don't get cache so huge lol
+# Kind of useless - breaks some packages due to no symlink following and still inflates
+# to 100s of gigs
+# export UV_LINK_MODE=symlink
+
 export CARAPACE_BRIDGES='zsh,fish,bash,inshellisense' # optional
 
 # Add locally installed and compiled packages
 # PATH=$PATH:~/.cargo/bin
+[[ $- == *i* ]] && source -- "$HOME/.local/share/blesh/ble.sh" --attach=none --rcfile "$HOME/.blerc"
 PATH=$PATH:~/node_modules/.bin
 PATH=$PATH:~/go/bin
 PATH=$PATH:~/.local/bin
+# PATH=$PATH:~/.local/share/uv/tools
+PATH=$PATH:~/.venv/bin
 
-# for f in "$HOME/.bash_completion/"*; do
-#    source "$f"
-# done;
-
+# Load useful things
+eval "$(fzf --bash)"
 eval "$(zoxide init bash)"
 eval "$(atuin init bash --disable-up-arrow)"
-eval "$(fzf --bash)"
 source <(carapace _carapace)
+source <(sk --shell bash)
+
+# Load fancy things only in GUI
+case $(tty) in
+/dev/tty[1-9])
+  : # NOTE Noop branch
+  ;;
+*)
+  eval "$(starship init bash)"
+  ;;
+esac
 
 # Clean up PATH from repeating entries
 PATH=$(printf %s "$PATH" | awk -v RS=: '{ if (!arr[$0]++) {printf("%s%s",!ln++?"":":",$0)}}')
 
-# Add preexec
-[[ -f /usr/share/bash-preexec/bash-preexec.sh ]] && source /usr/share/bash-preexec/bash-preexec.sh
-# [[ ${BLE_VERSION-} ]] && ble-attach
-
-# Add the command line file browsers
-# Broot
-source ~/.config/broot/launcher/bash/br
 # Yazi
 function y() {
   local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
@@ -363,3 +245,5 @@ function y() {
   [ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
   rm -f -- "$tmp"
 }
+
+[[ ! ${BLE_VERSION-} ]] || ble-attach
