@@ -8,7 +8,7 @@
 *cache
 *.zip
 *.svg
-*history.txt
+*history*
 /alacritty/themes
 /fish/functions
 /fish/completions

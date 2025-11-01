@@ -11,20 +11,29 @@
     line-numbers = true
 [merge]
     conflictstyle = diff3
-[diff]
-    tool = difftastic
-    colorMoved = default
-    algorithm = histogram
+
+# [diff]
+    # tool = difftastic
+    # colorMoved = default
+    # algorithm = histogram
 [difftool]
     prompt = false
 [difftool "difftastic"]
     cmd = difft "$LOCAL" "$REMOTE"
 [pager]
-        difftool = true
+    difftool = true
 [tag]
     sort = "version:refname"
 [gpg]
     program = gpg
 [alias]
     dft = difftool
-    dlog = "-c diff.external=difft log -p --ext-diff"
+    dlog = -c diff.external=delta log -p
+    ddlog = -c diff.external=difft log -p --ext-diff
+    dshow = -c diff.external=difft show --ext-diff
+    ddiff = -c diff.external=difft diff
+[filter "lfs"]
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
+    required = true
