@@ -201,7 +201,7 @@ let carapace_completer = {|spans: list<string>|
 let external_completer = {|spans|
   let expanded_alias = scope aliases
   | where name == $spans.0
-  | get -i 0.expansion
+  | get -o 0.expansion
 
   let spans = if $expanded_alias != null {
       $spans
@@ -315,8 +315,8 @@ $env.config = {
   history: {
     max_size: 100_000 # Session has to be reloaded for this to take effect
     sync_on_enter: true # Enable to share history between multiple sessions, else you have to close the session to write history to file
-    file_format: "plaintext" # "sqlite" or "plaintext"
-    isolation: true # true enables history isolation, false disables it. true will allow the history to be isolated to the current session. false will allow the history to be shared across all sessions.
+    file_format: "sqlite" # "sqlite" or "plaintext"
+    isolation: false # true enables history isolation, false disables it. true will allow the history to be isolated to the current session. false will allow the history to be shared across all sessions.
   }
 
   completions: {
@@ -591,13 +591,14 @@ $env.config = {
 }
 
 def git-pull-full [] {
-  git fetch -fptP --all
-  git pull --all
+  git fetch -fptP --all --recurse-submodules
+  git submodule update --init
+  git merge --no-commit
 }
 
 alias ll = ls -mlas
 alias ez = eza -laghmuU --icons --group-directories-first --hyperlink --time-style long-iso -F=auto
-alias rust-apps-update = sudo rsync -uP ~/.cargo/bin/* /usr/local/bin
+alias rust-apps-update = doas rsync -uP ~/.cargo/bin/[!.]*[!.] /usr/local/bin
 alias git-pull-full = git-pull-full
 
 alias gamescope-steam = with-env {RADV_PERFTEST: "rt", VKD3D_CONFIG: 'dxr' } {(
