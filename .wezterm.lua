@@ -13,7 +13,9 @@ local fonts = {
 -- This is where you actually apply your config choices
 
 -- For example, changing the color scheme:
-config.color_scheme = "Catppuccin Mocha"
+-- config.color_scheme = "Catppuccin Mocha"
+-- config.color_scheme = "Aura Dark"
+config.color_scheme = "Yorumi Kraken"
 
 -- Select correct GPU
 for _, gpu in ipairs(wezterm.gui.enumerate_gpus()) do
@@ -81,8 +83,9 @@ config.font = wezterm.font_with_fallback(fonts)
 config.font_size = 10.0
 config.window_background_opacity = 1.0
 -- config.animation_fps = 144
--- config.front_end = "WebGpu"
--- config.webgpu_power_preference = "HighPerformance"
+-- config.front_end = "Software" -- !!! Use CPU
+config.front_end = "WebGpu"
+config.webgpu_power_preference = "HighPerformance"
 config.line_height = 0.9
 config.treat_east_asian_ambiguous_width_as_wide = false
 config.freetype_load_target = "Light"
