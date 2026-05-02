@@ -1,4 +1,5 @@
 theme = "base16_transparent"
+# theme = "catppuccin_mocha"
 
 [editor]
 line-number = "absolute"
@@ -48,7 +49,6 @@ right = [
 ]
 separator = "|"
 
-
 [editor.lsp]
 enable = true
 display-messages = true
@@ -85,13 +85,16 @@ nbsp = "⍽"
 nnbsp = "␣"
 tab = "→"
 newline = "⏎"
-tabpad = "·"  # Tabs will look like "→···" (depending on tab width)
+tabpad = "·" # Tabs will look like "→···" (depending on tab width)
 
 [editor.indent-guides]
 render = true
 character = "▏"
 
 [editor.soft-wrap]
+enable = true
+
+[editor.smart-tab]
 enable = true
 
 [keys.normal]
@@ -125,9 +128,20 @@ A-S-g = [":new", ":insert-output gitui", ":buffer-close!", ":redraw"]
 # ]
 # C-v = [":| sc -re -c %sh{echo $(fd -tf -c never . | tr '\n' ' ')}", ":redraw"]
 
+# Yazi integration
+C-y = [
+  ':sh rm -f /tmp/unique-file',
+  ':insert-output yazi "%{buffer_name}" --chooser-file=/tmp/unique-file',
+  ':sh printf "\x1b[?1049h\x1b[?2004h" > /dev/tty',
+  ':open %sh{cat /tmp/unique-file}',
+  ':redraw',
+  ":set mouse false",
+  ":set mouse true",
+]
+
 # Call the AI prompt using llama.cpp and curl
 C-a = [
-  ":n",                                                        # Open buffer
+  ":n", # Open buffer
   ":w! %sh{echo /tmp/helix/ai-$(date --iso-8601=seconds).md}", # Write immediately in MD for LSP to pick up context
   # ":insert-output echo '!CC\n<|user|>'",                     # Create a base for LSP action to be triggered
   ":insert-output echo '> '", # Enter the MD-like prompt for smartcat
@@ -136,42 +150,48 @@ C-a = [
   "insert_at_line_end",
   ":redraw",
 ]
+# Copy input, create request JSON, send request JSON to OAI API, get response,
+# return both request and response data
 C-x = [
-  ''':| jq -Rc "{
+  ''':| read stdin &&
+  printf "$stdin" |
+  jq -Rc "{
   stream: false,
   prompt: .,
   messages: [
-  {
-    role: \"system\",
-    message: \"You are skilled programmer with a keen eye for detail and an emphasis on readable code.
-    You have been tasked with acting as a smart version of the cat unix program.
-    You take text and a prompt in and write text out.
-    For that reason, it is of crucial importance to just write the desired output.
+    {
+      role: \"system\",
+      message: \"You are skilled programmer with a keen eye for detail and an emphasis on readable code.
+      You have been tasked with acting as a smart version of the cat unix program.
+      You take text and a prompt in and write text out.
+      For that reason, it is of crucial importance to just write the desired output.
 
-    Follow these rules if user has provided context (e.g. the format of the file is Markdown file):
-    - Output the thinking and every steps you take as usual.
-    - Make sure to do a proper formatting for provided context,
-    for example, follow Markdown formatting, if it's requested.
-    - Keep the explanation short and try not to repeat the chain of thought multiple times.
+      Follow these rules if user has provided context (e.g. the format of the file is Markdown file):
+      - Output the thinking and every steps you take as usual.
+      - Make sure to do a proper formatting for provided context,
+      for example, follow Markdown formatting, if it's requested.
+      - Keep the explanation short and try not to repeat the chain of thought multiple times.
 
-    Follow these rules if no context was provided:
-    - Do not under any circumstance write any comment
-    or thought as your output will be piped into other programs.
-    - Do not write the markdown delimiters for code as well.
-    - Do not surround the output with \`\`\` markers, as they are not required.
-    - Sometimes you will be asked to implement or extend some input code.
-      Same thing goes here, write only what was asked because what you write
-      will be directly added to the user's editor.
-    - Make sure to keep the indentation and formatting.
-  \"
-  },
-  {
-    role: \"user\",
-    message: .
-  }
+      Follow these rules if no context was provided:
+      - Do not under any circumstance write any comment or thought as your output will be piped into other programs.
+      - Do not write the markdown delimiters for code as well.
+      - Do not surround the output with \`\`\` markers, as they are not required.
+      - Sometimes you will be asked to implement or extend some input code.
+        Same thing goes here, write only what was asked because what you write
+        will be directly added to the user's editor.
+      - Make sure to keep the indentation and formatting.
+    \"
+    },
+    {
+      role: \"user\",
+      message: .
+    }
   ]}" |
-  curl -X POST -sN --max-time 30 --json @- http://localhost:3001/v1/completions |
-  jq -r ".choices?.[0].text?"
+  curl -X POST -sN --max-time 120 --json @- http://localhost:3001/v1/completions |
+  tee -a /tmp/helix/responses.json |
+  jq -r ".choices?.[0].text?" |
+  tee -a /tmp/helix/responses.txt |
+  printf "$stdin$(cat -)\n"
   ''',
   ":redraw",
 ]

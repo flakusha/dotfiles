@@ -70,14 +70,14 @@ rulesCustomizations = [{ rule = "*", severity = "warn" }]
 command = "simple-completion-language-server"
 
 [language-server.scls.config]
-max_completion_items = 100           # set max completion results len for each group: words, snippets, unicode-input
-feature_words = true                 # enable completion by word
-feature_snippets = true              # enable snippets
-snippets_first = false               # completions will return before snippets by default
+max_completion_items = 100 # set max completion results len for each group: words, snippets, unicode-input
+feature_words = true # enable completion by word
+feature_snippets = true # enable snippets
+snippets_first = true # completions will return before snippets by default
 snippets_inline_by_word_tail = false # suggest snippets by WORD tail, for example text `xsq|` become `x^2|` when snippet `sq` has body `^2`
-feature_unicode_input = false        # enable "unicode input"
-feature_paths = false                # enable path completion
-feature_citations = false            # enable citation completion (only on `citation` feature enabled)
+feature_unicode_input = true # enable "unicode input"
+feature_paths = false # enable path completion
+feature_citations = false # enable citation completion (only on `citation` feature enabled)
 
 # write logs to /tmp/completion.log
 # [language-server.scls.environment]
@@ -117,9 +117,12 @@ args = ["--stdio"]
 # Update / introduce languages
 [[language]]
 name = "rust"
-# formatter = { command = "bash", args = ["-c", "rustfmt"] }
+# formatter = { command = "bash", args = ["-o", "pipefail", "-c", "rustfmt | dx fmt -f -"] }
+# formatter = { command = "dprint", args = ["fmt", "--stdin", "rust"] }
+formatter = { command = "rustfmt", args = ["--edition", "2024"] }
 auto-format = true
 language-servers = ["rust-analyzer", "scls"]
+indent = { tab-width = 2, unit = "  " }
 
 [[language]]
 name = "wgsl"
@@ -129,13 +132,16 @@ formatter = { command = "wgslfmt" }
 name = "toml"
 auto-format = true
 language-servers = ["taplo", "cspell", "scls"]
-formatter = { command = "taplo", args = ["fmt", "-"] }
+# formatter = { command = "taplo", args = ["fmt", "-"] }
+formatter = { command = "dprint", args = ["fmt", "--stdin", "toml"] }
 
 [[language]]
 name = "yaml"
 auto-format = true
-formatter = { command = "npx", args = ["prettier", "--parser", "yaml"] }
 file-types = ["yaml", "yml"]
+# formatter = { command = "npx", args = ["prettier", "--parser", "yaml"] }
+formatter = { command = "dprint", args = ["fmt", "--stdin", "yaml"] }
+language-servers = ["yaml-language-server"]
 
 # Python setup
 [[language]]
@@ -156,13 +162,16 @@ formatter = { command = "ruff", args = ["format", "-"] }
 [[language]]
 name = "html"
 auto-format = true
-formatter = { command = "prettier", args = ["--parser", "html"] }
 roots = [".git"]
+language-servers = ["vscode-html-language-server", "superhtml", "scls"]
+# formatter = { command = "prettier", args = ["--parser", "html"] }
+formatter = { command = 'dprint', args = ["fmt", "--stdin", "html"] }
 
 [[language]]
 name = "css"
 auto-format = true
-formatter = { command = "prettier", args = ["--parser", "css"] }
+# formatter = { command = "prettier", args = ["--parser", "css"] }
+formatter = { command = "dprint", args = ["fmt", "--stdin", "css"] }
 
 # JS/TS family config
 [[language]]
@@ -170,55 +179,67 @@ name = "javascript"
 auto-format = true
 language-servers = [
   { name = "typescript-language-server", except-features = ["format"] },
-  "biome",
   { name = "eslint", except-features = ["format"] },
+  "biome",
   # "deno-lsp",
+  "harper-ls",
+  "scls",
 ]
-formatter = { command = "prettier", args = ["--parser", "typescript"] }
+# formatter = { command = "prettier", args = ["--parser", "typescript"] }
+formatter = { command = "dprint", args = ["fmt", "--stdin", "js"] }
 
 [[language]]
 name = "typescript"
 auto-format = true
 language-servers = [
   { name = "typescript-language-server", except-features = ["format"] },
-  "biome",
   { name = "eslint", except-features = ["format"] },
+  "biome",
   # "deno-lsp",
+  "harper-ls",
+  "scls",
 ]
-formatter = { command = "prettier", args = ["--parser", "typescript"] }
+# formatter = { command = "prettier", args = ["--parser", "typescript"] }
+formatter = { command = "dprint", args = ["fmt", "--stdin", "ts"] }
 
 [[language]]
 name = "tsx"
 auto-format = true
 language-servers = [
   { name = "typescript-language-server", except-features = ["format"] },
+  { name = "eslint", except-features = ["format"] },
   "biome",
-  "eslint",
   # "deno-lsp",
+  "harper-ls",
+  "scls",
 ]
-formatter = { command = "prettier", args = ["--parser", "typescript"] }
+# formatter = { command = "prettier", args = ["--parser", "typescript"] }
+formatter = { command = "dprint", args = ["fmt", "--stdin", "tsx"] }
 
 [[language]]
 name = "jsx"
 auto-format = true
 language-servers = [
   { name = "typescript-language-server", except-features = ["format"] },
+  { name = "eslint", except-features = ["format"] },
   "biome",
-  "eslint",
   # "deno-lsp",
+  "harper-ls",
+  "scls",
 ]
-formatter = { command = "prettier", args = ["--parser", "typescript"] }
+# formatter = { command = "prettier", args = ["--parser", "typescript"] }
+formatter = { command = "dprint", args = ["fmt", "--stdin", "jsx"] }
 
 [[language]]
 name = "json"
 auto-format = true
 language-servers = [
-  { name = "vscode-json-language-server", except-features = [
-    "format",
-  ] },
+  { name = "vscode-json-language-server", except-features = ["format"] },
   "biome",
+  "harper-ls",
 ]
-formatter = { command = "prettier", args = ["--parser", "json"] }
+# formatter = { command = "prettier", args = ["--parser", "json"] }
+formatter = { command = "dprint", args = ["fmt", "--stdin", "json"] }
 
 [[language]]
 name = "jsonnet"
@@ -239,15 +260,15 @@ language-servers = [
   "marksman",
   "markdown-oxide",
   # "lsp-ai",
+  "harper-ls",
   "cspell",
   "scls",
-  "harper-ls",
 ]
 
 [[language]]
 name = "bash"
 auto-format = true
-formatter = { command = "shfmt", args = ["-s", "-i", "2", "-sr", "-bn"] }
+formatter = { command = "shfmt", args = ["-s", "-sr", "-bn"] }
 
 [[language]]
 name = "lua"
@@ -282,12 +303,20 @@ file-types = []
 shebangs = []
 roots = []
 auto-format = false
-language-servers = ["scls", "cspell"]
+language-servers = ["harper-ls", "scls", "cspell"]
+
+[[language]]
+name = "text"
+scope = "text"
+file-types = []
+shebangs = []
+roots = []
+auto-format = false
+language-servers = ["harper-ls", "scls", "cspell"]
 
 [[language]]
 name = "git-commit"
-language-servers = ["scls", "cspell"]
-
+language-servers = ["commit-lsp", "harper-ls", "cspell", "scls"]
 
 # AI caves (endless) - I have disabled it on my side.
 # See comments on what is working. I have ended up using `sc` (smartcat)
